@@ -3,8 +3,12 @@
 PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDEV = $(shell psp-config --pspdev-path)
 CFWSDK = $(PSPDEV)/share/psp-cfw-sdk
+DYNAMIC_LIBS = components/psp-dynamic-libraries
+USB_EXPORTS = $(DYNAMIC_LIBS)/USBDeviceDriver/exports.exp
+PSPSTUB_DIR = src/base
+USB_STUB_DIR = build/usbdevice-stubs
 
-all:
+all: usb-stubs libs/libpspusbdevice.a libs/libpspusbdevice_driver.a
 	$(MAKE) -C src/KUBridge
 	$(MAKE) -C src/SystemCtrlForUser
 	$(MAKE) -C src/SystemCtrlForKernel
@@ -89,6 +93,24 @@ all:
 	cp src/idstorage_ms/*.a libs
 	cp src/libpspnodrm_helper/*.a libs
 
+usb-stubs:
+	mkdir -p $(USB_STUB_DIR)
+	cd $(USB_STUB_DIR) && psp-build-exports -s ../../$(USB_EXPORTS)
+
+$(USB_STUB_DIR)/pspUsbDevice.o: $(USB_STUB_DIR)/pspUsbDevice.S
+	psp-gcc -I$(PSPSTUB_DIR) -c $< -o $@
+
+$(USB_STUB_DIR)/pspUsbDevice_driver.o: $(USB_STUB_DIR)/pspUsbDevice_driver.S
+	psp-gcc -I$(PSPSTUB_DIR) -c $< -o $@
+
+libs/libpspusbdevice.a: $(USB_STUB_DIR)/pspUsbDevice.o
+	mkdir -p libs
+	psp-ar rcs $@ $<
+
+libs/libpspusbdevice_driver.a: $(USB_STUB_DIR)/pspUsbDevice_driver.o
+	mkdir -p libs
+	psp-ar rcs $@ $<
+
 install: all
 	cp -r include/* $(PSPSDK)/include/
 	cp -r libs/* $(PSPSDK)/lib/
@@ -97,6 +119,7 @@ install: all
 
 clean:
 	rm -rf libs
+	rm -rf build/usbdevice-stubs
 	rm -rf include/iplsdk
 	rm -f  include/libpspexploit.h
 	rm -f  include/tinyfont.h

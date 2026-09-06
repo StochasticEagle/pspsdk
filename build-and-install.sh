@@ -20,6 +20,7 @@ make -j "$PROC_NR"
 
 ## Install PSPSDK.
 make -j "$PROC_NR" install
+make -f Makefile-cfw -j "$PROC_NR" install
 
 ## GCC needs to include libcglue, libpthreadglue, libpspprof,
 #  libpsputility, libpsprtc, libpspnet_inet, libpspnet_resolver,
