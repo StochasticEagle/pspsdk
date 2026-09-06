@@ -153,12 +153,6 @@ Here are links to additional community made documentation for contributors to th
 
 You can find PSPDEV Maintainers over at https://discord.gg/bePrj9W in the `#psp-toolchain` channel :)
 
-### Code of Conduct
-
-We're all here to build software and have fun with our PSPs, and everyone deserves to be able to do that without fear of harassment.
-
-Please follow our [Code of Conduct](CODE_OF_CONDUCT.md), and we encourage you to contact the PSPDEV Maintainers if you think something isn't right.
-
 ## Thanks
 
 The PSPSDK developers wish to thank all the people who have contributed bug
