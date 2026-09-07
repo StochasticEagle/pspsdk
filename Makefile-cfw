@@ -97,11 +97,11 @@ usb-stubs:
 	mkdir -p $(USB_STUB_DIR)
 	cd $(USB_STUB_DIR) && psp-build-exports -s ../../$(USB_EXPORTS)
 
-$(USB_STUB_DIR)/pspUsbDevice.o: $(USB_STUB_DIR)/pspUsbDevice.S
-	psp-gcc -I$(PSPSTUB_DIR) -c $< -o $@
+$(USB_STUB_DIR)/pspUsbDevice.o: usb-stubs
+	psp-gcc -I$(PSPSTUB_DIR) -c $(USB_STUB_DIR)/pspUsbDevice.S -o $@
 
-$(USB_STUB_DIR)/pspUsbDevice_driver.o: $(USB_STUB_DIR)/pspUsbDevice_driver.S
-	psp-gcc -I$(PSPSTUB_DIR) -c $< -o $@
+$(USB_STUB_DIR)/pspUsbDevice_driver.o: usb-stubs
+	psp-gcc -I$(PSPSTUB_DIR) -c $(USB_STUB_DIR)/pspUsbDevice_driver.S -o $@
 
 libs/libpspusbdevice.a: $(USB_STUB_DIR)/pspUsbDevice.o
 	mkdir -p libs
