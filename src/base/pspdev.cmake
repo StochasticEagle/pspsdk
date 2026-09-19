@@ -24,7 +24,17 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 SET(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 SET(CMAKE_SYSTEM_PREFIX_PATH ${CMAKE_FIND_ROOT_PATH})
 
-SET(PKG_CONFIG_EXECUTABLE "${PSPDEV}/bin/psp-pkg-config" CACHE STRING "Path to pkg-config")
+find_program(PSP_PKG_CONFIG_EXECUTABLE NAMES pkg-config pkgconf NO_CMAKE_FIND_ROOT_PATH)
+if(NOT PSP_PKG_CONFIG_EXECUTABLE)
+    message(FATAL_ERROR "A host pkg-config implementation is required.")
+endif()
+SET(PKG_CONFIG_EXECUTABLE "${PSP_PKG_CONFIG_EXECUTABLE}" CACHE FILEPATH "Path to host pkg-config" FORCE)
+SET(PKG_CONFIG_ARGN "--static" CACHE STRING "Arguments passed to pkg-config" FORCE)
+SET(PKG_CONFIG_USE_CMAKE_PREFIX_PATH FALSE CACHE BOOL "Keep host paths out of PSP pkg-config lookup" FORCE)
+SET(ENV{PKG_CONFIG_DIR} "")
+SET(ENV{PKG_CONFIG_PATH} "")
+SET(ENV{PKG_CONFIG_SYSROOT_DIR} "${PSPDEV}")
+SET(ENV{PKG_CONFIG_LIBDIR} "${PSPDEV}/psp/lib/pkgconfig:${PSPDEV}/psp/share/pkgconfig")
 
 ## Add Default PSPSDK Libraries according to build.mak and add stdc++ for C++ builds so this doesn't need to be done manually later
 include_directories(${PSPDEV}/psp/include ${PSPDEV}/psp/sdk/include)
