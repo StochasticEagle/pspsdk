@@ -4,7 +4,6 @@ set -e
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${ROOT}/install-permissions.sh"
-pspdev_require_unprivileged_build
 
 ## Make sure PSPDEV is set.
 if [ -z "${PSPDEV:-}" ]; then
