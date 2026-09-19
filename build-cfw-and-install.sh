@@ -3,6 +3,8 @@
 set -e
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${ROOT}/install-permissions.sh"
+pspdev_require_unprivileged_build
 
 if [ -z "${PSPDEV:-}" ]; then
     echo "ERROR: The PSPDEV environment variable has not been set."
@@ -12,4 +14,5 @@ fi
 PROC_NR=$(getconf _NPROCESSORS_ONLN)
 
 cd "${ROOT}"
-make -f Makefile-cfw -j "$PROC_NR" install
+make -f Makefile-cfw -j "$PROC_NR" all
+pspdev_run_install make -f Makefile-cfw install-files

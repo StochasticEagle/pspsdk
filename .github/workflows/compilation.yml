@@ -14,16 +14,18 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apk add build-base autoconf automake zlib-dev bash git
+        apk add build-base autoconf automake zlib-dev bash git sudo
+        adduser -D -s /bin/bash build
 
     - uses: actions/checkout@v4
 
     - name: Compile PSPSDK
       run: |
-        chown -R $(id -nu):$(id -ng) .
         export PSPDEV=/usr/local/pspdev
         export PATH=$PATH:$PSPDEV/bin
-        ./build-and-install.sh
+        chown -R build:build .
+        chown -R build:build "$PSPDEV"
+        sudo -u build env PSPDEV="$PSPDEV" PATH="$PATH" ./build-and-install.sh
     
     - name: Get short SHA
       id: slug

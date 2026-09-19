@@ -1,4 +1,4 @@
-.PHONY: all install clean
+.PHONY: all install install-files clean
 
 PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDEV = $(shell psp-config --pspdev-path)
@@ -111,10 +111,12 @@ libs/libpspusbdevice_driver.a: $(USB_STUB_DIR)/pspUsbDevice_driver.o
 	mkdir -p libs
 	psp-ar rcs $@ $<
 
-install: all
+install: all install-files
+
+install-files:
+	mkdir -p $(PSPSDK)/include $(PSPSDK)/lib $(CFWSDK)
 	cp -r include/* $(PSPSDK)/include/
 	cp -r libs/* $(PSPSDK)/lib/
-	mkdir -p $(CFWSDK)/build-tools
 	cp -r build-tools $(CFWSDK)/
 
 clean:
