@@ -137,10 +137,28 @@ bug.
 
 ## License
 
-PSPSDK is distributed under a [BSD-compatible license](https://github.com/StochasticEagle/pspsdk/blob/dev/fork/LICENSE), with the exception of the
-files located in `tools/PrxEncrypter`. The files located in the `tools/PrxEncrypter`
-directory are subject to the terms of the GNU General Public License version 3.
-See the `LICENSE` files for more information.
+PSPSDK is a mixed-license repository. Most of the original PSPSDK source is
+distributed under the repository's [BSD-compatible license](https://github.com/StochasticEagle/pspsdk/blob/dev/fork/LICENSE).
+Some incorporated components retain different licenses:
+
+- `tools/PrxEncrypter/` is licensed under the GNU General Public License
+  version 3.
+- CFW PRX source migrated from `StochasticEagle/psp-dynamic-libraries`,
+  including `src/IOPrivileged/` and additional modules as they are integrated,
+  retains its GNU General Public License version 3 terms; see
+  [`LICENSE.GPLv3`](https://github.com/StochasticEagle/pspsdk/blob/dev/fork/LICENSE.GPLv3).
+- `src/BootLoadEx/` contains its own GNU General Public License version 3
+  license file.
+- `src/LibPspExploit/` is distributed under the WTFPL version 2 license in
+  that directory.
+- `src/iplsdk/` is distributed under the MIT license in that directory.
+- Individual imported files may carry additional third-party or public-domain
+  notices. Those notices remain applicable to those files and must be preserved
+  when the source is moved or modified. This includes the AES source used by
+  `idStorageRegen`, which carries OpenSSL and public-domain notices.
+
+The license file or notice closest to a component or source file governs that
+material where it differs from the repository-level BSD-compatible license.
 
 ## Resources
 
