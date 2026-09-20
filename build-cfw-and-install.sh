@@ -18,8 +18,8 @@ cd "${ROOT}"
 make -f Makefile-cfw -j "${PROC_NR}" all
 pspdev_run_install make -f Makefile-cfw install-files
 
-# Build the in-tree dynamic PRX set. Source-built PRXs are generated under
-# build/prx/dynamic; intentional versioned pre-built PRXs are staged there too.
+# Build the in-tree PRX set. Source-built and intentional versioned pre-built
+# PRXs are written directly into build/prx.
 cmake -S "${ROOT}" -B "${PRX_BUILD}" \
     -DCMAKE_TOOLCHAIN_FILE="${PSPDEV}/psp/share/pspdev.cmake" \
     -DCMAKE_BUILD_TYPE=Release \

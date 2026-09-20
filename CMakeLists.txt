@@ -69,7 +69,7 @@ if(PSPSDK_BUILD_DYNAMIC_MODULES)
         )
     endfunction()
 
-    set(PSPSDK_DYNAMIC_PRX_DIR "${CMAKE_BINARY_DIR}/dynamic")
+    set(PSPSDK_DYNAMIC_PRX_DIR "${CMAKE_BINARY_DIR}")
 
     function(pspsdk_stage_prx target output_name)
         add_custom_command(
