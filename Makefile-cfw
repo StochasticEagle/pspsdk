@@ -3,8 +3,7 @@
 PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDEV = $(shell psp-config --pspdev-path)
 CFWSDK = $(PSPDEV)/share/psp-cfw-sdk
-DYNAMIC_LIBS = components/psp-dynamic-libraries
-USB_EXPORTS = $(DYNAMIC_LIBS)/USBDeviceDriver/exports.exp
+USB_EXPORTS = src/USBDeviceDriver/exports.exp
 PSPSTUB_DIR = src/base
 USB_STUB_DIR = build/usbdevice-stubs
 

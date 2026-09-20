@@ -1,5 +1,0 @@
-[submodule "components/psp-dynamic-libraries"]
-	path = components/psp-dynamic-libraries
-	url = https://github.com/StochasticEagle/psp-dynamic-libraries.git
-	branch = main
-	shallow = true
