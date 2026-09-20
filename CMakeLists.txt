@@ -81,4 +81,5 @@ if(PSPSDK_BUILD_DYNAMIC_MODULES)
 
     add_subdirectory(src/IOPrivileged)
     add_subdirectory(src/IPL_Updater)
+    add_subdirectory(src/KBooti_Updater)
 endif()

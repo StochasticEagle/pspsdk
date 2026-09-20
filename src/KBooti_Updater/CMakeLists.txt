@@ -1,0 +1,6 @@
+add_prx_module(kbooti_update_prx exports.exp)
+set_target_properties(kbooti_update_prx PROPERTIES OUTPUT_NAME kbooti_update)
+target_sources(kbooti_update_prx PRIVATE main.c)
+target_compile_options(kbooti_update_prx PRIVATE -Os -G0 -Wall -fno-pic -std=c99)
+psp_link_kernel_prx(kbooti_update_prx pspsystemctrl_kernel)
+pspsdk_stage_prx(kbooti_update_prx kbooti_update)
