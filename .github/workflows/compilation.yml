@@ -45,8 +45,10 @@ jobs:
       - name: Build PSPSDK
         run: |
           export PATH="$PSPDEV/bin:$PATH"
+          # The CFW additions depend on PSP packages such as zlib/libpng.
+          # Core PSPSDK and its examples are validated here; full CFW
+          # integration is validated by the PSPDEV workflow after packages.
           ./build-and-install.sh
-          ./build-cfw-and-install.sh
 
       - name: Compile examples
         run: |
