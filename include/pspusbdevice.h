@@ -1,10 +1,6 @@
 #ifndef __PSPUSBDEVICE_H__
 #define __PSPUSBDEVICE_H__
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 /**
  * This functions require flash0:/kd/_usbdevice.prx to be loaded/started first.
 
@@ -43,9 +39,6 @@ int pspUsbDeviceSetDevice(u32 device, int ronly, int unassign_mask);
 */
 int pspUsbDeviceFinishDevice();
 
-#ifdef __cplusplus
-}
-#endif
 
 #endif
 
