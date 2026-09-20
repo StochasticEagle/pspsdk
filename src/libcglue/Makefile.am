@@ -79,17 +79,8 @@ TIMEZONE_OBJS = __timezone_update.o
 
 lib_LIBRARIES = libcglue.a
 
-netdb_nobase_includedir = @PSPSDK_INCLUDEDIR@
-netdb_nobase_include_HEADERS = netdb.h
-
-netinet_nobase_includedir = @PSPSDK_INCLUDEDIR@/netinet
-netinet_nobase_include_HEADERS = netinet/in.h netinet/tcp.h
-
-arpa_nobase_includedir = @PSPSDK_INCLUDEDIR@/arpa
-arpa_nobase_include_HEADERS = arpa/inet.h
-
 sys_nobase_includedir = @PSPSDK_INCLUDEDIR@/sys
-sys_nobase_include_HEADERS = sys/socket.h sys/ioctl.h
+sys_nobase_include_HEADERS = sys/ioctl.h
 
 libcglue_a_SOURCES = \
 	cwd.c \
