@@ -1,8 +1,28 @@
-# Build directories
+# Build directories and generated SDK output
 /build/
 /doc/build/
 /include/iplsdk/
 /libs/
+/VERSION
+/compile_flags.txt
+
+# Autotools-generated files
+Makefile
+Makefile.in
+.deps/
+.libs/
+/aclocal.m4
+/autom4te.cache/
+/compile
+/config.h
+/config.h.in
+/config.log
+/config.status
+/configure
+/depcomp
+/install-sh
+/missing
+/stamp-h1
 
 # Compiler and PSP build artifacts
 *.o
@@ -11,6 +31,10 @@
 *.prx
 *~
 !/src/pre-built/*.a
+
+# Generated PSP application output
+EBOOT.PBP
+PARAM.SFO
 
 # Generated host tools
 /tools/PrxEncrypter/PrxEncrypter
@@ -26,30 +50,6 @@
 /tools/psp-prxgen
 /tools/unpack-pbp
 
-# Autotools output
-Makefile
-Makefile.in
-.deps/
-.libs/
-aclocal.m4
-autom4te.cache/
-compile
-config.h
-config.h.in
-config.log
-config.status
-configure
-depcomp
-install-sh
-missing
-stamp-h1
-/src/base/linkfile.prx
-
-# Generated SDK/application output
-EBOOT.PBP
-PARAM.SFO
-VERSION
-compile_flags.txt
-
-# Local editor state
-.vscode/
+# Local editor and OS state
+/.vscode/
+.DS_Store
