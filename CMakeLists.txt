@@ -10,13 +10,18 @@ set(SDK_LIBS_DIR "${CMAKE_CURRENT_LIST_DIR}/libs")
 
 if(PSPSDK_BUILD_CFW_LIBRARIES)
     set(STAMP_FILE "${SDK_LIBS_DIR}/.copied.stamp")
+    file(GLOB PREBUILT_SDK_LIBS CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_LIST_DIR}/src/pre-built/*.a"
+    )
 
     add_custom_command(
         OUTPUT ${STAMP_FILE}
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_CURRENT_LIST_DIR}/src/pre-built"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${SDK_LIBS_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${PREBUILT_SDK_LIBS}
             "${SDK_LIBS_DIR}"
         COMMAND ${CMAKE_COMMAND} -E touch "${STAMP_FILE}"
+        DEPENDS ${PREBUILT_SDK_LIBS}
         COMMENT "Copying pre-built SDK libraries"
     )
 
@@ -78,6 +83,33 @@ if(PSPSDK_BUILD_DYNAMIC_MODULES)
             COMMENT "Staging ${output_name}.prx"
         )
     endfunction()
+
+    set(PSPSDK_PREBUILT_PRXS
+        intraFont-vlf.prx
+        lflash_fdisk.prx
+        libpsardumper.prx
+        pspdecrypt.prx
+        vlf.prx
+    )
+
+    set(PSPSDK_PREBUILT_PRX_PATHS)
+    foreach(prx IN LISTS PSPSDK_PREBUILT_PRXS)
+        set(prx_path "${CMAKE_CURRENT_LIST_DIR}/src/pre-built/${prx}")
+        if(NOT EXISTS "${prx_path}")
+            message(FATAL_ERROR "Missing versioned pre-built PRX: ${prx}")
+        endif()
+        list(APPEND PSPSDK_PREBUILT_PRX_PATHS "${prx_path}")
+    endforeach()
+
+    add_custom_target(stage-prebuilt-prxs ALL
+        COMMAND ${CMAKE_COMMAND} -E make_directory
+            "${PSPSDK_DYNAMIC_PRX_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${PSPSDK_PREBUILT_PRX_PATHS}
+            "${PSPSDK_DYNAMIC_PRX_DIR}"
+        DEPENDS ${PSPSDK_PREBUILT_PRX_PATHS}
+        COMMENT "Staging versioned pre-built PRXs"
+    )
 
     add_subdirectory(src/IOPrivileged)
     add_subdirectory(src/IPL_Updater)
