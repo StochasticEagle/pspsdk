@@ -1,0 +1,6 @@
+add_prx_module(kpspident_prx exports.exp)
+set_target_properties(kpspident_prx PROPERTIES OUTPUT_NAME kpspident)
+target_sources(kpspident_prx PRIVATE main.c)
+target_compile_options(kpspident_prx PRIVATE -Os -G0 -Wall -fno-pic)
+psp_link_kernel_prx(kpspident_prx)
+pspsdk_stage_prx(kpspident_prx kpspident)
