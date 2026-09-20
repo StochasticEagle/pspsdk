@@ -47,10 +47,37 @@ simple programs and libraries. See any PSPSDK sample program for details on how
 
 ### Integrated CFW PRX modules
 
-CFW-related PRX modules are being migrated into PSPSDK source so they share the
-same SDK interfaces and build lifecycle. `IOPrivileged` is built from
-`src/IOPrivileged/` by `build-cfw-and-install.sh`; its generated PRX is staged
-under `build/prx/dynamic/` and is not committed to the repository.
+The dynamic PRX modules formerly maintained in
+`StochasticEagle/psp-dynamic-libraries` are fully integrated into PSPSDK so
+they share the same SDK interfaces and build lifecycle. The source-built PRX
+modules are:
+
+- `IOPrivileged`
+- `IPL_Updater`
+- `KBooti_Updater`
+- `LibPNG`
+- `PSPAV`
+- `PSPFTP`
+- `PSPIdentHelper`
+- `USBDeviceDriver`
+- `Unarchiver`
+- `idStorageRegen`
+
+`build-cfw-and-install.sh` builds the complete in-tree dynamic PRX set and
+stages the resulting PRXs directly under `build/prx/`.
+
+Five legacy PRX-only modules do not currently have complete, verified
+source-and-build recipes and remain intentional versioned binary inputs under
+`src/pre-built/`:
+
+- `intraFont-vlf.prx`
+- `lflash_fdisk.prx`
+- `libpsardumper.prx`
+- `pspdecrypt.prx`
+- `vlf.prx`
+
+These PRX-only inputs are explicitly enumerated by the root CMake build and are
+staged alongside the source-built PRXs in `build/prx/`.
 
 The migrated module source originates from
 `StochasticEagle/psp-dynamic-libraries` and remains GPLv3-licensed; see
@@ -143,8 +170,7 @@ Some incorporated components retain different licenses:
 
 - `tools/PrxEncrypter/` is licensed under the GNU General Public License
   version 3.
-- CFW PRX source migrated from `StochasticEagle/psp-dynamic-libraries`,
-  including `src/IOPrivileged/` and additional modules as they are integrated,
+- CFW PRX source migrated from `StochasticEagle/psp-dynamic-libraries`
   retains its GNU General Public License version 3 terms; see
   [`LICENSE.GPLv3`](https://github.com/StochasticEagle/pspsdk/blob/dev/fork/LICENSE.GPLv3).
 - `src/BootLoadEx/` contains its own GNU General Public License version 3
