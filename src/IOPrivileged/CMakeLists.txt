@@ -1,0 +1,6 @@
+add_prx_module(iop_prx exports.exp)
+set_target_properties(iop_prx PROPERTIES OUTPUT_NAME iop)
+target_sources(iop_prx PRIVATE main.c)
+target_compile_options(iop_prx PRIVATE -O2 -Os -G0 -Wall -fshort-wchar -fno-pic -mno-check-zero-division)
+psp_link_kernel_prx(iop_prx pspsystemctrl_kernel)
+pspsdk_stage_prx(iop_prx iop)

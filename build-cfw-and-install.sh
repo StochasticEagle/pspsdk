@@ -11,7 +11,19 @@ if [ -z "${PSPDEV:-}" ]; then
 fi
 
 PROC_NR=$(getconf _NPROCESSORS_ONLN)
+PRX_BUILD="${ROOT}/build/prx"
 
 cd "${ROOT}"
-make -f Makefile-cfw -j "$PROC_NR" all
+
+make -f Makefile-cfw -j "${PROC_NR}" all
 pspdev_run_install make -f Makefile-cfw install-files
+
+# Build source-based PRX modules in-tree. Generated PRXs remain build
+# artifacts under build/prx/dynamic and are never versioned in PSPSDK.
+cmake -S "${ROOT}" -B "${PRX_BUILD}" \
+    -DCMAKE_TOOLCHAIN_FILE="${PSPDEV}/psp/share/pspdev.cmake" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPSPSDK_BUILD_CFW_LIBRARIES=OFF \
+    -DPSPSDK_BUILD_DYNAMIC_MODULES=ON
+
+cmake --build "${PRX_BUILD}" --parallel "${PROC_NR}"

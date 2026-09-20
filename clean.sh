@@ -10,5 +10,7 @@ if [[ -f Makefile-cfw ]]; then
     make -f Makefile-cfw clean
 fi
 
+rm -rf "${ROOT}/build/prx"
+
 # Remove the normal autotools build products and generated build system.
 ./bootstrap --clean

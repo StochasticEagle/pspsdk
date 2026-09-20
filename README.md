@@ -45,6 +45,17 @@ A library for Make (`build.mak`) is also included to provide an easy way to buil
 simple programs and libraries. See any PSPSDK sample program for details on how
 `build.mak` is used.
 
+### Integrated CFW PRX modules
+
+CFW-related PRX modules are being migrated into PSPSDK source so they share the
+same SDK interfaces and build lifecycle. `IOPrivileged` is built from
+`src/IOPrivileged/` by `build-cfw-and-install.sh`; its generated PRX is staged
+under `build/prx/dynamic/` and is not committed to the repository.
+
+The migrated module source originates from
+`StochasticEagle/psp-dynamic-libraries` and remains GPLv3-licensed; see
+`LICENSE.GPLv3`.
+
 ## Installation
 
 See [StochasticEagle/pspdev](https://github.com/StochasticEagle/pspdev/tree/dev/fork) for the complete forked PSPDEV environment.
