@@ -80,4 +80,5 @@ if(PSPSDK_BUILD_DYNAMIC_MODULES)
     endfunction()
 
     add_subdirectory(src/IOPrivileged)
+    add_subdirectory(src/IPL_Updater)
 endif()
