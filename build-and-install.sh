@@ -13,10 +13,18 @@ fi
 
 PROC_NR=$(getconf _NPROCESSORS_ONLN)
 
-## Build PSPSDK.
+## Build PSPSDK incrementally. Reuse the generated/configured build state
+## unless a clean build was explicitly requested through ./clean.sh.
 cd "${ROOT}"
-./bootstrap
-./configure
+
+if [[ ! -x "${ROOT}/configure" ]]; then
+    ./bootstrap
+fi
+
+if [[ ! -f "${ROOT}/Makefile" || ! -f "${ROOT}/config.status" ]]; then
+    ./configure
+fi
+
 make -j "$PROC_NR"
 
 ## Install PSPSDK.
