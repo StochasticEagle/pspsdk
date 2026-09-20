@@ -1,12 +1,12 @@
 # PSP Software Development Kit
 
-[![CI](https://img.shields.io/github/actions/workflow/status/pspdev/pspsdk/.github/workflows/compilation.yml?branch=master&style=for-the-badge&logo=github&label=CI)](https://github.com/pspdev/pspsdk/actions?query=workflow:CI) [![CI-Docker](https://img.shields.io/github/actions/workflow/status/pspdev/pspsdk/.github/workflows/docker.yml?branch=master&style=for-the-badge&logo=github&label=CI-Docker)](https://github.com/pspdev/pspsdk/actions?query=workflow:CI-Docker)
+[![CI](https://img.shields.io/github/actions/workflow/status/StochasticEagle/pspsdk/.github/workflows/compilation.yml?branch=dev%2Ffork&style=for-the-badge&logo=github&label=CI)](https://github.com/StochasticEagle/pspsdk/actions/workflows/compilation.yml)
 
-[https://pspdev.github.io/](https://pspdev.github.io/)
+[StochasticEagle/pspdev](https://github.com/StochasticEagle/pspdev/tree/dev/fork)
 
 ## Introduction
 
-PSPSDK is a collection of open source libraries and tools written for Sony's Playstation Portable (PSP) gaming console. It is part of the [PSPDEV SDK](https://pspdev.github.io/).
+PSPSDK is a collection of open source libraries and tools written for Sony's Playstation Portable (PSP) gaming console. It is part of the [PSPDEV SDK](https://github.com/StochasticEagle/pspdev/tree/dev/fork).
 
 ## Features
 
@@ -47,7 +47,7 @@ simple programs and libraries. See any PSPSDK sample program for details on how
 
 ## Installation
 
-See [https://pspdev.github.io/](https://pspdev.github.io/installation.html) for instructions on how to easily install PSPSDK along with other tools provided in the PSPDEV SDK.
+See [StochasticEagle/pspdev](https://github.com/StochasticEagle/pspdev/tree/dev/fork) for the complete forked PSPDEV environment.
 
 ## Installation from source
 
@@ -55,7 +55,7 @@ See [https://pspdev.github.io/](https://pspdev.github.io/installation.html) for 
 
 To use PSPSDK you must have the following software installed:
 
-* [PSPDEV Toolchain](https://github.com/pspdev/psptoolchain-allegrex)
+* [PSPDEV Toolchain](https://github.com/StochasticEagle/psp-toolchain-allegrex/tree/dev/fork)
 * [GNU Make](http://www.gnu.org/software/make/)
 * [Git client](https://git-scm.com/downloads)
 * [GNU autoconf](http://www.gnu.org/software/autoconf/) and [automake](http://sourceware.org/automake/)(GNU Autotools)
@@ -70,10 +70,10 @@ documentation:
 ### Building
 
 PSPSDK can be found in the Git repository located at
-https://github.com/pspdev/pspsdk. You can do the following command to download PSPSDK:
+https://github.com/StochasticEagle/pspsdk. You can do the following command to download this fork:
 
 ```bash
-git clone https://github.com/pspdev/pspsdk.git
+git clone --branch dev/fork https://github.com/StochasticEagle/pspsdk.git
 ```
 
 Once you've downloaded PSPSDK, run the following command from the pspsdk directory to
@@ -120,13 +120,13 @@ make install
 
 ## Bugs
 
-If you find a bug in PSPSDK, open an issue at https://github.com/pspdev/pspsdk/issues. If possible, include any
+If you find a bug in PSPSDK, open an issue at https://github.com/StochasticEagle/pspsdk/issues. If possible, include any
 code or documentation that can be used by the PSPSDK developers to recreate the
 bug.
 
 ## License
 
-PSPSDK is distributed under a [BSD-compatible license](https://github.com/pspdev/pspsdk/blob/master/LICENSE), with the exception of the
+PSPSDK is distributed under a [BSD-compatible license](https://github.com/StochasticEagle/pspsdk/blob/dev/fork/LICENSE), with the exception of the
 files located in `tools/PrxEncrypter`. The files located in the `tools/PrxEncrypter`
 directory are subject to the terms of the GNU General Public License version 3.
 See the `LICENSE` files for more information.
@@ -135,8 +135,8 @@ See the `LICENSE` files for more information.
 
 ### Official Source Documentation
 
-This is generated automatically from the repository `master` branch:
-https://pspdev.github.io/pspsdk/
+This is generated automatically from the repository `dev/fork` branch:
+https://stochasticeagle.github.io/pspsdk/
 
 ### Additional Documentation
 

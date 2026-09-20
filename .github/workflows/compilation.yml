@@ -3,45 +3,60 @@ name: CI
 on:
   push:
   pull_request:
-  repository_dispatch:
-    types: [run_build]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ghcr.io/pspdev/psptoolchain:latest
+
     steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          submodules: recursive
 
-    - name: Install dependencies
-      run: |
-        apk add build-base autoconf automake zlib-dev bash git sudo
-        adduser -D -s /bin/bash build
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf automake bison build-essential cmake fakeroot flex gawk gettext \
+            git libarchive-dev libarchive-tools libcurl4-openssl-dev libgmp-dev \
+            libgpgme-dev libgsl-dev libmpc-dev libmpfr-dev libreadline-dev \
+            libssl-dev libtool libusb-dev meson ninja-build patch pkg-config \
+            texinfo wget xz-utils zlib1g-dev
 
-    - uses: actions/checkout@v4
+      - name: Build forked PSP toolchain
+        run: |
+          export PSPDEV="$RUNNER_TEMP/pspdev"
+          export PATH="$PSPDEV/bin:$PATH"
+          echo "PSPDEV=$PSPDEV" >> "$GITHUB_ENV"
+          echo "$PSPDEV/bin" >> "$GITHUB_PATH"
 
-    - name: Compile PSPSDK
-      run: |
-        export PSPDEV=/usr/local/pspdev
-        export PATH=$PATH:$PSPDEV/bin
-        chown -R build:build .
-        chown -R build:build "$PSPDEV"
-        sudo -u build env PSPDEV="$PSPDEV" PATH="$PATH" ./build-and-install.sh
-    
-    - name: Get short SHA
-      id: slug
-      run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
+          git clone --depth 1 --branch dev/fork \
+            --recurse-submodules --shallow-submodules \
+            https://github.com/StochasticEagle/psp-toolchain.git \
+            "$RUNNER_TEMP/psp-toolchain"
 
-    - name: Compile Examples
-      run: |
-        cd src/samples && make -f Makefile.samples -j $(getconf _NPROCESSORS_ONLN)
-    
-    - name: Compress Samples folder folder
-      run: |
-        tar -zcvf samples.tar.gz src/samples
-    
-    - name: Upload Samples artifacts
-      if: ${{ success() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: samples-${{ steps.slug.outputs.sha8 }}
-        path: samples.tar.gz
+          "$RUNNER_TEMP/psp-toolchain/toolchain.sh"
+
+      - name: Build PSPSDK
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          ./build-and-install.sh
+          ./build-cfw-and-install.sh
+
+      - name: Compile examples
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          make -C src/samples -f Makefile.samples -j "$(getconf _NPROCESSORS_ONLN)"
+
+      - name: Archive examples
+        run: tar -zcvf samples.tar.gz src/samples
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: samples-${{ github.sha }}
+          path: samples.tar.gz
