@@ -15,10 +15,8 @@ PRX_BUILD="${ROOT}/build/prx"
 
 cd "${ROOT}"
 
-## The PRX CMake cache embeds the active PSP compiler, SDK, and package
-## locations. Reconfigure from a clean tree after any toolchain/package update.
-rm -rf "${PRX_BUILD}"
-
+## Re-run CMake in place so compiler/SDK/package changes refresh the cache
+## while unchanged PRX objects remain available for incremental rebuilds.
 make -f Makefile-cfw -j "${PROC_NR}" all
 pspdev_run_install make -f Makefile-cfw install-files
 
