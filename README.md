@@ -45,12 +45,66 @@ A library for Make (`build.mak`) is also included to provide an easy way to buil
 simple programs and libraries. See any PSPSDK sample program for details on how
 `build.mak` is used.
 
-### Integrated PRX modules
+### Integrated CFW SDK
+
+The PSP CFW SDK formerly maintained in
+[`pspdev/psp-cfw-sdk`](https://github.com/pspdev/psp-cfw-sdk) is integrated
+into this PSPSDK fork. That upstream repository is an extension to PSPSDK for
+developing PSP custom firmware, CFW-aware homebrew and plugins, and other
+low-level PSP software.
+
+The incorporated CFW SDK source tree includes:
+
+- `AdrenalineCtrl`
+- `ArkCtrl`
+- `BootLoadEx`
+- `DcManager`
+- `KUBridge`
+- `LibCisoRead`
+- `LibPspExploit`
+- `ScePafLibc`
+- `SysclibForUser`
+- `SystemCtrlForKernel`
+- `SystemCtrlForUser`
+- `VshCtrl`
+- `ansi-c`
+- `colordebugger`
+- `guglue`
+- `idsRegeneration`
+- `idsRegeneration_driver`
+- `idstorage_ms`
+- `inferno_driver`
+- `iplsdk`
+- `isoCtrl_driver`
+- `kpspident`
+- `libintraFont_stub`
+- `libpng_stub`
+- `libpspav_stub`
+- `libpspftp_stub`
+- `libpspnodrm_helper`
+- `libunarchive_helper`
+- `microlz`
+- `mini2d`
+- `popsdisplay`
+- `pspDecrypt`
+- `pspIplUpdate`
+- `pspKbootiUpdate`
+- `pspmalloc`
+- `pspminicrt`
+- `pspPSAR`
+- `tinyfont`
+
+The CFW SDK headers, build support, and applicable pre-built inputs are kept
+with PSPSDK so they can share one source tree and build lifecycle instead of
+requiring a separate SDK repository.
+
+### Integrated dynamic PRX modules
 
 The dynamic PRX modules formerly maintained in
-`StochasticEagle/psp-dynamic-libraries` are fully integrated into PSPSDK so
-they share the same SDK interfaces and build lifecycle. The source-built PRX
-modules are:
+[`pspdev/psp-dynamic-libraries`](https://github.com/pspdev/psp-dynamic-libraries)
+are also fully integrated into PSPSDK. That repository is specifically the
+dynamic-library/PRX project; it is separate from the CFW SDK repository above.
+The source-built dynamic PRX modules are:
 
 - `IOPrivileged`
 - `IPL_Updater`
@@ -79,9 +133,9 @@ source-and-build recipes and remain intentional versioned binary inputs under
 These PRX-only inputs are explicitly enumerated by the root CMake build and are
 staged alongside the source-built PRXs in `build/prx/`.
 
-The migrated module source originates from
-`StochasticEagle/psp-dynamic-libraries` and remains GPLv3-licensed; see
-`LICENSE.GPLv3`.
+The migrated dynamic PRX source originates from
+[`pspdev/psp-dynamic-libraries`](https://github.com/pspdev/psp-dynamic-libraries)
+and remains GPLv3-licensed; see `LICENSE.GPLv3`.
 
 ## Installation
 
@@ -170,9 +224,13 @@ Some incorporated components retain different licenses:
 
 - `tools/PrxEncrypter/` is licensed under the GNU General Public License
   version 3.
-- CFW PRX source migrated from `StochasticEagle/psp-dynamic-libraries`
+- Dynamic PRX source migrated from
+  [`pspdev/psp-dynamic-libraries`](https://github.com/pspdev/psp-dynamic-libraries)
   retains its GNU General Public License version 3 terms; see
   [`LICENSE.GPLv3`](https://github.com/StochasticEagle/pspsdk/blob/dev/fork/LICENSE.GPLv3).
+- Components migrated from
+  [`pspdev/psp-cfw-sdk`](https://github.com/pspdev/psp-cfw-sdk) retain their
+  applicable component-level license files and notices.
 - `src/BootLoadEx/` contains its own GNU General Public License version 3
   license file.
 - `src/LibPspExploit/` is distributed under the WTFPL version 2 license in
