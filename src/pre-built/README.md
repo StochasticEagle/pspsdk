@@ -13,13 +13,20 @@ The current binaries are:
 
 | File | Git blob | Size | Reproduction status |
 | --- | --- | ---: | --- |
-| `intraFont-vlf.prx` | `dfa0ab64ac4b502f206bdce0931d7ff351d61b7d` | 18,058 bytes | Legacy binary input; no verified recipe in this repository |
-| `lflash_fdisk.prx` | `aa1bdbab07662aee2134920448847073b93e751f` | 2,872 bytes | Legacy binary input; no verified recipe in this repository |
-| `libpsardumper.prx` | `82e12e99faa0c937f50aa1e29e6cf290a83b9cf5` | 5,182 bytes | Legacy binary input; no verified recipe in this repository |
-| `pspdecrypt.prx` | `36af64f80d0980d9f1f59e74e3b2b0d84b2cbf79` | 18,794 bytes | Legacy binary input; no verified recipe in this repository |
-| `vlf.prx` | `b76bb29a3882b226d33451a76609c9ec6435e2e0` | 408,746 bytes | Legacy binary input; no verified recipe in this repository |
+| `intraFont-vlf.prx` | `dfa0ab64ac4b502f206bdce0931d7ff351d61b7d` | 18,058 bytes | Legacy binary input; partial source recovery exists, but no verified replacement recipe |
+| `lflash_fdisk.prx` | `aa1bdbab07662aee2134920448847073b93e751f` | 2,872 bytes | Historical source preserved in `src/lflash_fdisk/`; modern replacement not yet verified |
+| `libpsardumper.prx` | `82e12e99faa0c937f50aa1e29e6cf290a83b9cf5` | 5,182 bytes | Historical source preserved in `src/libpsardumper/`; modern replacement not yet verified |
+| `pspdecrypt.prx` | `36af64f80d0980d9f1f59e74e3b2b0d84b2cbf79` | 18,794 bytes | Historical PRX source preserved in `src/pspdecrypt-prx/`; modern replacement not yet verified |
+| `vlf.prx` | `b76bb29a3882b226d33451a76609c9ec6435e2e0` | 408,746 bytes | Beta/DC VLF generation; see `src/vlf_beta/` and comparative VLF 1.0 preservation in `src/vlf_1/` |
 
 The long-term preference is to replace a pre-built binary with a source build
 only when its source provenance, toolchain inputs, and output compatibility can
 be reproduced and verified. Until then, the tracked binary itself is the
 versioned release input.
+
+## VLF generations
+
+The retained `vlf.prx` above belongs to the pre-1.0 beta/DC lineage and keeps
+its historical filename. Repository directories distinguish generations instead:
+`src/vlf_beta/` for the beta/DC ABI and `src/vlf_1/` for the official VLF 1.0
+package. The two are not treated as interchangeable binaries.

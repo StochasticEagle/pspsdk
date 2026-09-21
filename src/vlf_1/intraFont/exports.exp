@@ -1,0 +1,30 @@
+# Define the exports for the prx
+PSP_BEGIN_EXPORTS
+
+# These four lines are mandatory (although you can add other functions like module_stop)
+# syslib is a psynonym for the single mandatory export.
+PSP_EXPORT_START(syslib, 0, 0x8000)
+PSP_EXPORT_FUNC_HASH(module_start)
+PSP_EXPORT_FUNC_HASH(module_stop)
+PSP_EXPORT_VAR_HASH(module_info)
+PSP_EXPORT_END
+
+PSP_EXPORT_START(intraFontLib, 0, 0x0001)
+PSP_EXPORT_FUNC_HASH(intraFontInit)
+PSP_EXPORT_FUNC_HASH(intraFontShutdown)
+PSP_EXPORT_FUNC_HASH(intraFontLoad)
+PSP_EXPORT_FUNC_HASH(intraFontUnload)
+PSP_EXPORT_FUNC_HASH(intraFontActivate)
+PSP_EXPORT_FUNC_HASH(intraFontSetStyle)
+PSP_EXPORT_FUNC_HASH(intraFontPrintUCS2)
+PSP_EXPORT_FUNC_HASH(intraFontPrintUCS2Shadow)
+PSP_EXPORT_FUNC_HASH(intraFontPrint)
+PSP_EXPORT_FUNC_HASH(intraFontPrintShadow)
+PSP_EXPORT_FUNC_HASH(intraFontPrintf)
+PSP_EXPORT_FUNC_HASH(intraFontPrintfShadow)
+PSP_EXPORT_FUNC_HASH(intraFontMeasureText)
+PSP_EXPORT_FUNC_HASH(intraFontMeasureTextUCS2)
+PSP_EXPORT_END
+
+
+PSP_END_EXPORTS

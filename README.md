@@ -120,9 +120,9 @@ The source-built dynamic PRX modules are:
 `build-cfw-and-install.sh` builds the complete in-tree dynamic PRX set and
 stages the resulting PRXs directly under `build/prx/`.
 
-Five legacy PRX-only modules do not currently have complete, verified
-source-and-build recipes and remain intentional versioned binary inputs under
-`src/pre-built/`:
+Five legacy PRXs remain intentional versioned binary inputs under
+`src/pre-built/` while their source provenance and reproduction status are
+worked through:
 
 - `intraFont-vlf.prx`
 - `lflash_fdisk.prx`
@@ -130,8 +130,29 @@ source-and-build recipes and remain intentional versioned binary inputs under
 - `pspdecrypt.prx`
 - `vlf.prx`
 
-These PRX-only inputs are explicitly enumerated by the root CMake build and are
-staged alongside the source-built PRXs in `build/prx/`.
+Recovered historical source is now preserved in-tree for `lflash_fdisk`,
+`libpsardumper`, and the `pspdecrypt` PRX implementation. Their retained
+PRXs remain authoritative until modern builds have been verified.
+
+VLF is preserved as two distinct generations because the official 1.0 API is
+not ABI-compatible with the earlier DC/M33-era beta:
+
+- `src/vlf_beta/` preserves the beta/DC ABI, header, provenance, and
+  reconstruction plan. Its retained module remains `src/pre-built/vlf.prx`;
+  the PRX filename itself is intentionally unchanged.
+- `src/vlf_1/` preserves the surviving VLF 1.0 developer package, including
+  its public header, static libraries, PRXs, intraFont material, and sample.
+  Historical binary filenames such as `vlf.prx` and
+  `vlf_without_png.prx` remain unchanged inside that generation directory.
+
+The VLF implementation source has not yet been recovered. The preserved beta
+module and VLF 1.0 relocatable archives provide the basis for a future
+comparative reconstruction, with neutral abstract private identifiers used
+where original function, type, structure/class, or variable names cannot be
+recovered.
+
+These retained PRX inputs are explicitly enumerated by the root CMake build and
+are staged alongside the source-built PRXs in `build/prx/`.
 
 The migrated dynamic PRX source originates from
 [`pspdev/psp-dynamic-libraries`](https://github.com/pspdev/psp-dynamic-libraries)
