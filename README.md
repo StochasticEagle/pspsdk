@@ -45,7 +45,7 @@ A library for Make (`build.mak`) is also included to provide an easy way to buil
 simple programs and libraries. See any PSPSDK sample program for details on how
 `build.mak` is used.
 
-### Integrated CFW PRX modules
+### Integrated PRX modules
 
 The dynamic PRX modules formerly maintained in
 `StochasticEagle/psp-dynamic-libraries` are fully integrated into PSPSDK so
