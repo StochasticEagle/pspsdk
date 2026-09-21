@@ -26,13 +26,18 @@ PACK_PBP = pack-pbp
 FIXUP    = psp-fixup-imports
 ENC		 = PrxEncrypter
 
-# Add PSPSDK includes and libraries.
-INCDIR   := $(INCDIR) . $(PSPDEV)/psp/include $(PSPSDK)/include
-LIBDIR   := $(LIBDIR) . $(PSPDEV)/psp/lib $(PSPSDK)/lib
+# Add PSPSDK includes and libraries. Keep the libc include directory out
+# of the explicit C++ include list so psp-g++ preserves its native
+# libstdc++ -> libc ordering for #include_next headers.
+PSP_USER_INCDIR := $(INCDIR)
+PSP_USER_CFLAGS := $(CFLAGS)
+C_INCDIR   := $(PSP_USER_INCDIR) . $(PSPDEV)/psp/include $(PSPSDK)/include
+CXX_INCDIR := $(PSP_USER_INCDIR) . $(PSPSDK)/include
+LIBDIR     := $(LIBDIR) . $(PSPDEV)/psp/lib $(PSPSDK)/lib
 
-CFLAGS   := $(addprefix -I,$(INCDIR)) $(CFLAGS)
-CXXFLAGS := $(CFLAGS) $(CXXFLAGS)
-ASFLAGS  := $(CFLAGS) $(ASFLAGS)
+CFLAGS   := $(addprefix -I,$(C_INCDIR)) $(PSP_USER_CFLAGS)
+CXXFLAGS := $(addprefix -I,$(CXX_INCDIR)) $(PSP_USER_CFLAGS) $(CXXFLAGS)
+ASFLAGS  := $(addprefix -I,$(C_INCDIR)) $(PSP_USER_CFLAGS) $(ASFLAGS)
 
 ifeq ($(PSP_FW_VERSION),)
 PSP_FW_VERSION=600
