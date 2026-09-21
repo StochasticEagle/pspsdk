@@ -25,9 +25,16 @@ SceUID pspSdkLoadStartModuleWithArgs(const char *filename, int mpid, int argc, c
 	int  argpos = 0;
 	int  i;
 
-	memset(args, 0, MAX_ARGS);
-	strcpy(args, filename);
-	argpos += strlen(args) + 1;
+	{
+		size_t filename_len = strlen(filename);
+
+		if(filename_len >= sizeof(args)){
+			return -1;
+		}
+
+		memcpy(args, filename, filename_len + 1);
+		argpos = (int)filename_len + 1;
+	}
 	for(i = 0; (i < argc) && (argpos < MAX_ARGS); i++)
 	{
 		int len;
