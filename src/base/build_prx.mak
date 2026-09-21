@@ -26,13 +26,15 @@ ENC		 = PrxEncrypter
 # libstdc++ -> libc ordering for #include_next headers.
 PSP_USER_INCDIR := $(INCDIR)
 PSP_USER_CFLAGS := $(CFLAGS)
+PSP_USER_CXXFLAGS := $(CXXFLAGS)
+PSP_USER_ASFLAGS := $(ASFLAGS)
 C_INCDIR   := $(PSP_USER_INCDIR) . $(PSPDEV)/psp/include $(PSPSDK)/include
 CXX_INCDIR := $(PSP_USER_INCDIR) . $(PSPSDK)/include
 LIBDIR     := $(LIBDIR) . $(PSPDEV)/psp/lib $(PSPSDK)/lib
 
 CFLAGS   := $(addprefix -I,$(C_INCDIR)) $(PSP_USER_CFLAGS)
-CXXFLAGS := $(addprefix -I,$(CXX_INCDIR)) $(PSP_USER_CFLAGS) $(CXXFLAGS)
-ASFLAGS  := $(addprefix -I,$(C_INCDIR)) $(PSP_USER_CFLAGS) $(ASFLAGS)
+CXXFLAGS := $(addprefix -I,$(CXX_INCDIR)) $(PSP_USER_CFLAGS) $(PSP_USER_CXXFLAGS)
+ASFLAGS  := $(addprefix -I,$(C_INCDIR)) $(PSP_USER_CFLAGS) $(PSP_USER_ASFLAGS)
 
 LDFLAGS  := $(addprefix -L,$(LIBDIR)) -Wl,-q,-T$(PSPSDK)/lib/linkfile.prx -nostartfiles -Wl,-zmax-page-size=128 $(LDFLAGS)
 
