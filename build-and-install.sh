@@ -13,36 +13,18 @@ fi
 
 PROC_NR=$(getconf _NPROCESSORS_ONLN)
 
-## Build PSPSDK incrementally. Reuse the generated/configured build state
-## unless a clean build was explicitly requested through ./clean.sh.
+## PSPSDK's generated Autoconf state depends on the installed PSP toolchain
+## and newlib sysroot as well as on its own sources. Reusing config.status or
+## generated Makefiles across those changes can preserve stale header/library
+## detection, so always regenerate from source.
 cd "${ROOT}"
 
-needs_bootstrap=0
+rm -f Makefile config.status config.log config.cache
+find . -path './.git' -prune -o -path './components' -prune -o \
+    -type f \( -name Makefile -o -name Makefile.in \) -delete
 
-if [[ ! -x "${ROOT}/configure" ]] ||
-   [[ "${ROOT}/configure.ac" -nt "${ROOT}/configure" ]]; then
-    needs_bootstrap=1
-elif find "${ROOT}/m4" -type f -name '*.m4' -newer "${ROOT}/configure" \
-       -print -quit | grep -q .; then
-    needs_bootstrap=1
-elif find "${ROOT}" \
-       -path "${ROOT}/.git" -prune -o \
-       -path "${ROOT}/components" -prune -o \
-       -type f -name Makefile.am -newer "${ROOT}/configure" \
-       -print -quit | grep -q .; then
-    needs_bootstrap=1
-fi
-
-if (( needs_bootstrap )); then
-    ./bootstrap
-fi
-
-if [[ ! -f "${ROOT}/Makefile" ]] ||
-   [[ ! -f "${ROOT}/config.status" ]] ||
-   [[ "${ROOT}/configure" -nt "${ROOT}/config.status" ]]; then
-    ./configure
-fi
-
+./bootstrap
+./configure
 make -j "$PROC_NR"
 
 ## Install PSPSDK.
