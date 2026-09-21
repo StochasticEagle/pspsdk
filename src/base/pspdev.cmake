@@ -11,11 +11,14 @@ SET(CMAKE_C_COMPILER "${PSPDEV}/bin/psp-gcc")
 SET(CMAKE_CXX_COMPILER "${PSPDEV}/bin/psp-g++")
 SET(CMAKE_C_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
 SET(CMAKE_CXX_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
+# CMake does not infer the PSP C/sysroot headers for Generic targets, so
+# provide them explicitly for C. For C++, psp-g++ must retain its native
+# libstdc++ -> libc include ordering: putting ${PSPDEV}/psp/include ahead of
+# the compiler's C++ headers breaks libstdc++ #include_next directives.
 SET(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES
     "${PSPDEV}/psp/include"
     "${PSPDEV}/psp/sdk/include")
 SET(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES
-    "${PSPDEV}/psp/include"
     "${PSPDEV}/psp/sdk/include")
 SET(CMAKE_EXE_LINKER_FLAGS_INIT "-L${PSPDEV}/lib -L${PSPDEV}/psp/lib -L${PSPDEV}/psp/sdk/lib -Wl,-zmax-page-size=128")
 #SET(CMAKE_SHARED_LINKER_FLAGS_INIT "...")
@@ -42,8 +45,8 @@ SET(ENV{PKG_CONFIG_PATH} "")
 SET(ENV{PKG_CONFIG_SYSROOT_DIR} "${PSPDEV}")
 SET(ENV{PKG_CONFIG_LIBDIR} "${PSPDEV}/psp/lib/pkgconfig:${PSPDEV}/psp/share/pkgconfig")
 
-## Add Default PSPSDK Libraries according to build.mak and add stdc++ for C++ builds so this doesn't need to be done manually later
-include_directories(${PSPDEV}/psp/include ${PSPDEV}/psp/sdk/include)
+## Add Default PSPSDK Libraries according to build.mak. Header search is
+## language-specific above; do not globally re-add the libc include directory.
 link_directories( ${PSPDEV}/lib ${PSPDEV}/psp/lib ${PSPDEV}/psp/sdk/lib)
 
 SET(PLATFORM_PSP TRUE)
