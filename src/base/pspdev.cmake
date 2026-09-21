@@ -9,8 +9,10 @@ SET(CMAKE_SYSTEM_VERSION 1)
 SET(CMAKE_SYSTEM_PROCESSOR mips)
 SET(CMAKE_C_COMPILER "${PSPDEV}/bin/psp-gcc")
 SET(CMAKE_CXX_COMPILER "${PSPDEV}/bin/psp-g++")
+SET(CMAKE_ASM_COMPILER "${PSPDEV}/bin/psp-gcc")
 SET(CMAKE_C_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
 SET(CMAKE_CXX_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
+SET(CMAKE_ASM_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
 # CMake does not infer the PSP C/sysroot headers for Generic targets, so
 # provide them explicitly for C. For C++, psp-g++ must retain its native
 # libstdc++ -> libc include ordering: putting ${PSPDEV}/psp/include ahead of
@@ -19,6 +21,9 @@ SET(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES
     "${PSPDEV}/psp/include"
     "${PSPDEV}/psp/sdk/include")
 SET(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES
+    "${PSPDEV}/psp/sdk/include")
+SET(CMAKE_ASM_STANDARD_INCLUDE_DIRECTORIES
+    "${PSPDEV}/psp/include"
     "${PSPDEV}/psp/sdk/include")
 SET(CMAKE_EXE_LINKER_FLAGS_INIT "-L${PSPDEV}/lib -L${PSPDEV}/psp/lib -L${PSPDEV}/psp/sdk/lib -Wl,-zmax-page-size=128")
 #SET(CMAKE_SHARED_LINKER_FLAGS_INIT "...")
