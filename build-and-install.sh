@@ -63,6 +63,27 @@ pspdev_run_install ln -sf "../sdk/lib/libpspmodinfo.a" "${LIBDIR}/libpspmodinfo.
 pspdev_run_install ln -sf "../sdk/lib/libpspuser.a" "${LIBDIR}/libpspuser.a"
 pspdev_run_install ln -sf "../sdk/lib/libpspkernel.a" "${LIBDIR}/libpspkernel.a"
 
+## Validate the installed PSP toolchain integration before package builds.
+## These probes catch C++ include-next ordering regressions and missing ASM
+## PSPSDK include paths in both CMake and the legacy make fragments.
+SMOKE_SRC="${ROOT}/tests/toolchain-smoke"
+SMOKE_CMAKE_BUILD="${ROOT}/build/toolchain-smoke-cmake"
+SMOKE_MAKE_BUILD="${ROOT}/build/toolchain-smoke-make"
+
+cmake -S "${SMOKE_SRC}" -B "${SMOKE_CMAKE_BUILD}" \
+    -DCMAKE_TOOLCHAIN_FILE="${PSPDEV}/psp/share/pspdev.cmake" \
+    -DCMAKE_BUILD_TYPE=Release
+cmake --build "${SMOKE_CMAKE_BUILD}" --parallel "${PROC_NR}"
+
+make -C "${SMOKE_SRC}" probe \
+    PSP_BUILD_FRAGMENT=build.mak \
+    BUILD_DIR="${SMOKE_MAKE_BUILD}" \
+    PROBE_NAME=build
+make -C "${SMOKE_SRC}" probe \
+    PSP_BUILD_FRAGMENT=build_prx.mak \
+    BUILD_DIR="${SMOKE_MAKE_BUILD}" \
+    PROBE_NAME=build_prx
+
 ## Copy licenses.
 pspdev_run_install mkdir -p "${PSPDEV}/psp/share/licenses/pspsdk"
 pspdev_run_install cp "${ROOT}/LICENSE" "${PSPDEV}/psp/share/licenses/pspsdk/"
