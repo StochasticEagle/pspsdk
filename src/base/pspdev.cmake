@@ -9,8 +9,14 @@ SET(CMAKE_SYSTEM_VERSION 1)
 SET(CMAKE_SYSTEM_PROCESSOR mips)
 SET(CMAKE_C_COMPILER "${PSPDEV}/bin/psp-gcc")
 SET(CMAKE_CXX_COMPILER "${PSPDEV}/bin/psp-g++")
-SET(CMAKE_C_FLAGS_INIT "-I${PSPDEV}/psp/include -I${PSPDEV}/psp/sdk/include -DPSP")
-SET(CMAKE_CXX_FLAGS_INIT "-I${PSPDEV}/psp/include -I${PSPDEV}/psp/sdk/include -DPSP")
+SET(CMAKE_C_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
+SET(CMAKE_CXX_FLAGS_INIT "-DPSP -D__PSP__ -D_PSP_FW_VERSION=600")
+SET(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES
+    "${PSPDEV}/psp/include"
+    "${PSPDEV}/psp/sdk/include")
+SET(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES
+    "${PSPDEV}/psp/include"
+    "${PSPDEV}/psp/sdk/include")
 SET(CMAKE_EXE_LINKER_FLAGS_INIT "-L${PSPDEV}/lib -L${PSPDEV}/psp/lib -L${PSPDEV}/psp/sdk/lib -Wl,-zmax-page-size=128")
 #SET(CMAKE_SHARED_LINKER_FLAGS_INIT "...")
 #SET(CMAKE_STATIC_LINKER_FLAGS_CONFIG_INIT "...")
@@ -40,9 +46,6 @@ SET(ENV{PKG_CONFIG_LIBDIR} "${PSPDEV}/psp/lib/pkgconfig:${PSPDEV}/psp/share/pkgc
 include_directories(${PSPDEV}/psp/include ${PSPDEV}/psp/sdk/include)
 link_directories( ${PSPDEV}/lib ${PSPDEV}/psp/lib ${PSPDEV}/psp/sdk/lib)
 
-add_definitions("-D__PSP__")
-add_definitions("-DPSP")
-add_definitions("-D_PSP_FW_VERSION=600")
 SET(PLATFORM_PSP TRUE)
 SET(PSP TRUE)
 
