@@ -30,3 +30,15 @@ The retained `vlf.prx` above belongs to the pre-1.0 beta/DC lineage and keeps
 its historical filename. Repository directories distinguish generations instead:
 `src/vlf_beta/` for the beta/DC ABI and `src/vlf_1/` for the official VLF 1.0
 package. The two are not treated as interchangeable binaries.
+
+## Temporary missing-PRX behavior
+
+While source recovery is incomplete, these five legacy PRXs are the only
+dynamic-module inputs allowed to be absent without terminating the build.
+CMake warns for each missing file, stages the remaining files, and writes the
+missing names to `build/prx/legacy-prx-status.txt`.
+
+This is deliberately temporary. It does not apply to source-built PRXs or any
+other build failure, and it should be removed as the legacy modules receive
+verified source builds. CI uses the status file/source inventory to report this
+specific incomplete state as neutral rather than success or failure.

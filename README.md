@@ -151,8 +151,18 @@ comparative reconstruction, with neutral abstract private identifiers used
 where original function, type, structure/class, or variable names cannot be
 recovered.
 
+As a temporary source-recovery measure, missing files from this five-item
+legacy PRX set are non-fatal when dynamic modules are configured. CMake emits a
+warning, stages every legacy PRX that is available, and records missing names in
+`build/prx/legacy-prx-status.txt`. This exception applies only to these legacy
+pre-built modules; source-built PRX failures remain fatal. CI reports an
+incomplete legacy set as a neutral check rather than treating it as either a
+successful complete build or a build failure.
+
 These retained PRX inputs are explicitly enumerated by the root CMake build and
-are staged alongside the source-built PRXs in `build/prx/`.
+are staged alongside the source-built PRXs in `build/prx/` when available.
+The temporary soft-fail is to be removed as each module gains a verified source
+build.
 
 The migrated dynamic PRX source originates from
 [`pspdev/psp-dynamic-libraries`](https://github.com/pspdev/psp-dynamic-libraries)

@@ -93,23 +93,43 @@ if(PSPSDK_BUILD_DYNAMIC_MODULES)
     )
 
     set(PSPSDK_PREBUILT_PRX_PATHS)
+    set(PSPSDK_MISSING_LEGACY_PRXS)
+    set(PSPSDK_LEGACY_PRX_STATUS_FILE "${PSPSDK_DYNAMIC_PRX_DIR}/legacy-prx-status.txt")
+
     foreach(prx IN LISTS PSPSDK_PREBUILT_PRXS)
         set(prx_path "${CMAKE_CURRENT_LIST_DIR}/src/pre-built/${prx}")
-        if(NOT EXISTS "${prx_path}")
-            message(FATAL_ERROR "Missing versioned pre-built PRX: ${prx}")
+        if(EXISTS "${prx_path}")
+            list(APPEND PSPSDK_PREBUILT_PRX_PATHS "${prx_path}")
+        else()
+            list(APPEND PSPSDK_MISSING_LEGACY_PRXS "${prx}")
+            message(WARNING
+                "Legacy pre-built PRX unavailable: ${prx}. "
+                "Continuing temporarily without this unreproduced legacy module.")
         endif()
-        list(APPEND PSPSDK_PREBUILT_PRX_PATHS "${prx_path}")
     endforeach()
 
-    add_custom_target(stage-prebuilt-prxs ALL
-        COMMAND ${CMAKE_COMMAND} -E make_directory
-            "${PSPSDK_DYNAMIC_PRX_DIR}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${PSPSDK_PREBUILT_PRX_PATHS}
-            "${PSPSDK_DYNAMIC_PRX_DIR}"
-        DEPENDS ${PSPSDK_PREBUILT_PRX_PATHS}
-        COMMENT "Staging versioned pre-built PRXs"
-    )
+    file(WRITE "${PSPSDK_LEGACY_PRX_STATUS_FILE}" "")
+    foreach(prx IN LISTS PSPSDK_MISSING_LEGACY_PRXS)
+        file(APPEND "${PSPSDK_LEGACY_PRX_STATUS_FILE}" "${prx}\n")
+    endforeach()
+
+    if(PSPSDK_PREBUILT_PRX_PATHS)
+        add_custom_target(stage-prebuilt-prxs ALL
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+                "${PSPSDK_DYNAMIC_PRX_DIR}"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                ${PSPSDK_PREBUILT_PRX_PATHS}
+                "${PSPSDK_DYNAMIC_PRX_DIR}"
+            DEPENDS ${PSPSDK_PREBUILT_PRX_PATHS}
+            COMMENT "Staging available legacy pre-built PRXs"
+        )
+    else()
+        add_custom_target(stage-prebuilt-prxs ALL
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+                "${PSPSDK_DYNAMIC_PRX_DIR}"
+            COMMENT "No legacy pre-built PRXs available to stage"
+        )
+    endif()
 
     add_subdirectory(src/IOPrivileged)
     add_subdirectory(src/IPL_Updater)
