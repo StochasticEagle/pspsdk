@@ -1,0 +1,12 @@
+<map id="net/pspnet_resolver.h" name="net/pspnet_resolver.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="100,5,246,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,90,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,34,83,73,81,69,150,29"/>
+<area shape="rect" id="Node000003" href="$pspkerneltypes_8h.html" title=" " alt="" coords="114,79,232,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="176,31,176,63,170,63,170,31"/>
+<area shape="rect" id="Node000004" href="$psptypes_8h.html" title=" " alt="" coords="179,153,262,178"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="197,29,224,49,246,78,250,94,249,110,239,140,234,138,244,109,245,94,241,80,220,53,194,34"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="183,103,206,138,202,141,179,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="189,226,252,252"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="224,179,224,211,218,211,218,179"/>
+</map>

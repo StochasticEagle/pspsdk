@@ -1,0 +1,12 @@
+<map id="idStorageRegen/include/e_os2.h" name="idStorageRegen/include/e_os2.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="96,5,254,46"/>
+<area shape="rect" id="Node000002" href="$aes_8h.html" title=" " alt="" coords="188,94,346,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,55,248,92,245,96,205,59"/>
+<area shape="rect" id="Node000005" href="$aes__locl_8h.html" title=" " alt="" coords="5,94,164,135"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="146,59,107,95,103,92,142,55"/>
+<area shape="rect" id="Node000003" href="$aes__core_8c.html" title=" " alt="" coords="29,183,164,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="216,144,136,185,134,180,214,140"/>
+<area shape="rect" id="Node000004" href="$idsregeneration_8c.html" title=" " alt="" coords="200,183,335,223"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="270,150,270,182,264,182,264,150"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="92,150,96,182,91,183,87,151"/>
+</map>

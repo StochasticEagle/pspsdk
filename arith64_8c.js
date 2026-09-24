@@ -1,0 +1,28 @@
+var arith64_8c =
+[
+    [ "arith64_word", "unionarith64__word.html", "unionarith64__word" ],
+    [ "arith64_abs", "arith64_8c.html#a8f5867e27b915c5eb54ebd57b1ace3f4", null ],
+    [ "arith64_hi", "arith64_8c.html#a7b340ea7ffe2d8397faf257d06ad0499", null ],
+    [ "arith64_lo", "arith64_8c.html#a032b36f0fd9d0392f60e1d831ead8204", null ],
+    [ "arith64_neg", "arith64_8c.html#afff665b35b9678331f4ecd149ddf7629", null ],
+    [ "arith64_s32", "arith64_8c.html#ab5b8c8efaac3a3bef707b91ef4bccb62", null ],
+    [ "arith64_s64", "arith64_8c.html#aad3271ab92f48b78bca71e2d9f4c1723", null ],
+    [ "arith64_u32", "arith64_8c.html#a6571aa5060676d8b0923245ee63a2b46", null ],
+    [ "arith64_u64", "arith64_8c.html#ae5cbcfc8c01a178587935407bbc02a56", null ],
+    [ "__absvdi2", "arith64_8c.html#a15c50be725569ca07ca96775ae1f8556", null ],
+    [ "__ashldi3", "arith64_8c.html#a00b617f175fd71c19296704205af8cf6", null ],
+    [ "__ashrdi3", "arith64_8c.html#ae3ebdb763acf163cdd0d3c5acc0025e4", null ],
+    [ "__clzdi2", "arith64_8c.html#a636b26923a47cc74e09d0f1908d112ed", null ],
+    [ "__clzsi2", "arith64_8c.html#ab2519372727060638696b633fe626b7d", null ],
+    [ "__ctzdi2", "arith64_8c.html#ae8f87e6f63f921e301b4f705d74ba4f9", null ],
+    [ "__ctzsi2", "arith64_8c.html#a0eb57d713eaa4d8866f96698c80408b7", null ],
+    [ "__divdi3", "arith64_8c.html#a1bc1637de0e497b41f0d01c4fd49ff2f", null ],
+    [ "__divmoddi4", "arith64_8c.html#a0353ccedd4cb7f25242145f75ec2d897", null ],
+    [ "__ffsdi2", "arith64_8c.html#a6953503d297a8be403419469c07a441c", null ],
+    [ "__lshrdi3", "arith64_8c.html#a2c8ba34b9fe90781c7abf883e08dc4ef", null ],
+    [ "__moddi3", "arith64_8c.html#ad9021a4b6bd090422242952c1155963f", null ],
+    [ "__popcountdi2", "arith64_8c.html#abf00c96e092235eb8cc0dfe5a9e4e7b2", null ],
+    [ "__popcountsi2", "arith64_8c.html#a3d157e7d1914cb61cc89cf303885a232", null ],
+    [ "__udivdi3", "arith64_8c.html#a25ea00eebee47a57a8a26327d0afe854", null ],
+    [ "__umoddi3", "arith64_8c.html#a5cd742a908161bb6b3d3d5d9e582a08d", null ]
+];

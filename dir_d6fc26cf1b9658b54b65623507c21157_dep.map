@@ -1,0 +1,12 @@
+<map id="USBDeviceDriver" name="USBDeviceDriver">
+<area shape="rect" id="node1" href="dir_d6fc26cf1b9658b54b65623507c21157.html" title="USBDeviceDriver" alt="" coords="33,5,156,31"/>
+<area shape="rect" id="node2" href="dir_243a4ba6b4f893d71afbb5a3e90552fa.html" title="sdk" alt="" coords="5,79,48,105"/>
+<area shape="poly" id="edge1" href="dir_000072_000061.html" alt="" coords="85,33,50,70,46,66,81,29"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000072_000061.html" title="1" alt="" coords="53,64,60,79"/>
+<area shape="rect" id="node3" href="dir_ab875494e63c6c33e998ba5e1412f765.html" title="umd" alt="" coords="71,79,118,105"/>
+<area shape="poly" id="edge2" href="dir_000072_000069.html" alt="" coords="97,31,97,63,92,63,92,31"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000072_000069.html" title="1" alt="" coords="99,53,106,68"/>
+<area shape="rect" id="node4" href="dir_dc43877d82dd332f9fb2071fcca799d6.html" title="kernel" alt="" coords="142,79,199,105"/>
+<area shape="poly" id="edge3" href="dir_000072_000027.html" alt="" coords="109,30,149,66,145,70,106,33"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000072_000027.html" title="2" alt="" coords="147,53,154,68"/>
+</map>
