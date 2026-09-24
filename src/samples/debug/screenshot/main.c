@@ -10,12 +10,13 @@
  */
 
 #include <stdlib.h>
+#include <pspuser.h>
 #include <pspdebug.h>
 #include <psptypes.h>
 #include <pspdisplay.h>
 
 PSP_MODULE_INFO("Screenshot Sample", 0, 1, 1);
-PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER);
+PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_USER);
 
 /* Exit callback */
 int exit_callback(int arg1, int arg2, void *common)
@@ -42,7 +43,7 @@ int SetupCallbacks(void)
 {
 	int thid = 0;
 
-	thid = sceKernelCreateThread("update_thread", CallbackThread, 0x11, 0xFA0, THREAD_ATTR_USER, 0);
+	thid = sceKernelCreateThread("update_thread", CallbackThread, 0x11, 0xFA0, PSP_THREAD_ATTR_USER, 0);
 	if(thid >= 0)
 	{
 		sceKernelStartThread(thid, 0, 0);

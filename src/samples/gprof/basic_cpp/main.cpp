@@ -19,7 +19,7 @@
 #include <pspthreadman.h>
 
 PSP_MODULE_INFO("GProf Basic C++ Example", 0, 1, 1);
-PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER | THREAD_ATTR_VFPU);
+PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_USER | PSP_THREAD_ATTR_VFPU);
 
 // Class to handle prime number operations
 class PrimeCalculator
