@@ -23,6 +23,7 @@ SUBDIRS = \
 	openpsid \
 	power \
 	prof \
+	psptest \
 	registry \
 	rtc \
 	sascore \

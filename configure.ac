@@ -119,6 +119,7 @@ AC_CONFIG_FILES([Makefile
                  src/openpsid/Makefile
                  src/power/Makefile
                  src/prof/Makefile
+                 src/psptest/Makefile
                  src/registry/Makefile
                  src/rtc/Makefile
                  src/sascore/Makefile

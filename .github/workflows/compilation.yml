@@ -58,6 +58,11 @@ jobs:
           # integration is validated by the PSPDEV workflow after packages.
           ./build-and-install.sh
 
+      - name: Compile PSPTEST scaffold
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          make -C psptest -j "$(getconf _NPROCESSORS_ONLN)"
+
       - name: Compile examples
         run: |
           export PATH="$PSPDEV/bin:$PATH"
