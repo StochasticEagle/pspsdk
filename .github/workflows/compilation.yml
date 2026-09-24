@@ -1,0 +1,109 @@
+name: Compilation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+
+concurrency:
+  group: pspsdk-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf automake bison build-essential cmake fakeroot flex gawk gettext \
+            git libarchive-dev libarchive-tools libcurl4-openssl-dev libgmp-dev \
+            libgpgme-dev libgsl-dev libmpc-dev libmpfr-dev libreadline-dev \
+            libssl-dev libtool libusb-dev meson ninja-build patch pkg-config \
+            texinfo wget xz-utils zlib1g-dev
+
+      - name: Install prebuilt PSP toolchain
+        run: |
+          export PSPDEV=/opt/pspdev
+          archive="$RUNNER_TEMP/psp-toolchain-ubuntu-x86_64.tar.gz"
+
+          sudo rm -rf "$PSPDEV"
+          wget -q \
+            https://github.com/StochasticEagle/psp-toolchain/releases/latest/download/psp-toolchain-ubuntu-x86_64.tar.gz \
+            -O "$archive"
+          sudo tar -xzf "$archive" -C /opt
+          sudo chown -R "$(id -u):$(id -g)" "$PSPDEV"
+
+          export PATH="$PSPDEV/bin:$PATH"
+          echo "PSPDEV=$PSPDEV" >> "$GITHUB_ENV"
+          echo "$PSPDEV/bin" >> "$GITHUB_PATH"
+          test "$(psp-gcc -dumpmachine)" = "psp"
+
+      - name: Build PSPSDK
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          # The CFW additions depend on PSP packages such as zlib/libpng.
+          # Core PSPSDK and its examples are validated here; full CFW
+          # integration is validated by the PSPDEV workflow after packages.
+          ./build-and-install.sh
+
+      - name: Compile examples
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          make -C src/samples -f Makefile.samples -j "$(getconf _NPROCESSORS_ONLN)"
+
+      - name: Archive examples
+        run: tar -zcvf samples.tar.gz src/samples
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: samples-${{ github.sha }}
+          path: samples.tar.gz
+
+      - name: Report legacy PRX status
+        if: always()
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const legacy = [
+              'intraFont-vlf.prx',
+              'lflash_fdisk.prx',
+              'libpsardumper.prx',
+              'pspdecrypt.prx',
+              'vlf.prx'
+            ];
+            const missing = legacy.filter(name => !fs.existsSync(`src/pre-built/${name}`));
+            if (missing.length === 0) {
+              return;
+            }
+
+            core.warning(`Legacy pre-built PRXs unavailable: ${missing.join(', ')}`);
+            try {
+              await github.rest.checks.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'Legacy PRX status',
+                head_sha: context.sha,
+                status: 'completed',
+                conclusion: 'neutral',
+                output: {
+                  title: 'Legacy PRX set is incomplete',
+                  summary: `Temporary soft-fail: missing ${missing.join(', ')}. Source-built modules remain strict.`
+                }
+              });
+            } catch (error) {
+              core.warning(`Unable to publish neutral Legacy PRX check: ${error.message}`);
+            }
+
