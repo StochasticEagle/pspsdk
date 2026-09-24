@@ -12,4 +12,4 @@ PSP_EBOOT_TITLE = Idstorage Sample
 
 PSPSDK=$(shell psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak
-LIBS += -lpspsdk -lpspkernel
+LIBS += -lpspkernel

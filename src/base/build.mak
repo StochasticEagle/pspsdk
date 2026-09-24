@@ -93,7 +93,7 @@ LDFLAGS +=  -Wl,-zmax-page-size=128
 ifeq ($(USE_KERNEL_LIBS),1)
 LIBS := -nostdlib $(LIBS) -lpspdebug -lpspdisplay_driver -lpspctrl_driver -lpspmodinfo -lpspsdk -lpspkernel
 else
-LIBS := $(LIBS) -lpspdebug -lpspdisplay -lpspge -lpspctrl \
+LIBS := $(LIBS) -lpspdebug -lpspdisplay -lpspge -lpspctrl -lpspsdk \
 		-lpspnet -lpspnet_apctl
 endif
 
@@ -230,4 +230,6 @@ endif
 clean:
 	-rm -f $(FINAL_TARGET) $(EXTRA_CLEAN) $(OBJS) $(PSP_EBOOT_SFO) $(PSP_EBOOT) $(EXTRA_TARGETS)
 
-rebuild: clean all
+rebuild:
+	$(MAKE) clean
+	$(MAKE) all

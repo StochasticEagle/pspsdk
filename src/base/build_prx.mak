@@ -41,7 +41,7 @@ LDFLAGS  := $(addprefix -L,$(LIBDIR)) -Wl,-q,-T$(PSPSDK)/lib/linkfile.prx -nosta
 ifeq ($(USE_KERNEL_LIBS),1)
 LIBS := -nostdlib $(LIBS) -lpspdebug -lpspdisplay_driver -lpspctrl_driver -lpspmodinfo -lpspsdk -lpspkernel
 else 
-LIBS := $(LIBS) -lpspdebug -lpspdisplay -lpspge -lpspctrl
+LIBS := $(LIBS) -lpspdebug -lpspdisplay -lpspge -lpspctrl -lpspsdk
 endif
 
 ifeq ($(PSP_FW_VERSION),)
@@ -76,4 +76,6 @@ endif
 clean: $(EXTRA_CLEAN)
 	-rm -f $(FINAL_TARGET) $(TARGET).elf $(OBJS)
 
-rebuild: clean all
+rebuild:
+	$(MAKE) clean
+	$(MAKE) all

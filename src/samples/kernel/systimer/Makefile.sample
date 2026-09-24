@@ -6,7 +6,7 @@ CFLAGS = -O2 -Wall
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
 
-LIBS = -lpspkernel
+LIBS =
 LIBDIR =
 LDFLAGS =
 
@@ -15,3 +15,4 @@ PSP_EBOOT_TITLE = SysTimer example
 
 PSPSDK=$(shell psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak
+LIBS += -lpspkernel

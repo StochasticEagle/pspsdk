@@ -9,10 +9,11 @@ ASFLAGS = $(CFLAGS)
 LIBDIR =
 LDFLAGS = 
 
-LIBS = -lpspkernel
+LIBS =
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = Sample PRX Loader
 
 PSPSDK=$(shell psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak
+LIBS += -lpspkernel

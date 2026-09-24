@@ -5,11 +5,13 @@ SAMPLES = \
 	debug/exception \
 	debug/kprintf \
 	debug/prxdecrypt \
+	debug/screenshot \
 	debug/profiler \
 	debug/debugkb \
 	debug/sio \
 	debug/gdb \
 	gprof/basic \
+	gprof/basic_cpp \
 	gprof/custom \
 	gu/beginobject \
 	gu/blend \
