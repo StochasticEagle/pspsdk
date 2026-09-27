@@ -58,7 +58,6 @@ extern "C" {
 #define IDSREG_PRX "IDSREG.PRX" // idsRegeneration
 #define USBDEV_PRX "USBDEV.PRX" // Custom USB Device
 #define PS1SPU_PRX "PS1SPU.PRX" // PS1 SPU Plugin
-#define PSPFTP_PRX "PSPFTP.PRX" // FTP Server/Client PRX library
 #define LIBPNG_PRX "LIBPNG.PRX" // PNG library
 #define PSPAV_PRX "PSPAV.PRX" // PSP AT3/PMF/MPS PRX library
 #define VLF_PRX "VLF.PRX" // PNG library
