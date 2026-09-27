@@ -44,14 +44,12 @@ time_t mktime(struct tm *timeptr){
 }
 
 void createDirsForFile(char* path){
-    int len = strlen(path);
-    char* tmp = NULL;
-    while ((tmp=strrchr(path, '/')) != NULL){
-        *tmp = 0;
+    char* p = path;
+    while ((p = strchr(p, '/')) != NULL){
+        *p = 0;
         sceIoMkdir(path, 0777);
-    }
-    for (int i=0; i<len; i++){
-        if (path[i] == 0) path[i] = '/';
+        *p = '/';
+        p++;
     }
 }
 
@@ -61,7 +59,7 @@ ar_archive *ar_open_any_archive(ar_stream *stream, const char *fileext)
     if (!ar)
         ar = ar_open_zip_archive(stream, fileext && (strcmp(fileext, ".xps") == 0 || strcmp(fileext, ".epub") == 0));
     if (!ar)
-        ar = ar_open_7z_archive(stream);
+        ar = ar_open_7z_archive(stream, 0);
     if (!ar)
         ar = ar_open_tar_archive(stream);
     return ar;
@@ -85,6 +83,12 @@ int unarchiveFile(const char* filepath, const char* parent, void (*logger)(const
         size_t size = ar_entry_get_size(ar);
         const char *raw_filename = ar_entry_get_raw_name(ar);
         char full_path[255];
+        if (!raw_filename)
+            raw_filename = ar_entry_get_name(ar);
+        if (!raw_filename) {
+            entry_skips++;
+            continue;
+        }
         strcpy(full_path, parent);
 
         int parent_slash = parent[strlen(parent)-1] == '/';
@@ -100,13 +104,23 @@ int unarchiveFile(const char* filepath, const char* parent, void (*logger)(const
             strcat(full_path, raw_filename);
         }
         createDirsForFile(full_path);
+        if (ar_entry_is_directory(ar)) {
+            sceIoMkdir(full_path, 0777);
+            if (logger) logger(full_path, 0, 0);
+            continue;
+        }
+
         int cur_progress = 0;
         int max_progress = size;
         int fd = sceIoOpen(full_path, PSP_O_WRONLY|PSP_O_CREAT|PSP_O_TRUNC, 0777);
+        if (fd < 0) {
+            entry_skips++;
+            continue;
+        }
         if (logger) logger(full_path, 0, size);
         while (size > 0) {
             size_t count = size < buffer_size ? size : buffer_size;
-            if (!ar_entry_uncompress(ar, buffer, count))
+            if (ar_entry_read(ar, buffer, count) != count)
                 break;
             sceIoWrite(fd, buffer, count);
             size -= count;
@@ -114,9 +128,8 @@ int unarchiveFile(const char* filepath, const char* parent, void (*logger)(const
             if (logger) logger(NULL, cur_progress, max_progress);
         }
         sceIoClose(fd);
-        if (size > 0) {
+        if (size > 0)
             entry_skips++;
-        }
     }
     error_step = entry_skips > 0 ? 1000 + entry_skips : 0;
 
