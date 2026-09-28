@@ -2,7 +2,7 @@
 #define PSPTEST_H
 
 #include <stddef.h>
-#include <psptypes.h>
+#include <pspkerneltypes.h>
 
 #ifdef __cplusplus
 extern "C" {

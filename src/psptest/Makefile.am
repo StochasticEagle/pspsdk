@@ -5,7 +5,7 @@ CC = @PSP_CC@
 AR = @PSP_AR@
 RANLIB = @PSP_RANLIB@
 
-CPPFLAGS = -I$(top_srcdir)/src/base -I$(top_srcdir)/src/user
+CPPFLAGS = -I$(top_srcdir)/src/base -I$(top_srcdir)/src/user -I$(top_srcdir)/src/debug
 CFLAGS = @PSPSDK_CFLAGS@
 
 include_HEADERS = psptest.h
