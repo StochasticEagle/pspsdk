@@ -34,7 +34,7 @@ SECTIONS
   .rel.lib.stub.btm   : { *(.rel.lib.stub.btm) }
   .rel.rodata.sceModuleInfo   : { *(.rel.rodata.sceModuleInfo) }
   .rel.rodata.sceResident     : { *(.rel.rodata.sceResident) }
-  .rel.rodata.sceNid          : { *(.rel.rodata.sceNid) }
+  .rel.rodata.sceNid          : { *(.rel.rodata.sceNid) *(SORT(.rel.rodata.sceNid.*)) }
   .rel.rodata.sceVstub        : { *(.rel.rodata.sceVstub) *(SORT(.rel.rodata.sceVstub.*)) }
   .rel.rodata     : { *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*) }
   .rela.rodata    : { *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*) }
@@ -100,7 +100,7 @@ SECTIONS
      would be unable to locate the module info structure. */
   .rodata.sceModuleInfo    : { KEEP (*(.rodata.sceModuleInfo)) }
   .rodata.sceResident      : { *(.rodata.sceResident) }
-  .rodata.sceNid           : { KEEP (*(.rodata.sceNid)) }
+  .rodata.sceNid           : { KEEP (*(.rodata.sceNid)) KEEP (*(SORT(.rodata.sceNid.*))) }
   .rodata.sceVstub         : { *(.rodata.sceVstub) *(SORT(.rodata.sceVstub.*)) }
   .rodata         : { *(.rodata .rodata.* .gnu.linkonce.r.*) }
   .rodata1        : { *(.rodata1) }

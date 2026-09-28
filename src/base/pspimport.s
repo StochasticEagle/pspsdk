@@ -26,7 +26,7 @@ __stub_module_\module:
 	.set noreorder
 
 	.extern __stub_module_\module
-	.section .sceStub.text, "ax", @progbits
+	.section .sceStub.text.\module, "ax", @progbits
 	.globl  \funcname
 	.type   \funcname, @function
 	.ent    \funcname, 0
@@ -36,7 +36,7 @@ __stub_module_\module:
 	.end    \funcname
 	.size   \funcname, .-\funcname
 
-	.section .rodata.sceNid, "a"
+	.section .rodata.sceNid.\module, "a"
 	.word   \funcid
 
 	.set pop
@@ -48,7 +48,7 @@ __stub_module_\module:
 	.set noreorder
 
 	.extern __stub_module_\module
-	.section .sceStub.text, "ax", @progbits
+	.section .sceStub.text.\module, "ax", @progbits
 	.globl  \alias
 	.type   \alias, @function
 \alias:
@@ -61,7 +61,7 @@ __stub_module_\module:
 	.end    \funcname
 	.size   \funcname, .-\funcname
 
-	.section .rodata.sceNid, "a"
+	.section .rodata.sceNid.\module, "a"
 	.word   \funcid
 
 	.set pop
