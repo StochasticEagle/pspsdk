@@ -108,65 +108,65 @@ libpspkernel_a_LIBADD = $(EXCEPTION_OBJS) $(KDEBUG_OBJS) $(LOADCORE_OBJS) $(IO_O
 						$(IDSTORAGE_OBJS) $(SYSTIMER_OBJS) $(SYSEVENT_OBJS) $(IMPOSE_OBJS) $(INIT_OBJS) \
 						$(AUDIOROUTING_OBJS) $(AMCTRL_OBJS)
 
-$(EXCEPTION_OBJS): ExceptionManagerForKernel.S
+$(EXCEPTION_OBJS): ExceptionManagerForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KDEBUG_OBJS): KDebugForKernel.S
+$(KDEBUG_OBJS): KDebugForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(LOADCORE_OBJS): LoadCoreForKernel.S
+$(LOADCORE_OBJS): LoadCoreForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(IO_OBJS): IoFileMgrForKernel.S
+$(IO_OBJS): IoFileMgrForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(STDIO_OBJS): StdioForKernel.S
+$(STDIO_OBJS): StdioForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSREG_OBJS): sceSysreg_driver.S
+$(SYSREG_OBJS): sceSysreg_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(UTILS_OBJS): UtilsForKernel.S
+$(UTILS_OBJS): UtilsForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSCON_OBJS): sceSyscon_driver.S
+$(SYSCON_OBJS): sceSyscon_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(INTR_OBJS): InterruptManagerForKernel.S
+$(INTR_OBJS): InterruptManagerForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(THREAD_OBJS): ThreadManForKernel.S
+$(THREAD_OBJS): ThreadManForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSCLIB_OBJS): SysclibForKernel.S
+$(SYSCLIB_OBJS): SysclibForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(LOADEXEC_OBJS): LoadExecForKernel.S
+$(LOADEXEC_OBJS): LoadExecForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSMEM_OBJS): SysMemForKernel.S
+$(SYSMEM_OBJS): SysMemForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(MODULE_OBJS): ModuleMgrForKernel.S
+$(MODULE_OBJS): ModuleMgrForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(IDSTORAGE_OBJS): sceIdStorage_driver.S
+$(IDSTORAGE_OBJS): sceIdStorage_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSTIMER_OBJS): SysTimerForKernel.S
+$(SYSTIMER_OBJS): SysTimerForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSEVENT_OBJS): sceSysEventForKernel.S
+$(SYSEVENT_OBJS): sceSysEventForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(IMPOSE_OBJS): sceImpose_driver.S
+$(IMPOSE_OBJS): sceImpose_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(INIT_OBJS): InitForKernel.S
+$(INIT_OBJS): InitForKernel.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(AUDIOROUTING_OBJS): sceAudioRouting_driver.S
+$(AUDIOROUTING_OBJS): sceAudioRouting_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(AMCTRL_OBJS): sceAmctrl_driver.S
+$(AMCTRL_OBJS): sceAmctrl_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

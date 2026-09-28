@@ -23,8 +23,8 @@ libpspdisplay_a_LIBADD = $(DISPLAY_OBJS)
 libpspdisplay_driver_a_SOURCES = sceDisplay_driver.S
 libpspdisplay_driver_a_LIBADD = $(DISPLAYDRIVER_OBJS)
 
-$(DISPLAY_OBJS): sceDisplay.S
+$(DISPLAY_OBJS): sceDisplay.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(DISPLAYDRIVER_OBJS): sceDisplay_driver.S
+$(DISPLAYDRIVER_OBJS): sceDisplay_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

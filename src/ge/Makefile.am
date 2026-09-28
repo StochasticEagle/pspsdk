@@ -23,8 +23,8 @@ libpspge_a_LIBADD = $(GE_OBJS)
 libpspge_driver_a_SOURCES = sceGe_driver.S
 libpspge_driver_a_LIBADD = $(GEDRIVER_OBJS)
 
-$(GE_OBJS): sceGe_user.S
+$(GE_OBJS): sceGe_user.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(GEDRIVER_OBJS): sceGe_driver.S
+$(GEDRIVER_OBJS): sceGe_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

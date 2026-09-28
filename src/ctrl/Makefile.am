@@ -24,9 +24,9 @@ libpspctrl_a_LIBADD = $(CTRL_OBJS)
 libpspctrl_driver_a_SOURCES = sceCtrl_driver.S
 libpspctrl_driver_a_LIBADD = $(CTRLDRIVER_OBJS)
 
-$(CTRL_OBJS): sceCtrl.S
+$(CTRL_OBJS): sceCtrl.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(CTRLDRIVER_OBJS): sceCtrl_driver.S
+$(CTRLDRIVER_OBJS): sceCtrl_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 

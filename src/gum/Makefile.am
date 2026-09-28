@@ -50,11 +50,11 @@ libpspgum_a_LIBADD = $(PSPGUM_FPU_OBJS) $(PSPGUM_SHARED_OBJS)
 libpspgum_vfpu_a_SOURCES = gumInternal.c pspgum.c pspgum_vfpu.c
 libpspgum_vfpu_a_LIBADD = $(PSPGUM_VFPU_OBJS) $(PSPGUM_SHARED_OBJS)
 
-$(PSPGUM_SHARED_OBJS): pspgum.c
+$(PSPGUM_SHARED_OBJS): pspgum.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(PSPGUM_FPU_OBJS): pspgum.c
+$(PSPGUM_FPU_OBJS): pspgum.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(PSPGUM_VFPU_OBJS): pspgum_vfpu.c
+$(PSPGUM_VFPU_OBJS): pspgum_vfpu.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@

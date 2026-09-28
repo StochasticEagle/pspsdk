@@ -48,5 +48,5 @@ libpspgdb_kernel_a_SOURCES = gdb-kernellib.c
 
 libpspdebugkb_a_SOURCES = pspdebugkb.c
 
-$(SCRPRINT_OBJS): scr_printf.c
+$(SCRPRINT_OBJS): scr_printf.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

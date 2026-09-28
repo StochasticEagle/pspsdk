@@ -20,5 +20,5 @@ lib_LIBRARIES = libpspvaudio.a
 libpspvaudio_a_SOURCES = sceVaudio.S
 libpspvaudio_a_LIBADD = $(VAUDIO_OBJS)
 
-$(VAUDIO_OBJS): sceVaudio.S
+$(VAUDIO_OBJS): sceVaudio.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -19,5 +19,5 @@ lib_LIBRARIES = libpspnand_driver.a
 libpspnand_driver_a_SOURCES = sceNand_driver.S
 libpspnand_driver_a_LIBADD = $(NAND_DRIVER_OBJS)
 
-$(NAND_DRIVER_OBJS): sceNand_driver.S
+$(NAND_DRIVER_OBJS): sceNand_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -98,41 +98,41 @@ libcglue_a_SOURCES = \
 libcglue_a_LIBADD  = $(CWD_OBJS) $(ERRNO_OBJS) $(FDMAN_OBJS) $(GLUE_OBJS) $(INIT_OBJS) $(LOCK_OBJS) $(MUTEXMAN_OBJS) \
 	$(NETDB_OBJS) $(PIPE_OBJS) $(SELECT_OBJS) $(SOCKET_OBJS) $(SLEEP_OBJS) $(TIMEZONE_OBJS)
 
-$(CWD_OBJS): cwd.c
+$(CWD_OBJS): cwd.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(ERRNO_OBJS): errno.c
+$(ERRNO_OBJS): errno.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(FDMAN_OBJS): fdman.c
+$(FDMAN_OBJS): fdman.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(GLUE_OBJS): glue.c
+$(GLUE_OBJS): glue.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(INIT_OBJS): init.c
+$(INIT_OBJS): init.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(LOCK_OBJS): lock.c
+$(LOCK_OBJS): lock.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(MUTEXMAN_OBJS): mutexman.c
+$(MUTEXMAN_OBJS): mutexman.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(NETDB_OBJS): netdb.c
+$(NETDB_OBJS): netdb.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(PIPE_OBJS): pipe.c
+$(PIPE_OBJS): pipe.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(SELECT_OBJS): select.c
+$(SELECT_OBJS): select.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(SLEEP_OBJS): sleep.c
+$(SLEEP_OBJS): sleep.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(SOCKET_OBJS): socket.c
+$(SOCKET_OBJS): socket.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(TIMEZONE_OBJS): timezone.c
+$(TIMEZONE_OBJS): timezone.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@

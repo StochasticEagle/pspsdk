@@ -41,11 +41,11 @@ libpspaudiolib_a_SOURCES = pspaudiolib.c
 libpspaudiocodec_a_SOURCES = sceAudiocodec.S
 libpspaudiocodec_a_LIBADD = $(CODEC_OBJS)
 
-$(AUDIO_OBJS): sceAudio.S
+$(AUDIO_OBJS): sceAudio.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(AUDIO_DRIVER_OBJS): sceAudio_driver.S
+$(AUDIO_DRIVER_OBJS): sceAudio_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(CODEC_OBJS): sceAudiocodec.S
+$(CODEC_OBJS): sceAudiocodec.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

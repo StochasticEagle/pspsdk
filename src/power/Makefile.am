@@ -24,8 +24,8 @@ libpsppower_a_LIBADD = $(POWER_OBJS)
 libpsppower_driver_a_SOURCES = scePower_driver.S
 libpsppower_driver_a_LIBADD = $(POWERDRIVER_OBJS)
 
-$(POWER_OBJS): scePower.S
+$(POWER_OBJS): scePower.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(POWERDRIVER_OBJS): scePower_driver.S
+$(POWERDRIVER_OBJS): scePower_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

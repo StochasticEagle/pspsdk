@@ -70,32 +70,32 @@ libpsphttp_a_LIBADD = $(HTTP_OBJS)
 libpspssl_a_SOURCES = sceSsl.S
 libpspssl_a_LIBADD = $(SSL_OBJS)
 
-$(NET_OBJS): sceNet.S
+$(NET_OBJS): sceNet.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NETLIB_OBJS): sceNet_lib.S
+$(NETLIB_OBJS): sceNet_lib.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NET_APCTL_OBJS): sceNetApctl.S
+$(NET_APCTL_OBJS): sceNetApctl.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NET_INET_OBJS): sceNetInet.S
+$(NET_INET_OBJS): sceNetInet.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NET_RESOLVER_OBJS): sceNetResolver.S
+$(NET_RESOLVER_OBJS): sceNetResolver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NET_ADHOC_OBJS): sceNetAdhoc.S
+$(NET_ADHOC_OBJS): sceNetAdhoc.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NET_ADHOCCTL_OBJS): sceNetAdhocctl.S
+$(NET_ADHOCCTL_OBJS): sceNetAdhocctl.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NET_ADHOCMATCHING_OBJS): sceNetAdhocMatching.S
+$(NET_ADHOCMATCHING_OBJS): sceNetAdhocMatching.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 	
-$(HTTP_OBJS): sceHttp.S
+$(HTTP_OBJS): sceHttp.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 	
-$(SSL_OBJS): sceSsl.S
+$(SSL_OBJS): sceSsl.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

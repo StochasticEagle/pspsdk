@@ -33,8 +33,8 @@ lib_LIBRARIES = libpsputility.a
 libpsputility_a_SOURCES = sceUtility.S sceUtility_netparam_internal.S
 libpsputility_a_LIBADD = $(UTILITY_OBJS) $(NETPARAM_OBJS)
 
-$(UTILITY_OBJS): sceUtility.S
+$(UTILITY_OBJS): sceUtility.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(NETPARAM_OBJS): sceUtility_netparam_internal.S
+$(NETPARAM_OBJS): sceUtility_netparam_internal.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

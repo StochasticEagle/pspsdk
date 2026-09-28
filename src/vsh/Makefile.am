@@ -25,11 +25,11 @@ libpspvshbridge_a_LIBADD = $(VSHBRIDGE_OBJS)
 libpsppaf_a_SOURCES = scePaf.S
 libpsppaf_a_LIBADD = $(PAF_OBJS)
 
-$(CHNNLSV_OBJS): sceChnnlsv.S
+$(CHNNLSV_OBJS): sceChnnlsv.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(VSHBRIDGE_OBJS): sceVshBridge.S
+$(VSHBRIDGE_OBJS): sceVshBridge.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(PAF_OBJS): scePaf.S
+$(PAF_OBJS): scePaf.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

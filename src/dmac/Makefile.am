@@ -19,5 +19,5 @@ lib_LIBRARIES = libpspdmac.a
 libpspdmac_a_SOURCES = sceDmac.S
 libpspdmac_a_LIBADD = $(DMAC_OBJS)
 
-$(DMAC_OBJS): sceDmac.S
+$(DMAC_OBJS): sceDmac.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

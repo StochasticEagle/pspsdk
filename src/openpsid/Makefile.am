@@ -19,5 +19,5 @@ lib_LIBRARIES = libpspopenpsid.a
 libpspopenpsid_a_SOURCES = sceOpenPSID.S
 libpspopenpsid_a_LIBADD  = $(OPENPSID_OBJS)
 
-$(OPENPSID_OBJS): sceOpenPSID.S
+$(OPENPSID_OBJS): sceOpenPSID.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

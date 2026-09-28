@@ -38,14 +38,14 @@ libpspusbbus_driver_a_LIBADD = $(USBBUSDRIVER_OBJS)
 libpspusbcam_a_SOURCES = sceUsbCam.S
 libpspusbcam_a_LIBADD  = $(USBCAM_OBJS)
 
-$(USB_OBJS): sceUsb.S
+$(USB_OBJS): sceUsb.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(USBDRIVER_OBJS): sceUsb_driver.S
+$(USBDRIVER_OBJS): sceUsb_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(USBBUSDRIVER_OBJS): sceUsbBus_driver.S
+$(USBBUSDRIVER_OBJS): sceUsbBus_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(USBCAM_OBJS): sceUsbCam.S
+$(USBCAM_OBJS): sceUsbCam.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -34,8 +34,8 @@ MULT_OBJS = $(MODULEMGR_PATCHES_OBJS) $(INETHELPER_OBJS)
 libpspsdk_a_SOURCES = query_mod.c loadmodule.c fixup.c threadutils.c memory.c interrupt.S k1set.S fpu.S $(MULT_SRCS)
 libpspsdk_a_LIBADD  = $(MULT_OBJS)
 
-$(MODULEMGR_PATCHES_OBJS): modulemgr_patches.c
+$(MODULEMGR_PATCHES_OBJS): modulemgr_patches.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(INETHELPER_OBJS): inethelper.c
+$(INETHELPER_OBJS): inethelper.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -39,20 +39,20 @@ libpspkermitperipheral_a_LIBADD  = $(KERMIT_PERIPHERAL_OBJS)
 libpspkermitperipheral_driver_a_SOURCES = sceKermitPeripheral_driver.S
 libpspkermitperipheral_driver_a_LIBADD  = $(KERMIT_PERIPHERAL_DRIVER_OBJS)
 
-$(KERMIT_DRIVER_OBJS): sceKermit_driver.S
+$(KERMIT_DRIVER_OBJS): sceKermit_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KERMIT_FLASHFS_DRIVER_OBJS): sceKermitFlashfs_driver.S
+$(KERMIT_FLASHFS_DRIVER_OBJS): sceKermitFlashfs_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KERMIT_MSFS_DRIVER_OBJS): sceKermitMsfs_driver.S
+$(KERMIT_MSFS_DRIVER_OBJS): sceKermitMsfs_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KERMIT_MEMORY_DRIVER_OBJS): sceKermitMemory_driver.S
+$(KERMIT_MEMORY_DRIVER_OBJS): sceKermitMemory_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KERMIT_PERIPHERAL_OBJS): sceKermitPeripheral.S
+$(KERMIT_PERIPHERAL_OBJS): sceKermitPeripheral.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KERMIT_PERIPHERAL_DRIVER_OBJS): sceKermitPeripheral_driver.S
+$(KERMIT_PERIPHERAL_DRIVER_OBJS): sceKermitPeripheral_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -35,5 +35,5 @@ lib_LIBRARIES = libpspsascore.a
 libpspsascore_a_SOURCES = sceSasCore.S
 libpspsascore_a_LIBADD = $(SASCORE_OBJS)
 
-$(SASCORE_OBJS): sceSasCore.S
+$(SASCORE_OBJS): sceSasCore.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

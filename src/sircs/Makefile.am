@@ -19,5 +19,5 @@ lib_LIBRARIES = libpspsircs.a
 libpspsircs_a_SOURCES = sceSircs.S
 libpspsircs_a_LIBADD = $(SIRCS_OBJS)
 
-$(SIRCS_OBJS): sceSircs.S
+$(SIRCS_OBJS): sceSircs.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

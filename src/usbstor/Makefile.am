@@ -23,8 +23,8 @@ lib_LIBRARIES = libpspusbstor.a
 libpspusbstor_a_SOURCES = sceUsbstor.S	sceUsbstorBoot.S
 libpspusbstor_a_LIBADD = $(USBSTOR_OBJS) $(USBSTORBOOT_OBJS)
 
-$(USBSTOR_OBJS): sceUsbstor.S
+$(USBSTOR_OBJS): sceUsbstor.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(USBSTORBOOT_OBJS): sceUsbstorBoot.S
+$(USBSTORBOOT_OBJS): sceUsbstorBoot.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

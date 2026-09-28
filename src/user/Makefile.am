@@ -88,38 +88,38 @@ $(LOADEXEC_OBJS) \
 $(IMPOSE_OBJS) \
 $(AUDIOROUTING_OBJS)
 
-$(IO_OBJS): IoFileMgrForUser.S
+$(IO_OBJS): IoFileMgrForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(KERNEL_OBJS): Kernel_Library.S
+$(KERNEL_OBJS): Kernel_Library.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(MODMGR_OBJS): ModuleMgrForUser.S
+$(MODMGR_OBJS): ModuleMgrForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(STDIO_OBJS): StdioForUser.S
+$(STDIO_OBJS): StdioForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SUSPEND_OBJS): sceSuspendForUser.S
+$(SUSPEND_OBJS): sceSuspendForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(SYSMEM_OBJS): SysMemUserForUser.S
+$(SYSMEM_OBJS): SysMemUserForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(THREADMAN_OBJS): ThreadManForUser.S
+$(THREADMAN_OBJS): ThreadManForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(UTILS_OBJS): UtilsForUser.S
+$(UTILS_OBJS): UtilsForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(INTERRUPT_OBJS): InterruptManager.S
+$(INTERRUPT_OBJS): InterruptManager.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(LOADEXEC_OBJS): LoadExecForUser.S
+$(LOADEXEC_OBJS): LoadExecForUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(IMPOSE_OBJS): sceImpose.S
+$(IMPOSE_OBJS): sceImpose.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(AUDIOROUTING_OBJS): sceAudioRouting.S
+$(AUDIOROUTING_OBJS): sceAudioRouting.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -35,8 +35,8 @@ libpthreadglue_a_SOURCES = \
 
 libpthreadglue_a_LIBADD  = $(OSAL_OBJS) $(TLS_HELPER_OBJS)
 
-$(OSAL_OBJS): osal.c
+$(OSAL_OBJS): osal.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@
 
-$(TLS_HELPER_OBJS): tls-helper.c
+$(TLS_HELPER_OBJS): tls-helper.c $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CC)$(COMPILE) -DF_$* $< -c -o $@

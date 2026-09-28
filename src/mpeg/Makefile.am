@@ -45,15 +45,15 @@ libpspjpeg_a_SOURCES = sceJpeg.S
 libpspjpeg_a_LIBADD = $(JPEG_OBJS)
 
 
-$(MPEG_OBJS): sceMpeg.S
+$(MPEG_OBJS): sceMpeg.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(MPEGBASE_OBJS): sceMpegbase.S
+$(MPEGBASE_OBJS): sceMpegbase.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(MPEGBASE_DRIVER_OBJS): sceMpegbase_driver.S
+$(MPEGBASE_DRIVER_OBJS): sceMpegbase_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(JPEG_OBJS): sceJpeg.S
+$(JPEG_OBJS): sceJpeg.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 

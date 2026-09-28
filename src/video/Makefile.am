@@ -23,5 +23,5 @@ lib_LIBRARIES = libpspvideocodec.a
 libpspvideocodec_a_SOURCES = sceVideocodec.S
 libpspvideocodec_a_LIBADD = $(VIDEOCODEC_OBJS)
 
-$(VIDEOCODEC_OBJS): sceVideocodec.S
+$(VIDEOCODEC_OBJS): sceVideocodec.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

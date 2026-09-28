@@ -24,8 +24,8 @@ libpsprtc_a_LIBADD = $(RTC_OBJS)
 libpsprtc_driver_a_SOURCES = sceRtc_driver.S
 libpsprtc_driver_a_LIBADD = $(RTCDRIVER_OBJS)
 
-$(RTC_OBJS): sceRtc.S
+$(RTC_OBJS): sceRtc.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(RTCDRIVER_OBJS): sceRtc_driver.S
+$(RTCDRIVER_OBJS): sceRtc_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -19,5 +19,5 @@ lib_LIBRARIES = libpspatrac3.a
 libpspatrac3_a_SOURCES = sceAtrac3plus.S
 libpspatrac3_a_LIBADD  = $(ATRAC3_OBJS)
 
-$(ATRAC3_OBJS): sceAtrac3plus.S
+$(ATRAC3_OBJS): sceAtrac3plus.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

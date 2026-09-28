@@ -25,8 +25,8 @@ libpspumd_a_LIBADD = $(UMDUSER_OBJS)
 libpspumd_driver_a_SOURCES = sceUmd.S
 libpspumd_driver_a_LIBADD = $(UMD_OBJS)
 
-$(UMDUSER_OBJS): sceUmdUser.S
+$(UMDUSER_OBJS): sceUmdUser.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(UMD_OBJS): sceUmd.S
+$(UMD_OBJS): sceUmd.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -20,8 +20,8 @@ lib_LIBRARIES = libpspwlan.a
 libpspwlan_a_SOURCES = sceWlanDrv.S sceWlanDrv_lib.S
 libpspwlan_a_LIBADD  = $(WLAN_OBJS) $(WLANLIB_OBJS)
 
-$(WLAN_OBJS): sceWlanDrv.S
+$(WLAN_OBJS): sceWlanDrv.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(WLANLIB_OBJS): sceWlanDrv_lib.S
+$(WLANLIB_OBJS): sceWlanDrv_lib.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

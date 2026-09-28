@@ -23,8 +23,8 @@ libpsphprm_a_LIBADD  = $(HPRM_OBJS)
 libpsphprm_driver_a_SOURCES = sceHprm_driver.S
 libpsphprm_driver_a_LIBADD  = $(HPRM_DRIVER_OBJS)
 
-$(HPRM_OBJS): sceHprm.S
+$(HPRM_OBJS): sceHprm.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(HPRM_DRIVER_OBJS): sceHprm_driver.S
+$(HPRM_DRIVER_OBJS): sceHprm_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@

@@ -24,9 +24,9 @@ libpspreg_a_LIBADD = $(REG_OBJS)
 libpspreg_driver_a_SOURCES = sceReg_driver.S
 libpspreg_driver_a_LIBADD = $(REGDRIVER_OBJS)
 
-$(REG_OBJS): sceReg.S
+$(REG_OBJS): sceReg.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 
-$(REGDRIVER_OBJS): sceReg_driver.S
+$(REGDRIVER_OBJS): sceReg_driver.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
 

@@ -24,5 +24,5 @@ lib_LIBRARIES = libpspmp3.a
 libpspmp3_a_SOURCES = sceMp3.S
 libpspmp3_a_LIBADD = $(MP3_OBJS)
 
-$(MP3_OBJS): sceMp3.S
+$(MP3_OBJS): sceMp3.S $(top_srcdir)/src/base/pspimport.s
 	$(AM_V_CPPAS)$(CPPASCOMPILE) -DF_$* $< -c -o $@
