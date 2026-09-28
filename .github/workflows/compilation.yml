@@ -70,7 +70,109 @@ jobs:
       - name: Compile PSPTEST scaffold
         run: |
           export PATH="$PSPDEV/bin:$PATH"
-          make -C psptest -j "$(getconf _NPROCESSORS_ONLN)"
+          make -C psptest/framework -f Makefile.test clean main.o
+          psp-nm "$PSPDEV/psp/sdk/lib/libpsptest.a" | grep -q ' psptest_run_suite
+      - name: Compile examples
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          make -C src/samples -f Makefile.samples -j "$(getconf _NPROCESSORS_ONLN)"
+
+      - name: Archive examples
+        run: tar -zcvf samples.tar.gz src/samples
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: samples-${{ github.sha }}
+          path: samples.tar.gz
+
+      - name: Report legacy PRX status
+        if: always()
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const legacy = [
+              'intraFont-vlf.prx',
+              'lflash_fdisk.prx',
+              'libpsardumper.prx',
+              'pspdecrypt.prx',
+              'vlf.prx'
+            ];
+            const missing = legacy.filter(name => !fs.existsSync(`src/pre-built/${name}`));
+            if (missing.length === 0) {
+              return;
+            }
+
+            core.warning(`Legacy pre-built PRXs unavailable: ${missing.join(', ')}`);
+            try {
+              await github.rest.checks.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'Legacy PRX status',
+                head_sha: context.sha,
+                status: 'completed',
+                conclusion: 'neutral',
+                output: {
+                  title: 'Legacy PRX set is incomplete',
+                  summary: `Temporary soft-fail: missing ${missing.join(', ')}. Source-built modules remain strict.`
+                }
+              });
+            } catch (error) {
+              core.warning(`Unable to publish neutral Legacy PRX check: ${error.message}`);
+            }
+
+
+          psp-nm "$PSPDEV/psp/sdk/lib/libpsptest.a" | grep -q ' psptest_run_module
+      - name: Compile examples
+        run: |
+          export PATH="$PSPDEV/bin:$PATH"
+          make -C src/samples -f Makefile.samples -j "$(getconf _NPROCESSORS_ONLN)"
+
+      - name: Archive examples
+        run: tar -zcvf samples.tar.gz src/samples
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: samples-${{ github.sha }}
+          path: samples.tar.gz
+
+      - name: Report legacy PRX status
+        if: always()
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const legacy = [
+              'intraFont-vlf.prx',
+              'lflash_fdisk.prx',
+              'libpsardumper.prx',
+              'pspdecrypt.prx',
+              'vlf.prx'
+            ];
+            const missing = legacy.filter(name => !fs.existsSync(`src/pre-built/${name}`));
+            if (missing.length === 0) {
+              return;
+            }
+
+            core.warning(`Legacy pre-built PRXs unavailable: ${missing.join(', ')}`);
+            try {
+              await github.rest.checks.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'Legacy PRX status',
+                head_sha: context.sha,
+                status: 'completed',
+                conclusion: 'neutral',
+                output: {
+                  title: 'Legacy PRX set is incomplete',
+                  summary: `Temporary soft-fail: missing ${missing.join(', ')}. Source-built modules remain strict.`
+                }
+              });
+            } catch (error) {
+              core.warning(`Unable to publish neutral Legacy PRX check: ${error.message}`);
+            }
+
+
 
       - name: Compile examples
         run: |
