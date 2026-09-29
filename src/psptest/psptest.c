@@ -8,6 +8,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+extern void __libcglue_deinit(void);
+extern void _fini(void);
+
+static void psptest_exit_module_thread(int result) {
+    _fini();
+    __libcglue_deinit();
+    sceKernelExitThread(result);
+}
+
 static void psptest_copy_message(char *destination, size_t destination_size, const char *message) {
     size_t index = 0;
 
@@ -170,14 +179,14 @@ int psptest_run_module(int argc, char **argv, const char *suite, const PspTestCa
     int result;
 
     if (control_value == NULL || control_value[0] == '\0') {
-        sceKernelExitThread(2);
+        psptest_exit_module_thread(2);
         return 2;
     }
 
     control_address = (uintptr_t)strtoul(control_value, NULL, 0);
     control = (PspTestModuleControl *)control_address;
     if (control == NULL || control->size != sizeof(PspTestModuleControl) || control->version != PSPTEST_MODULE_ABI_VERSION) {
-        sceKernelExitThread(2);
+        psptest_exit_module_thread(2);
         return 2;
     }
 
@@ -188,6 +197,10 @@ int psptest_run_module(int argc, char **argv, const char *suite, const PspTestCa
     result = psptest_run_suite_to_file(control->output_path, suite, cases, case_count);
     control->result = result;
     control->state = PSPTEST_MODULE_COMPLETE;
+
+    _fini();
+    __libcglue_deinit();
+
     if (control->completion_sema >= 0) {
         sceKernelSignalSema(control->completion_sema, 1);
     }

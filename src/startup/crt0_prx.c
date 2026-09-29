@@ -145,8 +145,18 @@ int _start(SceSize args, void *argp)
 	}
 
 	SceUID thid;
+	int result;
+
 	thid = sceKernelCreateThread(threadName, (void *) _main, priority, stackSize, attribute, 0);
-	sceKernelStartThread(thid, args, argp);
+	if (thid < 0) {
+		return thid;
+	}
+
+	result = sceKernelStartThread(thid, args, argp);
+	if (result < 0) {
+		sceKernelDeleteThread(thid);
+		return result;
+	}
 
 	return 0;
 }

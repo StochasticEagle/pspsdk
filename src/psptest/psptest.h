@@ -74,9 +74,12 @@ int psptest_run_module(int argc, char **argv, const char *suite, const PspTestCa
 #define PSPTEST_INTERACTIVE_CASE(name) { #name, name, PSPTEST_FLAG_INTERACTIVE }
 #define PSPTEST_ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
 #define PSPTEST_MAIN(suite_name, cases_array) int main(int argc, char **argv) { return psptest_run_suite(argc, argv, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array)); }
-#define PSPTEST_MODULE(suite_name, cases_array) \
+#define PSPTEST_DEFAULT_MODULE_HEAP_KB 1024
+#define PSPTEST_MODULE_WITH_HEAP(suite_name, cases_array, heap_kb) \
+    int sce_newlib_heap_kb_size = (heap_kb); \
     int main(int argc, char **argv) { return psptest_run_module(argc, argv, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array)); } \
     int module_stop(SceSize args, void *argp) { (void)args; (void)argp; return 0; }
+#define PSPTEST_MODULE(suite_name, cases_array) PSPTEST_MODULE_WITH_HEAP(suite_name, cases_array, PSPTEST_DEFAULT_MODULE_HEAP_KB)
 
 #define PSPTEST_ASSERT_TRUE(test, expression) do { (test)->assertions++; if (!(expression)) { psptest_fail((test), __FILE__, __LINE__, "assertion failed: " #expression); return; } } while (0)
 #define PSPTEST_ASSERT_EQ_INT(test, expected, actual) do { long long psptest_expected = (long long)(expected); long long psptest_actual = (long long)(actual); (test)->assertions++; if (psptest_expected != psptest_actual) { psptest_failf((test), __FILE__, __LINE__, "expected %lld, got %lld", psptest_expected, psptest_actual); return; } } while (0)
