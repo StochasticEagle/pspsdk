@@ -2,7 +2,7 @@
 
 set -e
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source "${ROOT}/install-permissions.sh"
 
 ## Make sure PSPDEV is set.
@@ -69,6 +69,10 @@ pspdev_run_install ln -sf "../sdk/lib/libpspkernel.a" "${LIBDIR}/libpspkernel.a"
 SMOKE_SRC="${ROOT}/tests/toolchain-smoke"
 SMOKE_CMAKE_BUILD="${ROOT}/build/toolchain-smoke-cmake"
 SMOKE_MAKE_BUILD="${ROOT}/build/toolchain-smoke-make"
+
+# This tree is only a configure/build probe. Recreate it every run so CMake's
+# absolute source/build roots can never make a relocated checkout fail.
+rm -rf "${SMOKE_CMAKE_BUILD}"
 
 cmake -S "${SMOKE_SRC}" -B "${SMOKE_CMAKE_BUILD}" \
     -DCMAKE_TOOLCHAIN_FILE="${PSPDEV}/psp/share/pspdev.cmake" \
