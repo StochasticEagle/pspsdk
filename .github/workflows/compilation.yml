@@ -53,9 +53,6 @@ jobs:
       - name: Build PSPSDK
         run: |
           export PATH="$PSPDEV/bin:$PATH"
-          # The CFW additions depend on PSP packages such as zlib/libpng.
-          # Core PSPSDK and its examples are validated here; full CFW
-          # integration is validated by the PSPDEV workflow after packages.
           ./build-and-install.sh
 
       - name: Test CMake package discovery
@@ -67,112 +64,25 @@ jobs:
           "$RUNNER_TEMP/cmake4/bin/pip" install --disable-pip-version-check cmake==4.4.3
           tests/toolchain-smoke/run-find-prefix-probe.sh "$RUNNER_TEMP/cmake4/bin/cmake"
 
-      - name: Compile PSPTEST scaffold
+      - name: Compile PSPTEST framework module
         run: |
           export PATH="$PSPDEV/bin:$PATH"
-          make -C psptest/framework -f Makefile.test clean main.o
-          psp-nm "$PSPDEV/psp/sdk/lib/libpsptest.a" | grep -q ' psptest_run_suite
-      - name: Compile examples
-        run: |
-          export PATH="$PSPDEV/bin:$PATH"
-          make -C src/samples -f Makefile.samples -j "$(getconf _NPROCESSORS_ONLN)"
+          source_dir="$GITHUB_WORKSPACE/psptest/framework"
+          build_dir="$GITHUB_WORKSPACE/build/ci-psptest/framework"
 
-      - name: Archive examples
-        run: tar -zcvf samples.tar.gz src/samples
+          rm -rf "$build_dir"
+          mkdir -p "$build_dir"
+          cp psptest/psptest.exp "$build_dir/psptest.exp"
 
-      - uses: actions/upload-artifact@v7
-        with:
-          name: samples-${{ github.sha }}
-          path: samples.tar.gz
+          make -C "$build_dir" \
+            -f "$source_dir/Makefile.test" \
+            VPATH="$source_dir" \
+            PRX_EXPORTS="$build_dir/psptest.exp" \
+            all
 
-      - name: Report legacy PRX status
-        if: always()
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const fs = require('fs');
-            const legacy = [
-              'intraFont-vlf.prx',
-              'lflash_fdisk.prx',
-              'libpsardumper.prx',
-              'pspdecrypt.prx',
-              'vlf.prx'
-            ];
-            const missing = legacy.filter(name => !fs.existsSync(`src/pre-built/${name}`));
-            if (missing.length === 0) {
-              return;
-            }
-
-            core.warning(`Legacy pre-built PRXs unavailable: ${missing.join(', ')}`);
-            try {
-              await github.rest.checks.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: 'Legacy PRX status',
-                head_sha: context.sha,
-                status: 'completed',
-                conclusion: 'neutral',
-                output: {
-                  title: 'Legacy PRX set is incomplete',
-                  summary: `Temporary soft-fail: missing ${missing.join(', ')}. Source-built modules remain strict.`
-                }
-              });
-            } catch (error) {
-              core.warning(`Unable to publish neutral Legacy PRX check: ${error.message}`);
-            }
-
-
-          psp-nm "$PSPDEV/psp/sdk/lib/libpsptest.a" | grep -q ' psptest_run_module
-      - name: Compile examples
-        run: |
-          export PATH="$PSPDEV/bin:$PATH"
-          make -C src/samples -f Makefile.samples -j "$(getconf _NPROCESSORS_ONLN)"
-
-      - name: Archive examples
-        run: tar -zcvf samples.tar.gz src/samples
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: samples-${{ github.sha }}
-          path: samples.tar.gz
-
-      - name: Report legacy PRX status
-        if: always()
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const fs = require('fs');
-            const legacy = [
-              'intraFont-vlf.prx',
-              'lflash_fdisk.prx',
-              'libpsardumper.prx',
-              'pspdecrypt.prx',
-              'vlf.prx'
-            ];
-            const missing = legacy.filter(name => !fs.existsSync(`src/pre-built/${name}`));
-            if (missing.length === 0) {
-              return;
-            }
-
-            core.warning(`Legacy pre-built PRXs unavailable: ${missing.join(', ')}`);
-            try {
-              await github.rest.checks.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: 'Legacy PRX status',
-                head_sha: context.sha,
-                status: 'completed',
-                conclusion: 'neutral',
-                output: {
-                  title: 'Legacy PRX set is incomplete',
-                  summary: `Temporary soft-fail: missing ${missing.join(', ')}. Source-built modules remain strict.`
-                }
-              });
-            } catch (error) {
-              core.warning(`Unable to publish neutral Legacy PRX check: ${error.message}`);
-            }
-
-
+          test -f "$build_dir/psptest-framework.prx"
+          psp-nm "$PSPDEV/psp/sdk/lib/libpsptest.a" | grep -q ' psptest_run_suite'
+          psp-nm "$PSPDEV/psp/sdk/lib/libpsptest.a" | grep -q ' psptest_run_module'
 
       - name: Compile examples
         run: |
@@ -222,4 +132,3 @@ jobs:
             } catch (error) {
               core.warning(`Unable to publish neutral Legacy PRX check: ${error.message}`);
             }
-
