@@ -20,4 +20,4 @@ static const PspTestCase cases[] = {
     PSPTEST_CASE(skip_is_recorded)
 };
 
-PSPTEST_MAIN("pspsdk/framework", cases)
+PSPTEST_MODULE("pspsdk/framework", cases)
