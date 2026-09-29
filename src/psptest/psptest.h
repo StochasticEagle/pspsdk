@@ -2,14 +2,16 @@
 #define PSPTEST_H
 
 #include <stddef.h>
+#include <stdint.h>
 #include <pspkerneltypes.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define PSPTEST_MODULE_ABI_VERSION 1u
+#define PSPTEST_MODULE_ABI_VERSION 2u
 #define PSPTEST_OUTPUT_PATH_MAX 320
+#define PSPTEST_CASE_NAME_MAX 96
 
 typedef enum PspTestStatus {
     PSPTEST_STATUS_PASS = 0,
@@ -50,6 +52,19 @@ typedef struct PspTestModuleControl {
     volatile SceUID test_thread;
     volatile int state;
     volatile int result;
+    volatile unsigned int progress_sequence;
+    volatile int current_case;
+    volatile unsigned int case_count;
+    volatile unsigned int completed;
+    volatile unsigned int passed;
+    volatile unsigned int failed;
+    volatile unsigned int skipped;
+    volatile int previous_status;
+    volatile uint64_t suite_start_us;
+    volatile uint64_t case_start_us;
+    volatile uint64_t completed_time_us;
+    char current_case_name[PSPTEST_CASE_NAME_MAX];
+    char previous_case_name[PSPTEST_CASE_NAME_MAX];
     char output_path[PSPTEST_OUTPUT_PATH_MAX];
 } PspTestModuleControl;
 
