@@ -66,59 +66,80 @@ static const char *psptest_argument_value(int argc, char **argv, const char *nam
 
 static void psptest_progress_begin(PspTestModuleControl *control) {
     if (control == NULL) return;
-    control->progress_sequence++;
+    control->progress.sequence++;
     __sync_synchronize();
 }
 
 static void psptest_progress_end(PspTestModuleControl *control) {
     if (control == NULL) return;
     __sync_synchronize();
-    control->progress_sequence++;
+    control->progress.sequence++;
 }
 
 static void psptest_progress_initialize(PspTestModuleControl *control, size_t case_count) {
+    PspTestProgress *progress;
+
     if (control == NULL) return;
+    progress = &control->progress;
 
     psptest_progress_begin(control);
-    control->current_case = -1;
-    control->case_count = (unsigned int)case_count;
-    control->completed = 0;
-    control->passed = 0;
-    control->failed = 0;
-    control->skipped = 0;
-    control->previous_status = PSPTEST_STATUS_PASS;
-    control->suite_start_us = sceKernelGetSystemTimeWide();
-    control->case_start_us = 0;
-    control->completed_time_us = 0;
-    control->current_case_name[0] = '\0';
-    control->previous_case_name[0] = '\0';
+    progress->test_thread = sceKernelGetThreadId();
+    progress->state = PSPTEST_MODULE_RUNNING;
+    progress->result = 2;
+    progress->current_case = -1;
+    progress->case_count = (unsigned int)case_count;
+    progress->completed = 0;
+    progress->passed = 0;
+    progress->failed = 0;
+    progress->skipped = 0;
+    progress->previous_status = PSPTEST_STATUS_PASS;
+    progress->suite_start_us = sceKernelGetSystemTimeWide();
+    progress->case_start_us = 0;
+    progress->completed_time_us = 0;
+    progress->current_case_name[0] = '\0';
+    progress->previous_case_name[0] = '\0';
     psptest_progress_end(control);
 }
 
 static void psptest_progress_start_case(PspTestModuleControl *control, size_t index, const char *name) {
+    PspTestProgress *progress;
+
     if (control == NULL) return;
+    progress = &control->progress;
 
     psptest_progress_begin(control);
-    control->current_case = (int)index;
-    control->case_start_us = sceKernelGetSystemTimeWide();
-    snprintf(control->current_case_name, sizeof(control->current_case_name), "%s", name != NULL ? name : "");
+    progress->current_case = (int)index;
+    progress->case_start_us = sceKernelGetSystemTimeWide();
+    snprintf(progress->current_case_name, sizeof(progress->current_case_name), "%s", name != NULL ? name : "");
     psptest_progress_end(control);
 }
 
 static void psptest_progress_finish_case(PspTestModuleControl *control, size_t index, const char *name, PspTestStatus status, unsigned int passed, unsigned int failed, unsigned int skipped, uint64_t case_elapsed_us) {
+    PspTestProgress *progress;
+
+    if (control == NULL) return;
+    progress = &control->progress;
+
+    psptest_progress_begin(control);
+    progress->completed = (unsigned int)index + 1u;
+    progress->passed = passed;
+    progress->failed = failed;
+    progress->skipped = skipped;
+    progress->previous_status = (int)status;
+    progress->completed_time_us += case_elapsed_us;
+    snprintf(progress->previous_case_name, sizeof(progress->previous_case_name), "%s", name != NULL ? name : "");
+    progress->current_case = -1;
+    progress->case_start_us = 0;
+    progress->current_case_name[0] = '\0';
+    psptest_progress_end(control);
+}
+
+static void psptest_progress_complete(PspTestModuleControl *control, int result) {
     if (control == NULL) return;
 
     psptest_progress_begin(control);
-    control->completed = (unsigned int)index + 1u;
-    control->passed = passed;
-    control->failed = failed;
-    control->skipped = skipped;
-    control->previous_status = (int)status;
-    control->completed_time_us += case_elapsed_us;
-    snprintf(control->previous_case_name, sizeof(control->previous_case_name), "%s", name != NULL ? name : "");
-    control->current_case = -1;
-    control->case_start_us = 0;
-    control->current_case_name[0] = '\0';
+    control->progress.result = result;
+    control->progress.state = PSPTEST_MODULE_COMPLETE;
     psptest_progress_end(control);
 }
 
@@ -174,8 +195,6 @@ static int psptest_run_suite_to_file_control(const char *output_path, const char
     if (output_path == NULL || output_path[0] == '\0' || suite == NULL || cases == NULL) {
         return 2;
     }
-
-    psptest_progress_initialize(control, case_count);
 
     output = fopen(output_path, "w");
     if (output == NULL) {
@@ -260,16 +279,14 @@ int psptest_run_module(int argc, char **argv, const char *suite, const PspTestCa
         return 2;
     }
 
-    control->test_thread = sceKernelGetThreadId();
-    control->state = PSPTEST_MODULE_RUNNING;
-    control->result = 2;
+    psptest_progress_initialize(control, case_count);
 
     result = psptest_run_suite_to_file_control(control->output_path, suite, cases, case_count, control);
-    control->result = result;
-    control->state = PSPTEST_MODULE_COMPLETE;
 
     _fini();
     __libcglue_deinit();
+
+    psptest_progress_complete(control, result);
 
     if (control->completion_sema >= 0) {
         sceKernelSignalSema(control->completion_sema, 1);

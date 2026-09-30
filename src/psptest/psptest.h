@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-#define PSPTEST_MODULE_ABI_VERSION 2u
+#define PSPTEST_MODULE_ABI_VERSION 3u
 #define PSPTEST_OUTPUT_PATH_MAX 320
 #define PSPTEST_CASE_NAME_MAX 96
 
@@ -45,14 +45,11 @@ typedef struct PspTestCase {
     unsigned int flags;
 } PspTestCase;
 
-typedef struct PspTestModuleControl {
-    SceSize size;
-    unsigned int version;
-    SceUID completion_sema;
+typedef struct PspTestProgress {
+    volatile unsigned int sequence;
     volatile SceUID test_thread;
     volatile int state;
     volatile int result;
-    volatile unsigned int progress_sequence;
     volatile int current_case;
     volatile unsigned int case_count;
     volatile unsigned int completed;
@@ -65,7 +62,14 @@ typedef struct PspTestModuleControl {
     volatile uint64_t completed_time_us;
     char current_case_name[PSPTEST_CASE_NAME_MAX];
     char previous_case_name[PSPTEST_CASE_NAME_MAX];
+} PspTestProgress;
+
+typedef struct PspTestModuleControl {
+    SceSize size;
+    unsigned int version;
+    SceUID completion_sema;
     char output_path[PSPTEST_OUTPUT_PATH_MAX];
+    PspTestProgress progress;
 } PspTestModuleControl;
 
 enum {
