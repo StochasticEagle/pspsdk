@@ -10,10 +10,9 @@
 extern "C" {
 #endif
 
-#define PSPTEST_MODULE_ABI_VERSION 3u
-#define PSPTEST_OUTPUT_PATH_MAX 320
+#define PSPTEST_ABI_VERSION 4u
+#define PSPTEST_MODULE_MAGIC 0x50535454u
 #define PSPTEST_CASE_NAME_MAX 96
-#define PSPTEST_MODULE_ARG_MAX 19
 
 typedef enum PspTestStatus {
     PSPTEST_STATUS_PASS = 0,
@@ -23,12 +22,18 @@ typedef enum PspTestStatus {
     PSPTEST_STATUS_INTERACTIVE_FAIL = 4
 } PspTestStatus;
 
-typedef enum PspTestModuleState {
-    PSPTEST_MODULE_IDLE = 0,
-    PSPTEST_MODULE_RUNNING = 1,
-    PSPTEST_MODULE_COMPLETE = 2,
-    PSPTEST_MODULE_ERROR = 3
-} PspTestModuleState;
+typedef enum PspTestRunState {
+    PSPTEST_RUN_IDLE = 0,
+    PSPTEST_RUN_RUNNING = 1,
+    PSPTEST_RUN_COMPLETE = 2,
+    PSPTEST_RUN_ERROR = 3
+} PspTestRunState;
+
+typedef enum PspTestFailureKind {
+    PSPTEST_FAILURE_NONE = 0,
+    PSPTEST_FAILURE_MESSAGE = 1,
+    PSPTEST_FAILURE_EQ_INT = 2
+} PspTestFailureKind;
 
 typedef struct PspTestContext {
     const char *suite;
@@ -36,7 +41,12 @@ typedef struct PspTestContext {
     unsigned int assertions;
     unsigned int interactive_recorded;
     PspTestStatus status;
-    char message[256];
+    PspTestFailureKind failure_kind;
+    const char *file;
+    int line;
+    const char *message;
+    long long expected;
+    long long actual;
 } PspTestContext;
 
 typedef void (*PspTestFunction)(PspTestContext *test);
@@ -47,9 +57,25 @@ typedef struct PspTestCase {
     unsigned int flags;
 } PspTestCase;
 
+typedef struct PspTestSuite {
+    unsigned int version;
+    const char *name;
+    const PspTestCase *cases;
+    size_t case_count;
+    int thread_priority;
+    unsigned int thread_stack_size;
+    unsigned int thread_attributes;
+} PspTestSuite;
+
+typedef struct PspTestModuleRequest {
+    unsigned int magic;
+    unsigned int version;
+    SceSize size;
+    const PspTestSuite **suite_out;
+} PspTestModuleRequest;
+
 typedef struct PspTestProgress {
     volatile unsigned int sequence;
-    volatile SceUID test_thread;
     volatile int state;
     volatile int result;
     volatile int current_case;
@@ -66,117 +92,47 @@ typedef struct PspTestProgress {
     char previous_case_name[PSPTEST_CASE_NAME_MAX];
 } PspTestProgress;
 
-typedef struct PspTestModuleControl {
-    SceSize size;
-    unsigned int version;
-    SceUID completion_sema;
-    char output_path[PSPTEST_OUTPUT_PATH_MAX];
-    PspTestProgress progress;
-} PspTestModuleControl;
-
 enum {
     PSPTEST_FLAG_NONE = 0u,
     PSPTEST_FLAG_INTERACTIVE = 1u << 0
 };
 
-void psptest_fail(PspTestContext *test, const char *file, int line, const char *message);
-void psptest_failf(PspTestContext *test, const char *file, int line, const char *format, ...);
-void psptest_skip(PspTestContext *test, const char *message);
-void psptest_interactive_result(PspTestContext *test, int passed, const char *message);
-int psptest_run_suite_to_file(const char *output_path, const char *suite, const PspTestCase *cases, size_t case_count);
-int psptest_run_suite(int argc, char **argv, const char *suite, const PspTestCase *cases, size_t case_count);
-int psptest_run_module(int argc, char **argv, const char *suite, const PspTestCase *cases, size_t case_count);
-
-extern void __libcglue_init(int argc, char *argv[]);
-extern unsigned int sce_newlib_priority __attribute__((weak));
-extern unsigned int sce_newlib_attribute __attribute__((weak));
-extern unsigned int sce_newlib_stack_kb_size __attribute__((weak));
-extern const char *sce_newlib_main_thread_name __attribute__((weak));
-
-static inline int psptest_module_unpack_args(SceSize args, void *argp, char **argv, int argv_capacity) {
-    char *bytes = (char *)argp;
-    SceSize offset = 0;
-    int argc = 0;
-
-    if (bytes == NULL || argv == NULL || argv_capacity < 1) return -1;
-
-    while (offset < args && argc + 1 < argv_capacity) {
-        argv[argc++] = bytes + offset;
-        while (offset < args && bytes[offset] != '\0') offset++;
-        if (offset >= args) return -1;
-        offset++;
-    }
-
-    if (offset != args) return -1;
-    argv[argc] = NULL;
-    return argc;
+static inline void psptest_fail(PspTestContext *test, const char *file, int line, const char *message) {
+    if (test == NULL) return;
+    test->status = PSPTEST_STATUS_FAIL;
+    test->failure_kind = PSPTEST_FAILURE_MESSAGE;
+    test->file = file;
+    test->line = line;
+    test->message = message;
 }
 
-static inline int psptest_module_hex_digit(char value) {
-    if (value >= '0' && value <= '9') return value - '0';
-    if (value >= 'a' && value <= 'f') return value - 'a' + 10;
-    if (value >= 'A' && value <= 'F') return value - 'A' + 10;
-    return -1;
+static inline void psptest_fail_eq_int(PspTestContext *test, const char *file, int line, long long expected, long long actual) {
+    if (test == NULL) return;
+    test->status = PSPTEST_STATUS_FAIL;
+    test->failure_kind = PSPTEST_FAILURE_EQ_INT;
+    test->file = file;
+    test->line = line;
+    test->message = "integer values differ";
+    test->expected = expected;
+    test->actual = actual;
 }
 
-static inline PspTestModuleControl *psptest_module_control_from_argv(int argc, char **argv) {
-    static const char prefix[] = "--psptest-control=";
-    int index;
-
-    for (index = 0; index < argc; index++) {
-        const char *argument = argv[index];
-        const char *scan;
-        uintptr_t address = 0;
-        int prefix_index = 0;
-        int digits = 0;
-
-        if (argument == NULL) continue;
-        while (prefix[prefix_index] != '\0' && argument[prefix_index] == prefix[prefix_index]) prefix_index++;
-        if (prefix[prefix_index] != '\0') continue;
-
-        scan = argument + prefix_index;
-        if (scan[0] == '0' && (scan[1] == 'x' || scan[1] == 'X')) scan += 2;
-        while (*scan != '\0') {
-            int digit = psptest_module_hex_digit(*scan++);
-            if (digit < 0) {
-                digits = 0;
-                break;
-            }
-            address = (address << 4) | (uintptr_t)digit;
-            digits++;
-        }
-        if (digits != 0) return (PspTestModuleControl *)address;
-    }
-
-    return NULL;
+static inline void psptest_skip(PspTestContext *test, const char *message) {
+    if (test == NULL) return;
+    test->status = PSPTEST_STATUS_SKIP;
+    test->failure_kind = PSPTEST_FAILURE_MESSAGE;
+    test->message = message;
 }
 
-static inline void psptest_module_publish_start(PspTestModuleControl *control, size_t case_count) {
-    PspTestProgress *progress;
-
-    if (control == NULL) return;
-    progress = &control->progress;
-
-    progress->sequence++;
-    __sync_synchronize();
-    progress->test_thread = sceKernelGetThreadId();
-    progress->state = PSPTEST_MODULE_RUNNING;
-    progress->result = 2;
-    progress->current_case = -1;
-    progress->case_count = (unsigned int)case_count;
-    progress->completed = 0;
-    progress->passed = 0;
-    progress->failed = 0;
-    progress->skipped = 0;
-    progress->previous_status = PSPTEST_STATUS_PASS;
-    progress->suite_start_us = sceKernelGetSystemTimeWide();
-    progress->case_start_us = 0;
-    progress->completed_time_us = 0;
-    progress->current_case_name[0] = '\0';
-    progress->previous_case_name[0] = '\0';
-    __sync_synchronize();
-    progress->sequence++;
+static inline void psptest_interactive_result(PspTestContext *test, int passed, const char *message) {
+    if (test == NULL) return;
+    test->interactive_recorded = 1;
+    test->status = passed ? PSPTEST_STATUS_INTERACTIVE_PASS : PSPTEST_STATUS_INTERACTIVE_FAIL;
+    test->failure_kind = PSPTEST_FAILURE_MESSAGE;
+    test->message = message;
 }
+
+int psptest_run_suite(const PspTestSuite *suite, const char *output_path, PspTestProgress *progress);
 
 #define PSPTEST_JOIN_INNER(a, b) a##b
 #define PSPTEST_JOIN(a, b) PSPTEST_JOIN_INNER(a, b)
@@ -185,43 +141,46 @@ static inline void psptest_module_publish_start(PspTestModuleControl *control, s
 #define PSPTEST_CASE(name) { #name, name, PSPTEST_FLAG_NONE }
 #define PSPTEST_INTERACTIVE_CASE(name) { #name, name, PSPTEST_FLAG_INTERACTIVE }
 #define PSPTEST_ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
-#define PSPTEST_MAIN(suite_name, cases_array) int main(int argc, char **argv) { return psptest_run_suite(argc, argv, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array)); }
-#define PSPTEST_DEFAULT_MODULE_HEAP_KB 1024
-#define PSPTEST_MODULE_WITH_HEAP(suite_name, cases_array, heap_kb) \
-    int sce_newlib_heap_kb_size = (heap_kb); \
-    void _fini(void) {} \
-    static int psptest_module_test_thread(SceSize args, void *argp) { \
-        char *psptest_argv[PSPTEST_MODULE_ARG_MAX + 1]; \
-        int psptest_argc = psptest_module_unpack_args(args, argp, psptest_argv, PSPTEST_MODULE_ARG_MAX + 1); \
-        PspTestModuleControl *psptest_control = psptest_argc > 0 ? psptest_module_control_from_argv(psptest_argc, psptest_argv) : NULL; \
-        if (psptest_control == NULL || psptest_control->size != sizeof(PspTestModuleControl) || psptest_control->version != PSPTEST_MODULE_ABI_VERSION) { sceKernelExitThread(2); return 2; } \
-        psptest_module_publish_start(psptest_control, PSPTEST_ARRAY_COUNT(cases_array)); \
-        __libcglue_init(psptest_argc, psptest_argv); \
-        return psptest_run_module(psptest_argc, psptest_argv, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array)); \
-    } \
+
+#define PSPTEST_DEFINE_SUITE(symbol, suite_name, cases_array, thread_attr) \
+    const PspTestSuite symbol = { \
+        PSPTEST_ABI_VERSION, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array), \
+        32, 256u * 1024u, thread_attr \
+    }
+
+#define PSPTEST_MODULE(suite_name, cases_array, thread_attr) \
+    __attribute__((noreturn)) void _exit(int status) { sceKernelExitThread(status); for (;;) {} } \
+    static const PspTestSuite psptest_module_suite = { \
+        PSPTEST_ABI_VERSION, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array), \
+        32, 256u * 1024u, thread_attr \
+    }; \
     int module_start(SceSize args, void *argp) { \
-        char *psptest_argv[PSPTEST_MODULE_ARG_MAX + 1]; \
-        int psptest_argc = psptest_module_unpack_args(args, argp, psptest_argv, PSPTEST_MODULE_ARG_MAX + 1); \
-        PspTestModuleControl *psptest_control = psptest_argc > 0 ? psptest_module_control_from_argv(psptest_argc, psptest_argv) : NULL; \
-        int psptest_priority = &sce_newlib_priority != NULL ? (int)sce_newlib_priority : 32; \
-        unsigned int psptest_attribute = &sce_newlib_attribute != NULL ? sce_newlib_attribute : PSP_THREAD_ATTR_USER; \
-        unsigned int psptest_stack_size = (&sce_newlib_stack_kb_size != NULL ? sce_newlib_stack_kb_size : 256u) * 1024u; \
-        const char *psptest_thread_name = &sce_newlib_main_thread_name != NULL ? sce_newlib_main_thread_name : "psptest-module"; \
-        SceUID psptest_thread; \
-        int psptest_result; \
-        if (psptest_control == NULL || psptest_control->size != sizeof(PspTestModuleControl) || psptest_control->version != PSPTEST_MODULE_ABI_VERSION) return -1; \
-        psptest_thread = sceKernelCreateThread(psptest_thread_name, psptest_module_test_thread, psptest_priority, psptest_stack_size, psptest_attribute, NULL); \
-        if (psptest_thread < 0) return psptest_thread; \
-        psptest_result = sceKernelStartThread(psptest_thread, args, argp); \
-        if (psptest_result < 0) sceKernelDeleteThread(psptest_thread); \
-        return psptest_result; \
+        PspTestModuleRequest *request = (PspTestModuleRequest *)argp; \
+        if (args != sizeof(PspTestModuleRequest) || request == NULL) return -1; \
+        if (request->magic != PSPTEST_MODULE_MAGIC || request->version != PSPTEST_ABI_VERSION || request->size != sizeof(PspTestModuleRequest) || request->suite_out == NULL) return -2; \
+        *request->suite_out = &psptest_module_suite; \
+        __sync_synchronize(); \
+        return 0; \
     } \
     int module_stop(SceSize args, void *argp) { (void)args; (void)argp; return 0; }
-#define PSPTEST_MODULE(suite_name, cases_array) PSPTEST_MODULE_WITH_HEAP(suite_name, cases_array, PSPTEST_DEFAULT_MODULE_HEAP_KB)
 
-#define PSPTEST_ASSERT_TRUE(test, expression) do { (test)->assertions++; if (!(expression)) { psptest_fail((test), __FILE__, __LINE__, "assertion failed: " #expression); return; } } while (0)
-#define PSPTEST_ASSERT_EQ_INT(test, expected, actual) do { long long psptest_expected = (long long)(expected); long long psptest_actual = (long long)(actual); (test)->assertions++; if (psptest_expected != psptest_actual) { psptest_failf((test), __FILE__, __LINE__, "expected %lld, got %lld", psptest_expected, psptest_actual); return; } } while (0)
-#define PSPTEST_ASSERT_NOT_NULL(test, pointer) do { const void *psptest_pointer = (const void *)(pointer); (test)->assertions++; if (psptest_pointer == NULL) { psptest_fail((test), __FILE__, __LINE__, "expected non-null pointer: " #pointer); return; } } while (0)
+#define PSPTEST_ASSERT_TRUE(test, expression) do { \
+    (test)->assertions++; \
+    if (!(expression)) { psptest_fail((test), __FILE__, __LINE__, "assertion failed: " #expression); return; } \
+} while (0)
+
+#define PSPTEST_ASSERT_EQ_INT(test, expected_value, actual_value) do { \
+    long long psptest_expected = (long long)(expected_value); \
+    long long psptest_actual = (long long)(actual_value); \
+    (test)->assertions++; \
+    if (psptest_expected != psptest_actual) { psptest_fail_eq_int((test), __FILE__, __LINE__, psptest_expected, psptest_actual); return; } \
+} while (0)
+
+#define PSPTEST_ASSERT_NOT_NULL(test, pointer) do { \
+    const void *psptest_pointer = (const void *)(pointer); \
+    (test)->assertions++; \
+    if (psptest_pointer == NULL) { psptest_fail((test), __FILE__, __LINE__, "expected non-null pointer: " #pointer); return; } \
+} while (0)
 
 #ifdef __cplusplus
 }

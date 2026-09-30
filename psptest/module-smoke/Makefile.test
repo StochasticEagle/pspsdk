@@ -4,7 +4,7 @@ ifeq ($(abspath $(CURDIR)),$(PSPTEST_SOURCE_DIR))
 $(error PSPTEST generated files may not be written into the source directory; build through PSPDEV stage 6 or use a separate build directory)
 endif
 
-TARGET = psptest-framework
+TARGET = psptest-module-smoke
 OBJS = main.o
 
 CFLAGS = -O2 -G0 -Wall -Wextra -Werror
