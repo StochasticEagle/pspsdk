@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-#define PSPTEST_ABI_VERSION 4u
+#define PSPTEST_ABI_VERSION 5u
 #define PSPTEST_MODULE_MAGIC 0x50535454u
 #define PSPTEST_CASE_NAME_MAX 96
 
@@ -50,6 +50,15 @@ typedef struct PspTestContext {
 } PspTestContext;
 
 typedef void (*PspTestFunction)(PspTestContext *test);
+typedef void (*PspTestRawFunction)(void);
+
+typedef struct PspTestEnvironment {
+    unsigned int version;
+    const char *program_path;
+    const char *root_path;
+} PspTestEnvironment;
+
+typedef int (*PspTestLifecycleFunction)(const PspTestEnvironment *environment);
 
 typedef struct PspTestCase {
     const char *name;
@@ -65,6 +74,8 @@ typedef struct PspTestSuite {
     int thread_priority;
     unsigned int thread_stack_size;
     unsigned int thread_attributes;
+    PspTestLifecycleFunction setup;
+    PspTestLifecycleFunction teardown;
 } PspTestSuite;
 
 typedef struct PspTestModuleRequest {
@@ -95,6 +106,12 @@ typedef struct PspTestProgress {
 enum {
     PSPTEST_FLAG_NONE = 0u,
     PSPTEST_FLAG_INTERACTIVE = 1u << 0
+};
+
+enum {
+    PSPTEST_RESULT_PASS = 0,
+    PSPTEST_RESULT_FAIL = 1,
+    PSPTEST_RESULT_ERROR = -1
 };
 
 static inline void psptest_fail(PspTestContext *test, const char *file, int line, const char *message) {
@@ -132,7 +149,8 @@ static inline void psptest_interactive_result(PspTestContext *test, int passed, 
     test->message = message;
 }
 
-int psptest_run_suite(const PspTestSuite *suite, const char *output_path, PspTestProgress *progress);
+int psptest_call_with_gp(unsigned int gp_value, PspTestRawFunction function, void *argument);
+int psptest_run_suite(const PspTestSuite *suite, const char *output_path, PspTestProgress *progress, unsigned int gp_value);
 
 #define PSPTEST_JOIN_INNER(a, b) a##b
 #define PSPTEST_JOIN(a, b) PSPTEST_JOIN_INNER(a, b)
@@ -142,17 +160,17 @@ int psptest_run_suite(const PspTestSuite *suite, const char *output_path, PspTes
 #define PSPTEST_INTERACTIVE_CASE(name) { #name, name, PSPTEST_FLAG_INTERACTIVE }
 #define PSPTEST_ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
 
-#define PSPTEST_DEFINE_SUITE(symbol, suite_name, cases_array, thread_attr) \
+#define PSPTEST_DEFINE_SUITE(symbol, suite_name, cases_array, thread_attr, setup_fn, teardown_fn) \
     const PspTestSuite symbol = { \
         PSPTEST_ABI_VERSION, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array), \
-        32, 256u * 1024u, thread_attr \
+        32, 256u * 1024u, thread_attr, setup_fn, teardown_fn \
     }
 
-#define PSPTEST_MODULE(suite_name, cases_array, thread_attr) \
+#define PSPTEST_MODULE(suite_name, cases_array, thread_attr, setup_fn, teardown_fn) \
     __attribute__((noreturn)) void _exit(int status) { sceKernelExitThread(status); for (;;) {} } \
     static const PspTestSuite psptest_module_suite = { \
         PSPTEST_ABI_VERSION, suite_name, cases_array, PSPTEST_ARRAY_COUNT(cases_array), \
-        32, 256u * 1024u, thread_attr \
+        32, 256u * 1024u, thread_attr, setup_fn, teardown_fn \
     }; \
     int module_start(SceSize args, void *argp) { \
         PspTestModuleRequest *request = (PspTestModuleRequest *)argp; \

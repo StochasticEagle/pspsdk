@@ -11,4 +11,4 @@ static const PspTestCase cases[] = {
     PSPTEST_CASE(module_executes)
 };
 
-PSPTEST_MODULE("pspsdk/module-smoke", cases, PSP_THREAD_ATTR_USER)
+PSPTEST_MODULE("pspsdk/module-smoke", cases, PSP_THREAD_ATTR_USER, NULL, NULL)
