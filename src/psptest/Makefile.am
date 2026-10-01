@@ -2,6 +2,8 @@ libdir = @PSPSDK_LIBDIR@
 includedir = @PSPSDK_INCLUDEDIR@
 
 CC = @PSP_CC@
+CCAS = $(CC)
+CCASFLAGS = $(CFLAGS)
 AR = @PSP_AR@
 RANLIB = @PSP_RANLIB@
 
