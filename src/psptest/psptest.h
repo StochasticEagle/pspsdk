@@ -50,7 +50,6 @@ typedef struct PspTestContext {
 } PspTestContext;
 
 typedef void (*PspTestFunction)(PspTestContext *test);
-typedef void (*PspTestRawFunction)(void);
 
 typedef struct PspTestEnvironment {
     unsigned int version;
@@ -149,7 +148,8 @@ static inline void psptest_interactive_result(PspTestContext *test, int passed, 
     test->message = message;
 }
 
-int psptest_call_with_gp(unsigned int gp_value, PspTestRawFunction function, void *argument);
+void psptest_call_test_with_gp(unsigned int gp_value, PspTestFunction function, PspTestContext *test);
+int psptest_call_lifecycle_with_gp(unsigned int gp_value, PspTestLifecycleFunction function, const PspTestEnvironment *environment);
 int psptest_run_suite(const PspTestSuite *suite, const char *output_path, PspTestProgress *progress, unsigned int gp_value);
 
 #define PSPTEST_JOIN_INNER(a, b) a##b
