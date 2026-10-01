@@ -190,7 +190,7 @@ int psptest_run_suite(const PspTestSuite *suite, const char *output_path, PspTes
         if (test_case->function == NULL) {
             psptest_fail(&test, __FILE__, __LINE__, "test function is null");
         } else {
-            (void)psptest_call_with_gp(gp_value, (PspTestRawFunction)test_case->function, &test);
+            psptest_call_test_with_gp(gp_value, test_case->function, &test);
         }
 
         if ((test_case->flags & PSPTEST_FLAG_INTERACTIVE) != 0u && !test.interactive_recorded && test.status == PSPTEST_STATUS_PASS) psptest_skip(&test, "interactive result was not recorded");
