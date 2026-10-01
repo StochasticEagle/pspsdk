@@ -2,9 +2,11 @@
     .set nomips16
     .text
     .align 2
-    .globl psptest_call_with_gp
-    .ent psptest_call_with_gp
-psptest_call_with_gp:
+
+    .macro PSPTEST_GP_CALL name
+    .globl \name
+    .ent \name
+\name:
     addiu $sp, $sp, -16
     sw $ra, 12($sp)
     sw $gp, 8($sp)
@@ -18,4 +20,8 @@ psptest_call_with_gp:
     addiu $sp, $sp, 16
     jr $ra
     nop
-    .end psptest_call_with_gp
+    .end \name
+    .endm
+
+    PSPTEST_GP_CALL psptest_call_test_with_gp
+    PSPTEST_GP_CALL psptest_call_lifecycle_with_gp
