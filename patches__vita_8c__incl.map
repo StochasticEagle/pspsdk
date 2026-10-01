@@ -1,0 +1,26 @@
+<map id="BootLoadEx/patches_vita.c" name="BootLoadEx/patches_vita.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="297,5,438,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,69,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,46,84,96,83,91,296,40"/>
+<area shape="rect" id="Node000003" href="$pspsysmem__kernel_8h.html" title=" " alt="" coords="93,94,237,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="318,49,211,90,209,85,316,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="261,94,357,120"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="355,48,329,83,325,80,351,45"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="381,94,474,120"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="385,45,411,80,407,83,380,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="499,94,580,120"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="412,44,501,85,498,90,410,49"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="604,94,720,120"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="440,43,603,87,602,92,438,49"/>
+<area shape="rect" id="Node000004" href="$pspkerneltypes_8h.html" title=" " alt="" coords="128,241,247,267"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="169,120,186,226,181,226,164,120"/>
+<area shape="rect" id="Node000005" href="$psptypes_8h.html" title=" " alt="" coords="146,315,229,341"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="158,122,140,148,122,185,113,226,113,246,119,266,134,287,154,304,150,308,130,291,115,268,108,247,107,226,117,183,135,146,153,119"/>
+<area shape="rect" id="Node000007" href="$pspsysmem_8h.html" title=" " alt="" coords="202,168,304,193"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="182,118,228,156,225,160,178,122"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="190,267,190,299,185,299,185,267"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="156,389,219,414"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="190,341,190,373,185,373,185,341"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="244,195,211,232,207,228,240,192"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="260,193,267,227,266,248,261,268,245,291,225,308,221,304,241,287,256,266,261,247,261,228,254,194"/>
+</map>

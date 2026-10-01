@@ -1,0 +1,26 @@
+var IOPrivileged_2main_8c =
+[
+    [ "module_start", "IOPrivileged_2main_8c.html#aa0b132eb9e154cd10e9fa18f3c244a55", null ],
+    [ "PSP_MODULE_INFO", "IOPrivileged_2main_8c.html#a07ad0de16b528296f46f9e00b8101d01", null ],
+    [ "sceIoAssignPrivileged", "IOPrivileged_2main_8c.html#a5971e9b326eeaf4411e72e6d9574f9e4", null ],
+    [ "sceIoChdirPrivileged", "IOPrivileged_2main_8c.html#a94b8adee1a6f10919015325bd92fa6e2", null ],
+    [ "sceIoChstatPrivileged", "IOPrivileged_2main_8c.html#adc30475b9c8cc14fc3a22e48f7c32398", null ],
+    [ "sceIoClosePrivileged", "IOPrivileged_2main_8c.html#acdd15076090a1dc531dcecef03b160e0", null ],
+    [ "sceIoDclosePrivileged", "IOPrivileged_2main_8c.html#aceac9476f5d3a61a53597b63a7446a46", null ],
+    [ "sceIoDevctlPrivileged", "IOPrivileged_2main_8c.html#a3375e44ba13a28a75c1f65ec861bf114", null ],
+    [ "sceIoDopenPrivileged", "IOPrivileged_2main_8c.html#a2e9042a228de3d2bf076198dec16404a", null ],
+    [ "sceIoDreadPrivileged", "IOPrivileged_2main_8c.html#a5742d72911ab13df6b9f375d4956919a", null ],
+    [ "sceIoGetstatPrivileged", "IOPrivileged_2main_8c.html#af46258263cf0394a4896c460bbe8bd8a", null ],
+    [ "sceIoIoctlPrivileged", "IOPrivileged_2main_8c.html#a9db146e3b2fe6c0548a4df7b49cb1253", null ],
+    [ "sceIoLseek32Privileged", "IOPrivileged_2main_8c.html#a99c27ad6adc4428b39ae0d7fef12b5bb", null ],
+    [ "sceIoLseekPrivileged", "IOPrivileged_2main_8c.html#aa3a940978745e4c3c3a920a62b939ee7", null ],
+    [ "sceIoMkdirPrivileged", "IOPrivileged_2main_8c.html#acec1f6257a23616f1fb960cfd44d8461", null ],
+    [ "sceIoOpenPrivileged", "IOPrivileged_2main_8c.html#a8cc741e0bf4113b8df2f73fa3a8a7581", null ],
+    [ "sceIoReadPrivileged", "IOPrivileged_2main_8c.html#a92fe5103863430b7e0258ff59dddef73", null ],
+    [ "sceIoRemovePrivileged", "IOPrivileged_2main_8c.html#a3a6a2f772fd4005140d7a3a1b30b9cf3", null ],
+    [ "sceIoRenamePrivileged", "IOPrivileged_2main_8c.html#a807e01a99374f8fd25307c4e76508b85", null ],
+    [ "sceIoRmdirPrivileged", "IOPrivileged_2main_8c.html#ae803d2f261eb4ea4db6c77a902c55c71", null ],
+    [ "sceIoSyncPrivileged", "IOPrivileged_2main_8c.html#a5464d208d21e213de9f227e199a8494f", null ],
+    [ "sceIoUnassignPrivileged", "IOPrivileged_2main_8c.html#a0cbfc537035607fd27e08b1ce1a87db2", null ],
+    [ "sceIoWritePrivileged", "IOPrivileged_2main_8c.html#af2a02847f91c131e6e10253a75af9aee", null ]
+];

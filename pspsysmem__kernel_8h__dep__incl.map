@@ -1,0 +1,11 @@
+<map id="kernel/pspsysmem_kernel.h" name="kernel/pspsysmem_kernel.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,407,31"/>
+<area shape="rect" id="Node000002" href="$patches__vita_8c.html" title=" " alt="" coords="5,79,147,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,39,137,81,135,76,264,34"/>
+<area shape="rect" id="Node000003" href="$idsregeneration_8c.html" title=" " alt="" coords="171,79,306,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="296,44,260,80,256,77,292,40"/>
+<area shape="rect" id="Node000004" href="$lflash__fdisk_2main_8c.html" title=" " alt="" coords="330,86,459,112"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="340,40,384,84,381,88,337,44"/>
+<area shape="rect" id="Node000005" href="$popsdisplay_8c.html" title=" " alt="" coords="482,86,654,112"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="370,33,530,83,528,88,368,39"/>
+</map>

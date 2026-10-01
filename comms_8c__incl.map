@@ -1,0 +1,14 @@
+<map id="iplsdk/src/comms.c" name="iplsdk/src/comms.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="107,5,242,31"/>
+<area shape="rect" id="Node000002" href="$comms_8h.html" title=" " alt="" coords="5,79,80,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,34,79,74,77,69,151,29"/>
+<area shape="rect" id="Node000003" href="$gpio_8h.html" title=" " alt="" coords="104,79,160,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,33,149,67,145,64,165,30"/>
+<area shape="rect" id="Node000004" href="$sysreg_8h.html" title=" " alt="" coords="184,79,253,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,30,205,64,201,67,179,33"/>
+<area shape="rect" id="Node000006" href="$spi_8h.html" title=" " alt="" coords="277,79,325,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="197,29,268,69,265,73,195,34"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="228,153,292,178"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="228,104,248,138,243,141,223,106"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="297,106,277,141,272,138,292,104"/>
+</map>

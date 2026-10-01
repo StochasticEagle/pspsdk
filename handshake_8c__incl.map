@@ -1,0 +1,17 @@
+<map id="iplsdk/src/handshake.c" name="iplsdk/src/handshake.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="143,5,297,31"/>
+<area shape="rect" id="Node000002" href="$comms_8h.html" title=" " alt="" coords="5,79,80,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,34,88,75,86,70,189,29"/>
+<area shape="rect" id="Node000003" href="$kirk_8h.html" title=" " alt="" coords="104,79,157,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,34,159,71,156,67,203,29"/>
+<area shape="rect" id="Node000004" href="$sysreg_8h.html" title=" " alt="" coords="138,153,208,178"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="219,32,184,139,179,137,213,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="178,226,241,252"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="223,31,225,94,222,179,218,212,212,211,217,178,220,94,218,32"/>
+<area shape="rect" id="Node000006" href="$syscon_8h.html" title=" " alt="" coords="282,79,355,105"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="238,29,291,68,288,72,235,34"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="379,79,442,105"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="253,29,366,71,364,76,251,34"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="140,104,160,138,156,141,135,106"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="181,177,199,211,194,214,177,180"/>
+</map>
