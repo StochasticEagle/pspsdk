@@ -10,4 +10,4 @@ CFLAGS = @PSPSDK_CFLAGS@
 
 include_HEADERS = psptest.h
 lib_LIBRARIES = libpsptest.a
-libpsptest_a_SOURCES = psptest.c
+libpsptest_a_SOURCES = psptest.c psptest_call.S
