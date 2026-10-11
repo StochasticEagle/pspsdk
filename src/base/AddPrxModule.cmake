@@ -2,11 +2,16 @@
 cmake_minimum_required(VERSION 3.10)
 
 function(add_prx_module name)
+  cmake_parse_arguments(PRX "" "OUTPUT_DIR" "" ${ARGN})
+  if(PRX_OUTPUT_DIR)
+    get_filename_component(PRX_OUTPUT_DIR "${PRX_OUTPUT_DIR}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+    file(MAKE_DIRECTORY "${PRX_OUTPUT_DIR}")
+  endif()
   # Initialize list for existing and generated source files
   set(SRC_FILES)
 
   # Loop over each source file
-  foreach(FILE ${ARGN})
+  foreach(FILE ${PRX_UNPARSED_ARGUMENTS})
     # Get the extension of the file
     get_filename_component(FILE_EXTENSION ${FILE} EXT)
 
@@ -45,12 +50,18 @@ function(add_prx_module name)
     COMMENT "Calling psp-fixup-imports for target ${name}"
   )
 
+  if(PRX_OUTPUT_DIR)
+    set(PRX_OUTPUT_FILE "${PRX_OUTPUT_DIR}/$<TARGET_FILE_NAME:${name}>.prx")
+  else()
+    set(PRX_OUTPUT_FILE "$<TARGET_FILE:${name}>.prx")
+  endif()
+
   # Generate the .prx module from executable target
   add_custom_command(
     TARGET ${name}
     POST_BUILD COMMAND
     "${PSPDEV}/bin/psp-prxgen" "$<TARGET_FILE:${name}>"
-    "$<TARGET_FILE:${name}>.prx"
+    "${PRX_OUTPUT_FILE}"
     COMMENT "Calling prxgen for target ${name}"
   )
 endfunction()
