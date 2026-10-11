@@ -1,0 +1,25 @@
+var structintraFont =
+[
+    [ "advancex", "structintraFont.html#a13e155ac48317b111054b8c6f2c4f204", null ],
+    [ "advancey", "structintraFont.html#a3516e5dc06d761951e1fe03e09b14c4a", null ],
+    [ "charmap", "structintraFont.html#a047b04225eec3a569c0d8ce782579f48", null ],
+    [ "charmap_compr", "structintraFont.html#a0a77f8501006a0496221e7dd726bf935", null ],
+    [ "charmap_compr_len", "structintraFont.html#a1e79e370e9d30889785ac5c697d9fa39", null ],
+    [ "color", "structintraFont.html#a74aa82e22ca4a1deea1c29e4e257699c", null ],
+    [ "filename", "structintraFont.html#af5eb18ef078489b1380110217351df17", null ],
+    [ "fontdata", "structintraFont.html#ad9f7607648520482f8f23d6af1f4aecd", null ],
+    [ "glyph", "structintraFont.html#aa603f8057101f7d82f4cd563ba80b88d", null ],
+    [ "n_chars", "structintraFont.html#abf39bbe844397db6486b7486a568bf19", null ],
+    [ "n_shadows", "structintraFont.html#a6a80af1b5f218646d787938d64962c3d", null ],
+    [ "options", "structintraFont.html#aba067e95582e6220bfe6600c88904089", null ],
+    [ "shadowColor", "structintraFont.html#a8eef4b3c5e8b41cf423fdde9bf1e4e25", null ],
+    [ "shadowGlyph", "structintraFont.html#a3063aaf233d9aec0fbaed438d060f0f0", null ],
+    [ "shadowscale", "structintraFont.html#a8fb1fbbc93eb15224283196ee19e1fa0", null ],
+    [ "size", "structintraFont.html#aafdd6bc6011fe859e51393693de0a4ec", null ],
+    [ "texHeight", "structintraFont.html#a5c4de100ca38f9f7131a1b1f43da3e1d", null ],
+    [ "texture", "structintraFont.html#ae15b252de96da46921384b7310808b1f", null ],
+    [ "texWidth", "structintraFont.html#ac930386c21836e0a90f472f96dbcefae", null ],
+    [ "texX", "structintraFont.html#a7a7abd46c554dfca3cbf5e3b64388906", null ],
+    [ "texY", "structintraFont.html#a512e94cd49edc7bf26d2845014f3ccce", null ],
+    [ "texYSize", "structintraFont.html#acc95baf5650be632cef86d061d599136", null ]
+];

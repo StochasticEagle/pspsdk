@@ -1,0 +1,29 @@
+<map id="libcglue/socket.c" name="libcglue/socket.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="356,5,475,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,69,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="357,31,235,52,84,81,83,76,234,46,356,26"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="93,79,149,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="361,34,165,81,164,76,360,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="174,79,234,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="381,34,249,78,248,73,379,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="268,153,363,178"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="366,34,329,52,312,65,299,80,294,94,294,109,303,138,298,140,289,109,289,93,295,78,309,61,326,47,364,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="489,153,580,178"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="476,25,570,45,611,59,636,77,642,88,642,99,631,119,610,135,584,149,581,144,607,131,627,115,637,98,637,90,632,81,608,64,569,50,475,30"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="432,79,516,105"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="427,30,457,65,453,69,423,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="540,79,622,105"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="445,29,540,70,538,75,443,34"/>
+<area shape="rect" id="Node000009" href="$psptypes_8h.html" title=" " alt="" coords="697,79,780,105"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="471,29,682,75,681,81,470,34"/>
+<area shape="rect" id="Node000011" href="$pspnet__inet_8h.html" title=" " alt="" coords="309,79,408,105"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="408,33,380,68,376,65,404,30"/>
+<area shape="rect" id="Node000012" href="$fdman_8h.html" title=" " alt="" coords="805,79,872,105"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="476,25,615,45,790,76,789,81,614,50,475,30"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="707,153,770,178"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="741,105,741,137,736,137,736,105"/>
+<area shape="poly" id="edge11_Node000011_Node000005" title=" " alt="" coords="354,106,333,141,328,138,349,104"/>
+<area shape="poly" id="edge12_Node000011_Node000006" title=" " alt="" coords="389,103,491,144,490,149,387,108"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="795,153,882,178"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="841,105,841,137,836,137,836,105"/>
+</map>

@@ -1,0 +1,30 @@
+<map id="iplsdk/src/display.c" name="iplsdk/src/display.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="335,5,467,31"/>
+<area shape="rect" id="Node000002" href="$display_8h.html" title=" " alt="" coords="5,79,77,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="336,34,92,81,91,76,335,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="101,79,149,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="348,34,165,81,164,76,347,29"/>
+<area shape="rect" id="Node000004" href="$lcdc_8h.html" title=" " alt="" coords="173,79,229,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="368,34,244,78,243,73,366,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="419,153,482,178"/>
+<area shape="poly" id="edge16_Node000001_Node000005" title=" " alt="" coords="362,34,332,47,305,63,290,82,289,92,294,103,316,126,344,142,374,152,404,158,403,163,373,157,342,146,313,130,289,106,284,93,285,81,301,59,329,42,360,29"/>
+<area shape="rect" id="Node000006" href="$dmacplus_8h.html" title=" " alt="" coords="304,79,391,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="394,33,368,68,364,65,390,30"/>
+<area shape="rect" id="Node000007" href="$interrupt_8h.html" title=" " alt="" coords="415,79,494,105"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="412,30,438,65,434,68,408,33"/>
+<area shape="rect" id="Node000008" href="$sysreg_8h.html" title=" " alt="" coords="517,79,586,105"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="428,29,513,70,511,74,425,34"/>
+<area shape="rect" id="Node000009" href="$gpio_8h.html" title=" " alt="" coords="611,79,666,105"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="442,29,597,75,595,80,440,34"/>
+<area shape="rect" id="Node000010" href="$cpu_8h.html" title=" " alt="" coords="690,79,742,105"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="466,29,675,76,674,81,465,34"/>
+<area shape="rect" id="Node000011" href="$model_8h.html" title=" " alt="" coords="766,79,833,105"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="467,26,595,47,752,76,751,81,594,52,467,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="230,99,405,148,403,154,228,104"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="367,103,422,141,419,146,364,107"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="536,107,482,145,479,141,533,103"/>
+<area shape="poly" id="edge12_Node000010_Node000005" title=" " alt="" coords="690,104,679,107,498,155,496,150,678,102,688,99"/>
+<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="767,105,755,107,498,158,497,153,754,102,765,99"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="766,153,833,178"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="802,105,802,137,797,137,797,105"/>
+</map>

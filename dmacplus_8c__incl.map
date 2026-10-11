@@ -1,0 +1,16 @@
+<map id="iplsdk/src/dmacplus.c" name="iplsdk/src/dmacplus.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="129,5,276,31"/>
+<area shape="rect" id="Node000002" href="$dmacplus_8h.html" title=" " alt="" coords="5,79,93,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,34,90,75,88,70,175,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="135,153,198,178"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="191,33,173,54,158,80,155,109,160,137,154,138,149,109,153,78,168,51,187,30"/>
+<area shape="rect" id="Node000004" href="$sysreg_8h.html" title=" " alt="" coords="168,79,237,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="205,31,205,63,200,63,200,31"/>
+<area shape="rect" id="Node000005" href="$cpu_8h.html" title=" " alt="" coords="262,79,314,105"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="219,29,264,67,260,71,215,34"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="337,79,401,105"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="232,29,328,70,326,75,230,34"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,103,135,142,132,147,68,107"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="199,106,182,140,177,138,194,104"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="268,108,202,147,199,142,266,103"/>
+</map>

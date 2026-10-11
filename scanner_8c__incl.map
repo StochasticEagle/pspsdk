@@ -1,0 +1,34 @@
+<map id="BootLoadEx/scanner.c" name="BootLoadEx/scanner.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="108,5,260,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="22,79,85,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,34,90,74,87,69,161,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="109,79,168,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,33,157,67,152,64,174,30"/>
+<area shape="rect" id="Node000004" href="$pspsdk_8h.html" title=" " alt="" coords="193,79,266,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="194,30,216,64,211,67,189,33"/>
+<area shape="rect" id="Node000012" href="$psploadcore_8h.html" title=" " alt="" coords="421,153,523,178"/>
+<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="209,29,435,143,433,148,207,34"/>
+<area shape="rect" id="Node000005" href="$pspkerneltypes_8h.html" title=" " alt="" coords="78,226,196,252"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="224,106,155,215,151,212,220,104"/>
+<area shape="rect" id="Node000006" href="$psptypes_8h.html" title=" " alt="" coords="96,300,179,326"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="193,105,85,133,18,155,9,172,9,191,16,210,29,228,65,262,104,290,101,294,62,266,25,231,12,212,4,192,4,171,14,151,83,128,192,100"/>
+<area shape="rect" id="Node000008" href="$pspmodulemgr_8h.html" title=" " alt="" coords="28,153,145,178"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="206,108,126,148,123,143,204,103"/>
+<area shape="rect" id="Node000009" href="$pspmoduleinfo_8h.html" title=" " alt="" coords="338,300,454,326"/>
+<area shape="poly" id="edge11_Node000004_Node000009" title=" " alt="" coords="267,101,310,120,331,134,349,151,370,183,384,219,397,284,391,285,379,221,365,186,345,154,327,138,307,125,265,106"/>
+<area shape="rect" id="Node000010" href="$pspthreadman_8h.html" title=" " alt="" coords="221,153,334,178"/>
+<area shape="poly" id="edge12_Node000004_Node000010" title=" " alt="" coords="239,103,263,138,258,141,235,106"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="140,252,140,284,135,284,135,252"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="106,374,169,399"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="140,326,140,358,135,358,135,326"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="97,177,122,212,118,215,93,180"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="81,180,67,213,65,233,69,251,84,272,104,289,100,293,80,276,64,253,60,233,62,212,77,178"/>
+<area shape="poly" id="edge14_Node000010_Node000005" title=" " alt="" coords="255,181,176,221,173,217,252,176"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="271,181,245,215,210,254,167,292,163,288,206,250,240,211,266,177"/>
+<area shape="rect" id="Node000011" href="$pspdebug_8h.html" title=" " alt="" coords="271,226,358,252"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="286,177,304,211,299,214,281,180"/>
+<area shape="poly" id="edge16_Node000011_Node000006" title=" " alt="" coords="286,255,182,296,180,291,284,250"/>
+<area shape="poly" id="edge17_Node000011_Node000009" title=" " alt="" coords="330,251,373,288,369,292,327,255"/>
+<area shape="poly" id="edge19_Node000012_Node000005" title=" " alt="" coords="421,180,209,225,208,220,420,175"/>
+<area shape="poly" id="edge20_Node000012_Node000009" title=" " alt="" coords="468,180,412,288,407,285,463,177"/>
+</map>
