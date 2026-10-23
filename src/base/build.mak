@@ -93,7 +93,10 @@ LDFLAGS +=  -Wl,-zmax-page-size=128
 ifeq ($(USE_KERNEL_LIBS),1)
 LIBS := -nostdlib $(LIBS) -lpspdebug -lpspdisplay_driver -lpspctrl_driver -lpspmodinfo -lpspsdk -lpspkernel
 else
-LIBS := $(LIBS) -lpspdebug -lpspdisplay -lpspge -lpspctrl \
+# The PSP SDK support archive can reference network import stubs.
+# Resolve it before the explicit PSP networking libraries, rather than
+# relying on the compiler's later implicit LIB_SPEC archive order.
+LIBS := $(LIBS) -lpspsdk -lpspdebug -lpspdisplay -lpspge -lpspctrl \
 		-lpspnet -lpspnet_apctl
 endif
 
