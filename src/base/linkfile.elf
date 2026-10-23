@@ -1,0 +1,9 @@
+/* Augment the default ELF linker script without changing entry-point or layout. */
+/* Exact sections come before the correspondingly sorted per-module sections
+ * so PSP function-import stubs and NIDs retain identical ordering. */
+SECTIONS
+{
+  .sceStub.text : { KEEP(*(.sceStub.text)) KEEP(*(SORT(.sceStub.text.*))) }
+  .rodata.sceNid : { KEEP(*(.rodata.sceNid)) KEEP(*(SORT(.rodata.sceNid.*))) }
+}
+INSERT BEFORE .rodata;

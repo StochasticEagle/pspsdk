@@ -2,8 +2,7 @@ name: Documentation
 
 on:
   push:
-    branches:
-      - dev/fork
+    branches: [dev/fork]
   workflow_dispatch:
 
 permissions:
@@ -15,23 +14,36 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: true
 
-      - name: Prepare Doxyfile
+      - name: Install documentation tools
         run: |
-          sed -e 's/\$(VERSION)/'`date +"%Y-%m-%d" | xargs echo -n`'/' \
-              -e 's/Helvetica/FreeSans/' \
-              -i Doxyfile
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz fonts-freefont-ttf
 
       - name: Generate documentation
-        uses: mattnotmitt/doxygen-action@v1
+        run: |
+          set -euo pipefail
+          sed -i -e "s/\$(VERSION)/$(date -u +'%Y-%m-%d')/" -e 's/Helvetica/FreeSans/g' Doxyfile
+          doxygen Doxyfile
+          test -s doc/build/html/index.html
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./doc/build/html
-          force_orphan: true
+      - name: Publish gh-pages branch
+        run: |
+          set -euo pipefail
+          dest="$RUNNER_TEMP/pspsdk-gh-pages"
+          git worktree add --detach "$dest" HEAD
+          git -C "$dest" switch --orphan gh-pages
+          find "$dest" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf -- {} +
+          cp -a doc/build/html/. "$dest/"
+          touch "$dest/.nojekyll"
+          git -C "$dest" add -A
+          git -C "$dest" -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m "Publish PSPSDK documentation"
+          git -C "$dest" push --force origin HEAD:gh-pages

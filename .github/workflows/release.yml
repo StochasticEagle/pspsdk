@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v6
@@ -96,11 +96,14 @@ jobs:
           fi
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v3
-        with:
-          tag_name: ${{ inputs.tag }}
-          target_commitish: ${{ github.sha }}
-          name: PSPSDK ${{ inputs.tag }}
-          generate_release_notes: true
-          make_latest: true
-          files: ${{ runner.temp }}/pspsdk-ubuntu-x86_64.tar.gz
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            "$RUNNER_TEMP/pspsdk-ubuntu-x86_64.tar.gz" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "PSPSDK $RELEASE_TAG" \
+            --generate-notes \
+            --latest

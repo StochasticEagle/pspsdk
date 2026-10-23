@@ -84,7 +84,8 @@ else
 EXPORT_OBJ=$(PSPSDK)/lib/prxexports.o
 endif
 else
-LDFLAGS  := $(addprefix -L,$(LIBDIR)) $(LDFLAGS)
+# Keep PSP ELF import stubs and their matching NIDs in dedicated sections.
+LDFLAGS  := $(addprefix -L,$(LIBDIR)) -Wl,-T$(PSPSDK)/lib/linkfile.elf $(LDFLAGS)
 endif
 
 # Reduce binary size

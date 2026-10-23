@@ -93,6 +93,9 @@ macro(create_pbp_file)
       PUBLIC -specs=${PSPDEV}/psp/sdk/lib/prxspecs
       PUBLIC -Wl,-q,-T${PSPDEV}/psp/sdk/lib/linkfile.prx
       PUBLIC ${PSPDEV}/psp/sdk/lib/prxexports.o)
+  else()
+    # Ordinary ELF programs need the PSP import-section layout as well.
+    target_link_options(${ARG_TARGET} PRIVATE -Wl,-T${PSPDEV}/psp/sdk/lib/linkfile.elf)
   endif()
 
   if("${CMAKE_BUILD_TYPE}" STREQUAL "Release" AND NOT ${ARG_BUILD_PRX})
