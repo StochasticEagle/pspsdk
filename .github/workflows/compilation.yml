@@ -84,7 +84,11 @@ jobs:
           # Validate the public PSPTEST runner exported by the SDK archive.
           # psptest_run_module is not an SDK symbol; modules use PSPTEST_MODULE.
           psp-nm --defined-only "$PSPDEV/psp/sdk/lib/libpsptest.a" > "$build_dir/psptest-symbols.txt"
-          grep -Eq '[[:space:]]T[[:space:]]psptest_run_suite
+          grep -Eq '[[:space:]]T[[:space:]]psptest_run_suite$' "$build_dir/psptest-symbols.txt" || {
+            cat "$build_dir/psptest-symbols.txt"
+            echo "Missing psptest_run_suite in libpsptest.a" >&2
+            exit 1
+          }
 
       - name: Compile examples
         run: |
