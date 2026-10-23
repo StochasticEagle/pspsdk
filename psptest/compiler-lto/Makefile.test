@@ -1,0 +1,16 @@
+PSPTEST_SOURCE_DIR := $(patsubst %/,%,$(dir $(abspath $(firstword $(MAKEFILE_LIST)))))
+ifeq ($(abspath $(CURDIR)),$(PSPTEST_SOURCE_DIR))
+$(error PSPTEST outputs must be built outside the PSPSDK source tree)
+endif
+TARGET = psptest-compiler-lto
+OBJS = main.o
+CFLAGS = -O2 -flto -G0 -Wall -Wextra -Werror
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CFLAGS)
+LDFLAGS += -flto
+BUILD_PRX = 1
+PRX_EXPORTS ?= ../psptest.exp
+PSPSDK := $(shell psp-config --pspsdk-path)
+PSPTEST_FRAMEWORK_INCDIR ?= $(PSPSDK)/include
+INCDIR += $(PSPTEST_FRAMEWORK_INCDIR)
+include $(PSPSDK)/lib/build.mak
