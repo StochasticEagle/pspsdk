@@ -12,6 +12,8 @@ CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
 
 BUILD_PRX = 1
+# The PSPTEST module provides its own entry points; do not link crt0_prx.o.
+LDFLAGS += -nostartfiles
 PRX_EXPORTS ?= ../psptest.exp
 
 PSPSDK := $(shell psp-config --pspsdk-path)
