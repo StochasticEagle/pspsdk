@@ -94,7 +94,9 @@ LDFLAGS +=  -Wl,-zmax-page-size=128
 ifeq ($(USE_KERNEL_LIBS),1)
 LIBS := -nostdlib $(LIBS) -lpspdebug -lpspdisplay_driver -lpspctrl_driver -lpspmodinfo -lpspsdk -lpspkernel
 else
-LIBS := $(LIBS) -lpspdebug -lpspdisplay -lpspge -lpspctrl \
+# Resolve SDK helpers before libraries appended by individual applications.
+# Kernel imports appended after this fragment can then satisfy SDK dependencies.
+LIBS := $(LIBS) -lpspsdk -lpspdebug -lpspdisplay -lpspge -lpspctrl \
 		-lpspnet -lpspnet_apctl
 endif
 
