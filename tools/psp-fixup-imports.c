@@ -435,9 +435,11 @@ int load_sections(unsigned char *data)
 				break;
 			}
 
-			if(g_nid == NULL)
+			/* A module with no function imports need not contain a NID section.
+			 * A nonempty stub-text section without NIDs is still malformed. */
+			if(g_nid == NULL && g_stubtext->iSize != 0)
 			{
-				fprintf(stderr, "Error, no nid section found\n");
+				fprintf(stderr, "Error, no nid section found for nonempty stubs\n");
 				break;
 			}
 
@@ -654,6 +656,12 @@ int fixup_imports(void)
 	unsigned int *pNid;
 	struct PspModuleImport *pLastImport = NULL;
 	int count;
+
+	/* Empty stub tables have no NIDs to patch. */
+	if(g_nid == NULL)
+	{
+		return g_stubtext->iSize == 0;
+	}
 
 	/* First let's check the sizes are correct */
 	if(g_stubtext->iSize != (g_nid->iSize * 2))
