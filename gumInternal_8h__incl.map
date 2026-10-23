@@ -1,0 +1,17 @@
+<map id="gum/gumInternal.h" name="gum/gumInternal.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="45,5,173,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,72,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,33,62,71,58,67,96,29"/>
+<area shape="rect" id="Node000003" href="$pspgum_8h.html" title=" " alt="" coords="70,152,149,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,31,112,138,107,138,107,31"/>
+<area shape="rect" id="Node000006" href="$pspgu_8h.html" title=" " alt="" coords="147,79,242,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="125,29,172,68,169,72,121,33"/>
+<area shape="rect" id="Node000004" href="$psptypes_8h.html" title=" " alt="" coords="145,225,229,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,175,166,214,162,218,120,179"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="155,299,218,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="189,251,189,285,184,285,184,251"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="197,105,191,212,185,211,191,104"/>
+<area shape="rect" id="Node000007" href="$pspge_8h.html" title=" " alt="" coords="224,152,291,177"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="207,103,240,140,236,143,203,106"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="248,180,210,218,206,214,244,176"/>
+</map>

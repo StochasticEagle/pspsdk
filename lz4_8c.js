@@ -1,0 +1,78 @@
+var lz4_8c =
+[
+    [ "U16_S", "structU16__S.html", "structU16__S" ],
+    [ "U32_S", "structU32__S.html", "structU32__S" ],
+    [ "U64_S", "structU64__S.html", "structU64__S" ],
+    [ "size_t_S", "structsize__t__S.html", "structsize__t__S" ],
+    [ "LZ4_Data_Structure", "structLZ4__Data__Structure.html", "structLZ4__Data__Structure" ],
+    [ "_PACKED", "lz4_8c.html#aa1ed035ac46973db2babb746c8ebc06a", null ],
+    [ "A16", "lz4_8c.html#aa1adaa7f29be89d1761dd7b43128ced2", null ],
+    [ "A32", "lz4_8c.html#ab78347b38f01fdb338e5a7ebe36d4a88", null ],
+    [ "A64", "lz4_8c.html#ae04b768aafd50d6bac41490acd2b86a0", null ],
+    [ "AARCH", "lz4_8c.html#a81ef925776d88353d3a98161c95be3b2", null ],
+    [ "ALLOCATOR", "lz4_8c.html#ab6db208cb9c6a8d096008384a4c8b8c1", null ],
+    [ "COPYLENGTH", "lz4_8c.html#a155d81bbd0ae81c533d696c563c6ea87", null ],
+    [ "expect", "lz4_8c.html#a7d26a1c40d6107cf2f19558492591e67", null ],
+    [ "FORCE_INLINE", "lz4_8c.html#ac032d233a8ebfcd82fd49d0824eefb18", null ],
+    [ "FREEMEM", "lz4_8c.html#a2e47ec7ce19d2f57a60da284f1d7b0ab", null ],
+    [ "GB", "lz4_8c.html#a44172ac633c517cb4c9e278cef36b000", null ],
+    [ "GCC_VERSION", "lz4_8c.html#adbba0f726fc66d7100916c683b7568ae", null ],
+    [ "HASHNBCELLS4", "lz4_8c.html#a01c821754d4c7a78283f423ebd753071", null ],
+    [ "HASHTABLESIZE", "lz4_8c.html#a89f3391502e32c9a48898f47f6473011", null ],
+    [ "HEAPMODE", "lz4_8c.html#a396a35bbe687da2192faae2da8b66244", null ],
+    [ "KB", "lz4_8c.html#a1841fd1a462d245d8c73dce55e2f45da", null ],
+    [ "LASTLITERALS", "lz4_8c.html#a7a912d9a1f869b93be505568dce7fa8c", null ],
+    [ "likely", "lz4_8c.html#aa0672ea7123854cc5f51902a06c473fb", null ],
+    [ "LZ4_64KLIMIT", "lz4_8c.html#a54d5e65eeac14266f16958a632bf3bd1", null ],
+    [ "LZ4_ARCH64", "lz4_8c.html#a2fcbe30c4c297bf61a8f22153e6a6c65", null ],
+    [ "lz4_bswap16", "lz4_8c.html#aa535d272fb4112a33ca889a24af7e285", null ],
+    [ "LZ4_COPY8", "lz4_8c.html#ac830bd81f63e4ba98acf134df3d4c1bb", null ],
+    [ "LZ4_COPYSTEP", "lz4_8c.html#a7740e389dd8567d73b26c333fc5fd54f", null ],
+    [ "LZ4_HASHLOG", "lz4_8c.html#ac7f04539d94ce57826ef8b2f3d8408af", null ],
+    [ "LZ4_READ_LITTLEENDIAN_16", "lz4_8c.html#a815a3c4e7b8f3fbd54cd3163e5b1b210", null ],
+    [ "LZ4_SECURECOPY", "lz4_8c.html#ae6ffab5f2d2f54490105fd4541874a59", null ],
+    [ "LZ4_WILDCOPY", "lz4_8c.html#a2831cd2769fea01f14d3cf0c038a045f", null ],
+    [ "LZ4_WRITE_LITTLEENDIAN_16", "lz4_8c.html#a982a474e51c097045868d3284a7351d3", null ],
+    [ "MAX_DISTANCE", "lz4_8c.html#a08e4da5f3d0c7936fa52467f40e4b6aa", null ],
+    [ "MAXD_LOG", "lz4_8c.html#ab761e7bc07fbb86a76ec92d360d3309e", null ],
+    [ "MB", "lz4_8c.html#aa6b38d492364d98453284934ed7caee9", null ],
+    [ "MEM_INIT", "lz4_8c.html#a1bd91a4e39950622f1d2e1c8990d2284", null ],
+    [ "MEMORY_USAGE", "lz4_8c.html#ae3f505916d48e2bd86b7fc6eb1f9541b", null ],
+    [ "MFLIMIT", "lz4_8c.html#a6bb5847a99cd90aca07870a394cbe70d", null ],
+    [ "MINMATCH", "lz4_8c.html#a2d835b35b6582451a75dc6ff464a9e75", null ],
+    [ "ML_BITS", "lz4_8c.html#aa84b594ef328b62b23e36c78abe2aaf0", null ],
+    [ "ML_MASK", "lz4_8c.html#aa939dccc909b8b36baadb3265a72b37a", null ],
+    [ "restrict", "lz4_8c.html#a080abdcb9c02438f1cd2bb707af25af8", null ],
+    [ "RUN_BITS", "lz4_8c.html#ae6261d794dfe7c6816e3b342c643f56f", null ],
+    [ "RUN_MASK", "lz4_8c.html#aec45fd08a68c07b74493e631ae52aca1", null ],
+    [ "SKIPSTRENGTH", "lz4_8c.html#ad155489ab5ca0387d058724db8544b0f", null ],
+    [ "STEPSIZE", "lz4_8c.html#a0b31438dd90256ed47b3bea0eb62be06", null ],
+    [ "unlikely", "lz4_8c.html#ad8700448546b3b5111404cc021061fd5", null ],
+    [ "BYTE", "lz4_8c.html#a4ae1dab0fb4b072a66584546209e7d58", null ],
+    [ "S32", "lz4_8c.html#a57a2244776e01ad620c556de58eb7880", null ],
+    [ "U16", "lz4_8c.html#adf928e51a60dba0df29d615401cc55a8", null ],
+    [ "U32", "lz4_8c.html#ac3df7cf3c8cb172a588adec881447d68", null ],
+    [ "U64", "lz4_8c.html#a24c386d3758eba951eb7532fdbb45804", null ],
+    [ "earlyEnd_directive", "lz4_8c.html#a2719d1421671f2c7fa3c68ca7465994c", [
+      [ "full", "lz4_8c.html#a2719d1421671f2c7fa3c68ca7465994ca0a601c9076b9914da4a237c8688b1c88", null ],
+      [ "partial", "lz4_8c.html#a2719d1421671f2c7fa3c68ca7465994ca67bce1b2dc0e7c66a27de1a9e146ce3e", null ]
+    ] ],
+    [ "endCondition_directive", "lz4_8c.html#a23fcfcea9fce4ad48b37485e3b6e8746", [
+      [ "endOnOutputSize", "lz4_8c.html#a23fcfcea9fce4ad48b37485e3b6e8746a92d766b3022f9d86ccf764d716a46b2a", null ],
+      [ "endOnInputSize", "lz4_8c.html#a23fcfcea9fce4ad48b37485e3b6e8746a2a30c7b77002529763d202e7ac636539", null ]
+    ] ],
+    [ "limitedOutput_directive", "lz4_8c.html#ab93acf685743debab05876250a1cbe28", [
+      [ "notLimited", "lz4_8c.html#ab93acf685743debab05876250a1cbe28adc568f9214a2932542608f43124efcff", null ],
+      [ "limited", "lz4_8c.html#ab93acf685743debab05876250a1cbe28a349792523322839d5afa7b6bdc5d5e82", null ]
+    ] ],
+    [ "prefix64k_directive", "lz4_8c.html#afb1ac82a1a37a274f92fa7a9abdeeec4", [
+      [ "noPrefix", "lz4_8c.html#afb1ac82a1a37a274f92fa7a9abdeeec4a98fcae5930c1fed598fe458fcdaf0ee5", null ],
+      [ "withPrefix", "lz4_8c.html#afb1ac82a1a37a274f92fa7a9abdeeec4a1d0add22cacf7a79570b41d2f69b6108", null ]
+    ] ],
+    [ "tableType_t", "lz4_8c.html#ae86e1d8a28953326b685d6ebb243a699", [
+      [ "byPtr", "lz4_8c.html#ae86e1d8a28953326b685d6ebb243a699a5c952c05e312cfc0589ef1d283397560", null ],
+      [ "byU32", "lz4_8c.html#ae86e1d8a28953326b685d6ebb243a699ae7520fe8d6957f5029ddeb0652c65471", null ],
+      [ "byU16", "lz4_8c.html#ae86e1d8a28953326b685d6ebb243a699a48aff40d7237850c996a1f6c266a598f", null ]
+    ] ],
+    [ "LZ4_decompress_fast", "lz4_8c.html#ae6848d320c953d012408c7584a87b454", null ]
+];

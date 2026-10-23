@@ -1,0 +1,17 @@
+<map id="FlashTranslationLayer" name="FlashTranslationLayer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="205,299,351,324"/>
+<area shape="rect" id="Node000002" href="$structSmartMediaProperties.html" title=" " alt="" coords="5,211,156,236"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,242,160,272,229,296,228,301,158,277,106,247"/>
+<area shape="rect" id="Node000003" href="$structSegment.html" title=" " alt="" coords="181,211,255,236"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,248,235,273,260,297,256,300,230,276,220,250"/>
+<area shape="rect" id="Node000004" href="$structUnusedBlockList.html" title=" " alt="" coords="304,108,425,133"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="338,143,236,213,233,208,335,139"/>
+<area shape="rect" id="Node000005" href="$structUnusedBlockNode.html" title=" " alt="" coords="110,5,241,31"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="171,45,165,87,165,110,169,133,188,176,211,209,206,212,183,178,163,134,160,110,160,86,166,44"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="210,35,344,106,342,110,208,40"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="256,9,267,18,259,27,241,30,240,25,257,22,262,18,253,13"/>
+<area shape="rect" id="Node000006" href="$structPartitionInfo.html" title=" " alt="" coords="279,211,370,236"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="314,249,287,299,282,297,310,247"/>
+<area shape="rect" id="Node000007" href="$structEmcSmBlockMetadata.html" title=" " alt="" coords="394,211,549,236"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="436,244,364,277,308,301,306,296,362,272,434,239"/>
+</map>

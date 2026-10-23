@@ -1,0 +1,22 @@
+<map id="iplsdk/src/phatlcd.c" name="iplsdk/src/phatlcd.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="208,5,341,31"/>
+<area shape="rect" id="Node000002" href="$phatlcd_8h.html" title=" " alt="" coords="5,79,80,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,33,94,77,92,72,237,28"/>
+<area shape="rect" id="Node000004" href="$gpio_8h.html" title=" " alt="" coords="104,79,160,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="253,33,169,75,166,70,251,28"/>
+<area shape="rect" id="Node000005" href="$cpu_8h.html" title=" " alt="" coords="184,79,237,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="266,33,232,70,228,67,262,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="283,152,346,177"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="281,30,310,138,305,139,275,32"/>
+<area shape="rect" id="Node000007" href="$dmacplus_8h.html" title=" " alt="" coords="312,79,400,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="289,29,334,68,331,72,286,33"/>
+<area shape="rect" id="Node000008" href="$pwm_8h.html" title=" " alt="" coords="424,79,483,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="304,28,413,71,411,76,302,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="507,79,570,104"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="318,28,495,75,493,81,316,33"/>
+<area shape="rect" id="Node000003" href="$iplsdk_2include_2lcd_8h.html" title=" " alt="" coords="18,152,67,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="45,104,45,138,40,138,40,104"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="229,102,288,142,285,146,226,106"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="351,106,331,141,326,139,347,103"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="432,106,351,148,348,143,430,102"/>
+</map>

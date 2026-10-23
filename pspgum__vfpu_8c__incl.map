@@ -1,0 +1,25 @@
+<map id="gum/pspgum_vfpu.c" name="gum/pspgum_vfpu.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="188,5,327,31"/>
+<area shape="rect" id="Node000002" href="$gumInternal_8h.html" title=" " alt="" coords="60,79,159,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,33,147,75,145,70,232,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="183,79,246,104"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="253,32,231,68,226,66,248,30"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="271,79,332,104"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="267,30,289,66,285,68,262,32"/>
+<area shape="rect" id="Node000011" href="$pspvfpu_8h.html" title=" " alt="" coords="357,79,435,104"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="281,28,362,70,360,75,278,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,106,62,144,58,140,96,102"/>
+<area shape="rect" id="Node000004" href="$pspgum_8h.html" title=" " alt="" coords="70,225,149,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="112,104,112,212,107,212,107,104"/>
+<area shape="rect" id="Node000007" href="$pspgu_8h.html" title=" " alt="" coords="147,152,242,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="125,102,172,141,169,145,121,106"/>
+<area shape="rect" id="Node000005" href="$psptypes_8h.html" title=" " alt="" coords="145,299,229,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="124,249,166,287,162,291,120,253"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="155,372,218,397"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="189,324,189,358,184,358,184,324"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="197,178,191,285,185,285,191,178"/>
+<area shape="rect" id="Node000008" href="$pspge_8h.html" title=" " alt="" coords="224,225,291,251"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="207,176,240,213,236,217,203,179"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="248,253,210,291,206,287,244,249"/>
+</map>

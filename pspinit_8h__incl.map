@@ -1,0 +1,15 @@
+<map id="kernel/pspinit.h" name="kernel/pspinit.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="107,5,217,31"/>
+<area shape="rect" id="Node000002" href="$psploadexec__kernel_8h.html" title=" " alt="" coords="89,79,235,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,31,165,65,159,65,159,31"/>
+<area shape="rect" id="Node000003" href="$pspkerneltypes_8h.html" title=" " alt="" coords="5,152,124,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,106,93,146,90,141,145,102"/>
+<area shape="rect" id="Node000004" href="$psptypes_8h.html" title=" " alt="" coords="120,225,204,251"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="165,104,165,212,159,212,159,104"/>
+<area shape="rect" id="Node000006" href="$psploadexec_8h.html" title=" " alt="" coords="199,152,303,177"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="178,102,228,141,224,145,175,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="82,175,136,215,133,219,79,180"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="131,299,193,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="165,251,165,285,159,285,159,251"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="239,179,189,219,186,214,235,175"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="gu/sceGuFrontFace.c" name="gu/sceGuFrontFace.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,152,31"/>
+<area shape="rect" id="Node000002" href="$guInternal_8h.html" title=" " alt="" coords="35,79,123,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,31,81,65,76,65,76,31"/>
+<area shape="rect" id="Node000003" href="$pspgu_8h.html" title=" " alt="" coords="45,152,112,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,104,81,138,76,138,76,104"/>
+<area shape="rect" id="Node000004" href="$psptypes_8h.html" title=" " alt="" coords="37,299,121,324"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="79,178,72,226,72,256,76,285,71,285,67,257,67,225,74,177"/>
+<area shape="rect" id="Node000006" href="$pspge_8h.html" title=" " alt="" coords="81,225,148,251"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="87,176,105,212,100,214,82,179"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="47,372,110,397"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="81,324,81,358,76,358,76,324"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="111,252,93,288,88,285,106,250"/>
+</map>

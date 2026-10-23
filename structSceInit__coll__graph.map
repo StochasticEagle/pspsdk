@@ -1,0 +1,7 @@
+<map id="SceInit" name="SceInit">
+<area shape="rect" id="Node000001" title="This structure represents an Init control block." alt="" coords="169,137,231,163"/>
+<area shape="rect" id="Node000002" href="$structSceKernelLoadExecVSHParam.html" title="Structure for LoadExecVSH* functions." alt="" coords="5,5,208,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,40,194,135,189,139,121,43"/>
+<area shape="rect" id="Node000003" href="$structSceBootCallback.html" title="This structure represents a boot callback belonging to a module." alt="" coords="232,5,355,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="286,45,269,80,246,115,220,139,216,135,242,112,265,77,281,43"/>
+</map>

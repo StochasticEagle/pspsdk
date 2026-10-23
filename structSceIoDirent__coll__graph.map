@@ -1,0 +1,9 @@
+<map id="SceIoDirent" name="SceIoDirent">
+<area shape="rect" id="Node000001" title="Describes a single directory entry." alt="" coords="126,211,217,236"/>
+<area shape="rect" id="Node000002" href="$structSceIoStat.html" title="Structure to hold the status information about a file." alt="" coords="27,123,107,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,155,159,208,156,212,90,159"/>
+<area shape="rect" id="Node000003" href="$structScePspDateTime.html" title=" " alt="" coords="5,5,129,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,44,70,123,65,123,65,44"/>
+<area shape="rect" id="Node000004" href="$structSceIoFatDirentPrivate.html" title=" " alt="" coords="131,123,281,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,162,179,211,174,209,194,160"/>
+</map>

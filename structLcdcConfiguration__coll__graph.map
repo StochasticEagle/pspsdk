@@ -1,0 +1,9 @@
+<map id="LcdcConfiguration" name="LcdcConfiguration">
+<area shape="rect" id="Node000001" title=" " alt="" coords="43,211,168,236"/>
+<area shape="rect" id="Node000002" href="$structResolution.html" title=" " alt="" coords="5,108,88,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,147,45,167,50,185,62,199,77,208,74,213,58,203,46,188,39,167,39,147"/>
+<area shape="rect" id="Node000003" href="$structMode.html" title=" " alt="" coords="138,108,193,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,147,138,188,119,212,115,209,134,185,154,145"/>
+<area shape="rect" id="Node000004" href="$structLine.html" title=" " alt="" coords="142,5,189,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="168,45,168,108,163,108,163,45"/>
+</map>

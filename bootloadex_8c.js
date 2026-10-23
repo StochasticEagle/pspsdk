@@ -1,0 +1,25 @@
+var bootloadex_8c =
+[
+    [ "CheckExecFilePatched", "bootloadex_8c.html#ad24f5ae3d27b4ecae2fceefdf7dabc35", null ],
+    [ "configureBoot", "bootloadex_8c.html#aded2ac2585ab59c47de9e1c99794d892", null ],
+    [ "findBootFunctions", "bootloadex_8c.html#a0dc0700bd053404f491ab33da51d9591", null ],
+    [ "flushCache", "bootloadex_8c.html#abada75ee80f1fd1d1ab309820a680037", null ],
+    [ "patchLoadCore", "bootloadex_8c.html#a73578398b01659cb26d0d9af92672a48", null ],
+    [ "PRXDecryptPatched", "bootloadex_8c.html#a27fec7bd2b9a22256897d83e7f0a78b8", null ],
+    [ "unPatchLoadCoreCheckExec", "bootloadex_8c.html#ad99ed5dc331ebdcac0c50e524addd17e", null ],
+    [ "unPatchLoadCorePRXDecrypt", "bootloadex_8c.html#aa7e71e66e43ce652b6c058f1b0703df3", null ],
+    [ "ble_config", "bootloadex_8c.html#ade118cda54e1c9a53847e951417de6d7", null ],
+    [ "boot_files", "bootloadex_8c.html#aa5a8e840bdd3a67e3e2d6cf66b4a9ebb", null ],
+    [ "loadcore_text", "bootloadex_8c.html#a3c60f66478447036a3ca47b58c900e80", null ],
+    [ "origCheckExecFile", "bootloadex_8c.html#a305ed3c0610718fbb9e1ecfd5792b533", null ],
+    [ "origPRXDecrypt", "bootloadex_8c.html#a343b67392535330719b8f6f69eef3961", null ],
+    [ "psp_model", "bootloadex_8c.html#af683c153a09d322ecf7a907c71501a7e", null ],
+    [ "reboot_end", "bootloadex_8c.html#ad0aa43c79b8253f3f1986fae283556ff", null ],
+    [ "rebootmodule_open", "bootloadex_8c.html#a575bf69a502ab71a74c740912f93b274", null ],
+    [ "sceBoot", "bootloadex_8c.html#a4bab776c2fd4cd818fe00877ed235198", null ],
+    [ "sceBootDacheWritebackInvalidateAll", "bootloadex_8c.html#ac69f53eccb47e0e6770d3f598f0ea488", null ],
+    [ "sceBootIcacheInvalidateAll", "bootloadex_8c.html#a7f850cd05890b5bdae890309fed741d4", null ],
+    [ "UnpackBootConfig", "bootloadex_8c.html#af2beae2eedc48871de892d6628b0f2a3", null ],
+    [ "UnpackBootConfigArg", "bootloadex_8c.html#a769fc8f6aa1970b16d4a35050cdf0cf2", null ],
+    [ "UnpackBootConfigCall", "bootloadex_8c.html#a9981ab617e543183531b961224527768", null ]
+];

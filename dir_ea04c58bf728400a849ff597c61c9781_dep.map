@@ -1,0 +1,15 @@
+<map id="lflash_fdisk" name="lflash_fdisk">
+<area shape="rect" id="node1" href="dir_ea04c58bf728400a849ff597c61c9781.html" title="lflash_fdisk" alt="" coords="93,5,179,31"/>
+<area shape="rect" id="node2" href="dir_243a4ba6b4f893d71afbb5a3e90552fa.html" title="sdk" alt="" coords="5,79,48,104"/>
+<area shape="poly" id="edge1" href="dir_000030_000060.html" alt="" coords="120,33,58,73,55,69,117,28"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000030_000060.html" title="1" alt="" coords="60,68,68,83"/>
+<area shape="rect" id="node3" href="dir_d2841939c4cf1dcf2cd7011972ed187e.html" title="nand" alt="" coords="72,79,123,104"/>
+<area shape="poly" id="edge2" href="dir_000030_000043.html" alt="" coords="132,32,112,68,108,65,127,30"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000030_000043.html" title="1" alt="" coords="116,59,124,74"/>
+<area shape="rect" id="node4" href="dir_dc43877d82dd332f9fb2071fcca799d6.html" title="kernel" alt="" coords="147,79,205,104"/>
+<area shape="poly" id="edge3" href="dir_000030_000027.html" alt="" coords="145,30,165,65,160,68,140,32"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000030_000027.html" title="7" alt="" coords="164,51,172,66"/>
+<area shape="rect" id="node5" href="dir_e4fd3481c5e8112931e161ebbc5af0ff.html" title="display" alt="" coords="229,79,291,104"/>
+<area shape="poly" id="edge4" href="dir_000030_000008.html" alt="" coords="157,28,229,69,227,74,155,33"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000030_000008.html" title="1" alt="" coords="224,55,232,69"/>
+</map>

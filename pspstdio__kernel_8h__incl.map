@@ -1,0 +1,26 @@
+<map id="kernel/pspstdio_kernel.h" name="kernel/pspstdio_kernel.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,167,31"/>
+<area shape="rect" id="Node000002" href="$psptypes_8h.html" title=" " alt="" coords="300,372,384,397"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,32,54,87,43,125,38,163,38,239,45,276,64,305,93,329,128,347,168,360,210,369,286,379,285,384,209,375,167,365,126,352,90,333,60,309,40,278,33,240,33,163,38,123,49,86,77,30"/>
+<area shape="rect" id="Node000004" href="$pspkerneltypes_8h.html" title=" " alt="" coords="132,299,251,324"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="90,30,108,124,125,187,150,249,174,287,170,290,145,252,120,189,102,125,85,31"/>
+<area shape="rect" id="Node000005" href="$pspiofilemgr_8h.html" title=" " alt="" coords="294,79,395,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="128,28,290,72,289,78,127,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="311,445,373,471"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,398,345,432,339,432,339,398"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="217,322,306,364,304,368,214,326"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="396,92,435,97,478,107,521,124,558,150,573,167,581,184,587,225,587,257,575,285,555,309,527,329,496,345,462,358,398,376,397,371,461,353,494,340,525,324,551,305,571,282,582,256,582,226,575,185,569,170,555,154,518,129,476,112,434,102,395,97"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="294,96,260,101,224,111,191,128,164,154,156,169,152,186,154,222,165,256,179,286,175,288,160,258,149,223,147,185,151,167,160,150,188,124,222,106,259,96,294,91"/>
+<area shape="rect" id="Node000006" href="$pspiofilemgr__fcntl_8h.html" title=" " alt="" coords="174,152,307,177"/>
+<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="329,106,271,146,268,142,326,102"/>
+<area shape="rect" id="Node000007" href="$pspiofilemgr__stat_8h.html" title=" " alt="" coords="277,225,407,251"/>
+<area shape="poly" id="edge9_Node000005_Node000007" title=" " alt="" coords="347,105,345,212,340,212,342,104"/>
+<area shape="rect" id="Node000008" href="$pspiofilemgr__dirent_8h.html" title=" " alt="" coords="383,152,523,177"/>
+<area shape="poly" id="edge12_Node000005_Node000008" title=" " alt="" coords="363,102,425,142,422,147,361,106"/>
+<area shape="rect" id="Node000009" href="$pspiofilemgr__devctl_8h.html" title=" " alt="" coords="431,225,573,251"/>
+<area shape="poly" id="edge14_Node000005_Node000009" title=" " alt="" coords="396,90,432,95,471,105,507,123,536,151,542,167,540,184,524,216,519,213,535,183,537,168,532,153,504,127,469,110,431,100,395,96"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="345,251,345,358,339,358,339,251"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="319,253,230,295,227,290,317,248"/>
+<area shape="poly" id="edge13_Node000008_Node000007" title=" " alt="" coords="436,180,373,220,370,215,433,175"/>
+<area shape="poly" id="edge15_Node000009_Node000002" title=" " alt="" coords="491,253,367,365,363,361,487,249"/>
+</map>
