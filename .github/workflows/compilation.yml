@@ -104,7 +104,8 @@ jobs:
           # Check symbols actually exported by libpsptest (the runner
           # API is psptest_run_suite, not a nonexistent psptest_run_module).
           psp-nm -g --defined-only "$PSPDEV/psp/sdk/lib/libpsptest.a" > "$build_dir/psptest-symbols.txt"
-          grep -Eq '[[:space:]][Tt][[:space:]]+psptest_run_suite
+          grep -Fq ' psptest_run_suite' "$build_dir/psptest-symbols.txt"
+          grep -Fq ' psptest_call_test_with_gp' "$build_dir/psptest-symbols.txt"
 
       - name: Compile examples
         run: |
