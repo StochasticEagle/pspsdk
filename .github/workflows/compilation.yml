@@ -89,12 +89,15 @@ jobs:
           rm -rf "$build_dir"
           mkdir -p "$build_dir"
           cp psptest/psptest.exp "$build_dir/psptest.exp"
+          # Do not pass LDFLAGS= on the make command line. That would
+          # suppress build.mak's -L paths, unlike production PSPTEST.
+          printf 'override LDFLAGS += -nostartfiles\n' > "$build_dir/psptest-overrides.mk"
 
           make -C "$build_dir" \
             -f "$source_dir/Makefile.test" \
+            -f "$build_dir/psptest-overrides.mk" \
             VPATH="$source_dir" \
             PRX_EXPORTS="$build_dir/psptest.exp" \
-            LDFLAGS=-nostartfiles \
             all
 
           test -f "$build_dir/psptest-framework.prx"
