@@ -52,4 +52,7 @@ static const PspTestCase cases[] = {
     PSPTEST_CASE(software_64bit_helpers), PSPTEST_CASE(software_double_arithmetic),
     PSPTEST_CASE(atomic_word_ops)
 };
-PSPTEST_MODULE("pspsdk/compiler-abi", cases, PSP_THREAD_ATTR_USER, NULL, NULL)
+#ifndef PSPTEST_COMPILER_SUITE
+#define PSPTEST_COMPILER_SUITE "pspsdk/compiler-abi"
+#endif
+PSPTEST_MODULE(PSPTEST_COMPILER_SUITE, cases, PSP_THREAD_ATTR_USER, NULL, NULL)
